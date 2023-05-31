@@ -2301,8 +2301,8 @@ MonoBehaviour:
   fuelUsePerSecondAtMaxPower: 0.012
   requireFuel: 1
   engineTransform: {fileID: 2626898653948247527}
-  maxThrust: 2850
-  idleInput: 0.05
+  maxThrust: 3000
+  idleInput: 0.02
   rampSpeed: 0.5
   thrustAirspeedCurve:
     serializedVersion: 2
@@ -2371,7 +2371,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RPMMult: 120
+  RPMMult: 180
   engineAnimationMesh: {fileID: 7332333932019382478}
   currentThrust: 0
   currentPower: 0
