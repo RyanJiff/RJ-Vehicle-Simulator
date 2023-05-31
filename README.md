@@ -3,7 +3,7 @@
 
 ### Features
 - A simple airplane with semi-realistic flight characteristics.
-![WIP](screenshot1.jpg)
+![Flying screenshot](screenshot1.JPG)
 
 
 # Table of Contents
@@ -29,5 +29,5 @@ Install Unity3D 2021.3.25f1 and clone the project. Open the project by opening t
 ## Contributing
 Roadmap items are being developed, if you would like to contribute create a pull request and document your changes well.
 
-##References and Credits
+##References-and-Credits
 1. https://github.com/brihernandez/SimpleWings
