@@ -498,7 +498,7 @@ MonoBehaviour:
   applyForcesToCenter: 0
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 1
-  dragMultiplier: 0.1
+  dragMultiplier: 1
 --- !u!1 &531469580326681939
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4536462822965834059
 Transform:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimensions: {x: 11.02, y: 1.4}
-  applyForcesToCenter: 0
+  applyForcesToCenter: 1
   wing: {fileID: 11400000, guid: 570ebcdfc5986d54682c09379174aab3, type: 2}
   liftMultiplier: 1
   dragMultiplier: 1
@@ -857,7 +857,7 @@ MonoBehaviour:
   applyForcesToCenter: 0
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 1
-  dragMultiplier: 0.1
+  dragMultiplier: 1
 --- !u!1 &2310201723994977059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,8 +1043,8 @@ MonoBehaviour:
   dimensions: {x: 1.5, y: 7}
   applyForcesToCenter: 0
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
-  liftMultiplier: 0.2
-  dragMultiplier: 1
+  liftMultiplier: 0.1
+  dragMultiplier: 0.3
 --- !u!1 &2894157561467024246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1304,40 @@ Transform:
   - {fileID: 1073510428913521794}
   - {fileID: 4206441815788999716}
   m_Father: {fileID: 8973332255613054810}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4113632839850500274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3499712991043347122}
+  m_Layer: 0
+  m_Name: HorizontalStab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3499712991043347122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113632839850500274}
+  m_LocalRotation: {x: -0.12478204, y: -0.12478201, z: -0.69600964, w: 0.6960097}
+  m_LocalPosition: {x: 0, y: 1.369, z: -3.557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9022460481924627999}
+  m_Father: {fileID: 8973332255613054810}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -20.328, y: 0, z: -90}
 --- !u!1 &4375139832938908711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1435,7 @@ MonoBehaviour:
   applyForcesToCenter: 1
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 2
-  dragMultiplier: 1
+  dragMultiplier: 2
 --- !u!1 &4691798151034787098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1846,7 @@ MonoBehaviour:
   applyForcesToCenter: 1
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 2
-  dragMultiplier: 1
+  dragMultiplier: 2
 --- !u!1 &5909230115733083115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,7 +1879,7 @@ Transform:
   - {fileID: 2634333841791216411}
   - {fileID: 5881323714964034877}
   m_Father: {fileID: 8973332255613054810}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &6535435092793428800
 MonoBehaviour:
@@ -2009,7 +2041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5076002933723836294
 Transform:
   m_ObjectHideFlags: 0
@@ -2251,9 +2283,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &6712620451567880571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2301,7 +2333,7 @@ MonoBehaviour:
   fuelUsePerSecondAtMaxPower: 0.012
   requireFuel: 1
   engineTransform: {fileID: 2626898653948247527}
-  maxThrust: 3000
+  maxThrust: 50000
   idleInput: 0.02
   rampSpeed: 0.5
   thrustAirspeedCurve:
@@ -2809,8 +2841,8 @@ MonoBehaviour:
   dimensions: {x: 1.1, y: 7.3}
   applyForcesToCenter: 0
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
-  liftMultiplier: 0.2
-  dragMultiplier: 1
+  liftMultiplier: 0.1
+  dragMultiplier: 0.3
 --- !u!1 &7784471321286735859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,7 +2859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5578580758849261181
 Transform:
   m_ObjectHideFlags: 0
@@ -2924,6 +2956,7 @@ Transform:
   - {fileID: 4754777522747652787}
   - {fileID: 1308653122539104856}
   - {fileID: 7682238524328196964}
+  - {fileID: 3499712991043347122}
   - {fileID: 4529717271282883625}
   - {fileID: 3843227335481478244}
   m_Father: {fileID: 6306797955743701687}
@@ -2960,3 +2993,52 @@ Transform:
   m_Father: {fileID: 6306797955743701687}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9098809187487476535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9022460481924627999}
+  - component: {fileID: 916635414607511678}
+  m_Layer: 0
+  m_Name: Wing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9022460481924627999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098809187487476535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.245, y: 0, z: 0.045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3499712991043347122}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &916635414607511678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098809187487476535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0682376e198e254baa203ad9293f11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensions: {x: 1.3, y: 0.5}
+  applyForcesToCenter: 0
+  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
+  liftMultiplier: 1
+  dragMultiplier: 1

@@ -5,8 +5,9 @@ public class LandingGear : MonoBehaviour
 {
     /*
      * Landing gear script resposible for handling landing gear logic
+     * has some editor tools for helping get/set positions of up down.
+     * Needs to be documeted better
      */
-
 
     public List<Transform> transforms = new List<Transform>();
     public List<WheelCollider> wheelColliders = new List<WheelCollider>();

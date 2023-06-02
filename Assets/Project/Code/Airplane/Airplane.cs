@@ -32,11 +32,11 @@ public class Airplane : Vehicle, IControllable
 	[Space]
 
 	[Header("Fuel Tanks")]
-	private FuelTank[] fuelTanks;
+	private List<FuelTank> fuelTanks = new List<FuelTank>();
 	[Space]
 
 	[Header("Landing Gear")]
-	private LandingGear landingGear = null;
+	private LandingGear landingGear;
 	[Space]
 	
 	[Header("Brakes")]
@@ -53,8 +53,7 @@ public class Airplane : Vehicle, IControllable
 	[Header("Center of mass ")]
 	[SerializeField] private Transform centerOfMassTransform;
 
-	public Rigidbody Rigidbody { get; internal set; }
-	
+	private Rigidbody rigid;
 	private bool yawDefined = false;
 
 	public float pitch;
@@ -155,8 +154,8 @@ public class Airplane : Vehicle, IControllable
     private float CalculatePitchG()
 	{
 		// Angular velocity is in radians per second.
-		Vector3 localVelocity = transform.InverseTransformDirection(Rigidbody.velocity);
-		Vector3 localAngularVel = transform.InverseTransformDirection(Rigidbody.angularVelocity);
+		Vector3 localVelocity = transform.InverseTransformDirection(rigid.velocity);
+		Vector3 localAngularVel = transform.InverseTransformDirection(rigid.angularVelocity);
 
 		// Local pitch velocity (X) is positive when pitching down.
 
@@ -195,11 +194,11 @@ public class Airplane : Vehicle, IControllable
     public float GroundSpeed()
 	{
 		const float msToKnots = 1.94384f;
-		return Rigidbody.velocity.magnitude * msToKnots;
+		return rigid.velocity.magnitude * msToKnots;
 	}
 	public float VerticalSpeed()
 	{
-		return Rigidbody.velocity.y * 3.28084f * 60;
+		return rigid.velocity.y * 3.28084f * 60;
 	}
     #endregion
 
@@ -277,13 +276,13 @@ public class Airplane : Vehicle, IControllable
 
 		controlSurfaces = GetComponentsInChildren<ControlSurface>().ToList();
 		engines = GetComponentsInChildren<AirplaneEngine>().ToList();
-		Rigidbody = GetComponent<Rigidbody>();
+		rigid = GetComponent<Rigidbody>();
 		landingGear = GetComponent<LandingGear>();
 		fuelTanks = GetFuelTanks();
 
 		if (centerOfMassTransform)
 		{
-			Rigidbody.centerOfMass = centerOfMassTransform.transform.localPosition;
+			rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
 		}
 		else
 		{
@@ -343,9 +342,9 @@ public class Airplane : Vehicle, IControllable
 	/// <summary>
 	/// Setup all the fuel tanks for the airplane
 	/// </summary>
-	public FuelTank[] GetFuelTanks()
+	public List<FuelTank> GetFuelTanks()
 	{
-		fuelTanks = GetComponentsInChildren<FuelTank>();
+		fuelTanks = GetComponentsInChildren<FuelTank>().ToList();
 		return fuelTanks;
 	}
 

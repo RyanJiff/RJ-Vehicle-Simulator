@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 public class AirplaneEngine : MonoBehaviour
 {
     /*
@@ -28,7 +28,7 @@ public class AirplaneEngine : MonoBehaviour
 
     [Range(0.0f, 1.0f)] private float throttleInput = 0.0f;
     private Rigidbody rigid;
-    private FuelTank[] fuelTanks;
+    private List<FuelTank> fuelTanks = new List<FuelTank>();
     private Airplane myAirplane;
 
     const float msToKnots = 1.94384f;
@@ -79,7 +79,7 @@ public class AirplaneEngine : MonoBehaviour
         {
             // Check how many tanks we can use
             int numberOfTanksWithOpenValves = 0;
-            for(int i = 0;i < fuelTanks.Length; i++)
+            for(int i = 0;i < fuelTanks.Count; i++)
             {
                 if (fuelTanks[i].IsFuelValveOpen())
                 {
@@ -90,7 +90,7 @@ public class AirplaneEngine : MonoBehaviour
             // Fuel consumption calculations
             float calculatedFuelUse = ((Mathf.Abs(fuelUsePerSecondAtMaxPower) * -1)/numberOfTanksWithOpenValves) * currentPower * Time.deltaTime;
             bool allDry = true;
-            for (int i = 0; i < fuelTanks.Length; i++)
+            for (int i = 0; i < fuelTanks.Count; i++)
             {
                 if (fuelTanks[i].IsFuelValveOpen())
                 {
@@ -103,6 +103,8 @@ public class AirplaneEngine : MonoBehaviour
             }
             if (allDry)
             {
+                // A real engine would still have ignition on if there is no fuel, it would just not have any combustion.
+                // Need to re write the Airplane Engine to be a little bit more realistic and maybe implement temperatures and different systems? 
                 ignition = false;
             }
         }

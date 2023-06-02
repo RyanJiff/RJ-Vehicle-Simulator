@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +5,7 @@ public class ApplicationManager : MonoBehaviour
 {
     /*
      * The application manager handles scene management.
+     * As of right now scene 0 in the build index is an empty scene with an application manager instance that loads scene 1.
      */
     public static ApplicationManager instance { get; private set; }
 
@@ -25,7 +24,6 @@ public class ApplicationManager : MonoBehaviour
 
         // Get out of the first loaded scene.
         SceneManager.LoadScene(1);
-
     }
 
     public void ReloadScene()

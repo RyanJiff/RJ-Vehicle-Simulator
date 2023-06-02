@@ -32,8 +32,7 @@ public class FuelTank : MonoBehaviour
     /// </summary>
     public void SetAmount(float amount)
     {
-        currentFuelAmountLitres = amount;
-        currentFuelAmountLitres = Mathf.Clamp(currentFuelAmountLitres, 0.0f, maxAmountLitres);
+        currentFuelAmountLitres = Mathf.Clamp(amount, 0.0f, maxAmountLitres);
     }
     public float GetCurrentFuelAmount()
     {

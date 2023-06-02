@@ -16,12 +16,14 @@ public class SimpleWing : MonoBehaviour
 	private Rigidbody rigid;
 
 	private Vector3 liftDirection = Vector3.up;
+	private Vector3 globalWindVector = Vector3.zero;
 
 	private float liftCoefficient = 0f;
 	private float dragCoefficient = 0f;
 	private float liftForce = 0f;
 	private float dragForce = 0f;
 	private float angleOfAttack = 0f;
+	
 
 	public float AngleOfAttack
 	{
@@ -29,7 +31,17 @@ public class SimpleWing : MonoBehaviour
 		{
 			if (rigid != null)
 			{
-				Vector3 localVelocity = transform.InverseTransformDirection(rigid.velocity);
+				globalWindVector = Vector3.zero;
+				// Check if we have an environment system singleton, will contain any global calculation modifiers
+				if (EnvironmentSystem.instance)
+				{
+					globalWindVector = EnvironmentSystem.instance.globalWindVector;
+				}
+
+				Vector3 worldVelocity = rigid.GetPointVelocity(transform.position);
+				worldVelocity += -globalWindVector;
+
+				Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
 				return angleOfAttack * -Mathf.Sign(localVelocity.y);
 			}
 			else
@@ -87,6 +99,7 @@ public class SimpleWing : MonoBehaviour
 		{
 			Debug.DrawRay(transform.position, liftDirection * liftForce * 0.001f, Color.blue);
 			Debug.DrawRay(transform.position, -rigid.velocity.normalized * dragForce * 0.001f, Color.red);
+			Debug.DrawRay(transform.position, rigid.velocity * 0.1f, Color.yellow);
 		}
 	}
 
@@ -96,7 +109,17 @@ public class SimpleWing : MonoBehaviour
 		{
 			Vector3 forceApplyPos = (applyForcesToCenter) ? rigid.transform.TransformPoint(rigid.centerOfMass) : transform.position;
 
-			Vector3 localVelocity = transform.InverseTransformDirection(rigid.GetPointVelocity(transform.position));
+			globalWindVector = Vector3.zero;
+			// Check if we have an environment system singleton, will contain any global calculation modifiers
+            if (EnvironmentSystem.instance)
+            {
+				globalWindVector = EnvironmentSystem.instance.globalWindVector;
+            }
+
+			Vector3 worldVelocity = rigid.GetPointVelocity(transform.position);
+			worldVelocity += -globalWindVector;
+
+			Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
 			localVelocity.x = 0f;
 
 			// Angle of attack is used as the look up for the lift and drag curves.
@@ -112,11 +135,11 @@ public class SimpleWing : MonoBehaviour
 			liftForce *= -Mathf.Sign(localVelocity.y);
 
 			// Lift is always perpendicular to air flow.
-			liftDirection = Vector3.Cross(rigid.velocity, transform.right).normalized;
+			liftDirection = Vector3.Cross(rigid.velocity - globalWindVector, transform.right).normalized;
 			rigid.AddForceAtPosition(liftDirection * liftForce, forceApplyPos, ForceMode.Force);
 
 			// Drag is always opposite of the velocity.
-			rigid.AddForceAtPosition(-rigid.velocity.normalized * dragForce, forceApplyPos, ForceMode.Force);
+			rigid.AddForceAtPosition((-rigid.velocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
 		}
 	}
 
