@@ -138,7 +138,7 @@ public class SimpleWing : MonoBehaviour
 			liftDirection = Vector3.Cross(rigid.velocity - globalWindVector, transform.right).normalized;
 			rigid.AddForceAtPosition(liftDirection * liftForce, forceApplyPos, ForceMode.Force);
 
-			// Drag is always opposite of the velocity.
+			// Drag is always opposite of the wind velocity.
 			rigid.AddForceAtPosition((-rigid.velocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
 		}
 	}

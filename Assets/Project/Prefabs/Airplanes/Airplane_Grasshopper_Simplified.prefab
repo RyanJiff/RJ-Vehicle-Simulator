@@ -1435,7 +1435,7 @@ MonoBehaviour:
   applyForcesToCenter: 1
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 2
-  dragMultiplier: 2
+  dragMultiplier: 1
 --- !u!1 &4691798151034787098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   applyForcesToCenter: 1
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 2
-  dragMultiplier: 2
+  dragMultiplier: 1
 --- !u!1 &5909230115733083115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,7 +2333,7 @@ MonoBehaviour:
   fuelUsePerSecondAtMaxPower: 0.012
   requireFuel: 1
   engineTransform: {fileID: 2626898653948247527}
-  maxThrust: 50000
+  maxThrust: 3000
   idleInput: 0.02
   rampSpeed: 0.5
   thrustAirspeedCurve:
