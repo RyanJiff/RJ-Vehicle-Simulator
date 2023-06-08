@@ -2,6 +2,11 @@
 
 public class SimpleWing : MonoBehaviour
 {
+	/*
+     * README in script folder for credits
+     * Simple wing script that applies a force based on parameters/velocity/environmentsystem.
+     */
+
 	[Tooltip("Size of the wing. The bigger the wing, the more lift it provides.")]
 	public Vector2 dimensions = new Vector2(5f, 2f);
 	[Tooltip("When true, wing forces will be applied only at the center of mass.")]
@@ -110,6 +115,7 @@ public class SimpleWing : MonoBehaviour
 			Vector3 forceApplyPos = (applyForcesToCenter) ? rigid.transform.TransformPoint(rigid.centerOfMass) : transform.position;
 
 			globalWindVector = Vector3.zero;
+
 			// Check if we have an environment system singleton, will contain any global calculation modifiers
             if (EnvironmentSystem.instance)
             {

@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IControllable
 {
+    /*
+     * Any controllable vehicle inherits from this class
+     */
+
     // Inputs that are changed through external MonoBehaviours (VehicleController)
     protected float _inputRoll = 0;
     protected float _inputPitch = 0;
@@ -62,7 +66,7 @@ public class Vehicle : MonoBehaviour, IControllable
         }
     }
     /// <summary>
-	/// Change trim by amount on the selected axis
+	/// Get trim by amount on the selected axis
 	/// </summary>
     public float GetTrim(Enums.Axis axis)
     {
@@ -77,6 +81,6 @@ public class Vehicle : MonoBehaviour, IControllable
     /// </summary>
     public virtual void VehicleUpdate()
     {
-        Debug.Log("Vehicle update not implemented for this vehicle!");
+        Debug.Log("Vehicle update not implemented for this vehicle or base function called.");
     }
 }
