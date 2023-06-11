@@ -14,11 +14,15 @@ public class Vehicle : MonoBehaviour, IControllable
     protected float _inputThrottle = 0;
     protected float verticalTrim = 0.0f;
 
-    // Vehicle Parameters
     [Header("General Vehicle Parameters")]
     [Tooltip("Dry Weight of the vehicle without fuel or cargo")]
     [SerializeField] protected float baseWeightKG = 1000.0f;
-    
+    [Space]
+
+    [Header("Telemetry and information")]
+    public float pitch;
+    public float roll;
+
 
     public virtual void SendAxisInputs(float y, float x, float z, bool brake, float throttle)
     {

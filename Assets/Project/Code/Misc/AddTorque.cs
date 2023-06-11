@@ -31,13 +31,11 @@ public class AddTorque : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            toEffect.AddTorque(Vector3.up * forceAmount, ForceMode.Force);
+            toEffect.AddTorque(-Vector3.up * forceAmount, ForceMode.Force);
         }
         if (Input.GetKey(KeyCode.D))
         {
             toEffect.AddTorque(Vector3.up * forceAmount, ForceMode.Force);
         }
-
-
     }
 }

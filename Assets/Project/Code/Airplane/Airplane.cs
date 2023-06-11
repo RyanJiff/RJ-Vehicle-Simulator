@@ -52,12 +52,10 @@ public class Airplane : Vehicle, IControllable
 
 	[Header("Center of mass ")]
 	[SerializeField] private Transform centerOfMassTransform;
+	[Space]
 
 	private Rigidbody rigid;
 	private bool yawDefined = false;
-
-	public float pitch;
-	public float roll;
 
 	private void Awake()
 	{

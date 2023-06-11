@@ -20,7 +20,7 @@ public class BuoyancyEffector : MonoBehaviour
     [Tooltip("The higher the value, the more buoyancy the effector")]
     public float buoyancyMultiplier = 1f;
     [Tooltip("Drag multiplier, the higher the value the more the drag force")]
-    public float dragMultiplier = 1f;
+    public Vector3 dragMultiplier = Vector3.one;
 
     private Rigidbody rigid;
 
@@ -33,6 +33,7 @@ public class BuoyancyEffector : MonoBehaviour
     private float buoyancyForce = 0f;
     private float dragForce = 0f;
     private Vector3 dragDirection = Vector3.zero;
+    private Vector3 dragDirectionAndForce = Vector3.zero;
 
     // Gravity constant (m/s^2)
     private const float g = 9.81f;
@@ -54,7 +55,7 @@ public class BuoyancyEffector : MonoBehaviour
         if (rigid != null)
         {
             Debug.DrawRay(transform.position, buoyancyForce * buoyancyForceDirection * 0.001f, Color.magenta);
-            Debug.DrawRay(transform.position, dragDirection * dragForce * underWaterPercent * 0.01f, Color.red);
+            Debug.DrawRay(transform.position, dragDirectionAndForce * underWaterPercent * 0.01f, Color.red);
         }
     }
 
@@ -86,29 +87,36 @@ public class BuoyancyEffector : MonoBehaviour
             buoyancyForce = waterDensity * g * underWaterPercent * buoyancyMultiplier * EffectorVolume;
             
             // Again, the water density variable should be removed as it has no real bearing on the final result.
-            dragForce = worldVelocity.sqrMagnitude * waterDensity * dragMultiplier;            
+            dragForce = worldVelocity.sqrMagnitude * waterDensity;            
 
             // Drag direciton should always be opposite of effector velocity.
             dragDirection = (-worldVelocity).normalized;
 
+            // We need to convert the drag direction to a local velocity and then apply the drag coeffecients, this is not very effecient and could be better.
+            // NEEDS TESTING
+            dragDirection = transform.InverseTransformDirection(dragDirection);
+            dragDirection = new Vector3(dragDirection.x * dragMultiplier.x, dragDirection.y * dragMultiplier.y, dragDirection.z * dragMultiplier.z);
+            dragDirection = transform.TransformDirection(dragDirection);
+
             // Drag force should never be more than the mass of the object times a constant, this is because as velocity approaches really big numbers the resulting drag force can cause instability.
             // Clamping the force to only be able to apply a force relative to the mass is a cheesy way of solving this issue.
-            dragForce = Mathf.Clamp(dragForce, 50f * -rigid.mass, 50f * rigid.mass);
+            dragDirectionAndForce = dragDirection * dragForce;
 
+            // Apply forces
             rigid.AddForceAtPosition(buoyancyForceDirection * buoyancyForce, forceApplyPos, ForceMode.Force);
-            rigid.AddForceAtPosition(dragDirection * dragForce * underWaterPercent, forceApplyPos, ForceMode.Force);
+            rigid.AddForceAtPosition(dragDirectionAndForce * underWaterPercent, forceApplyPos, ForceMode.Force);
         }
     }
     // Prevent this code from throwing errors in a built game.
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Matrix4x4 oldMatrix = Gizmos.matrix;
+    #if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Matrix4x4 oldMatrix = Gizmos.matrix;
 
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-        Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
-        //Gizmos.DrawWireSphere(transform.InverseTransformDirection(Vector3.down) * effectorSize/2 , effectorSize/4f);
-        Gizmos.matrix = oldMatrix;
-    }
-#endif
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
+            //Gizmos.DrawWireSphere(transform.InverseTransformDirection(Vector3.down) * effectorSize/2 , effectorSize/4f);
+            Gizmos.matrix = oldMatrix;
+        }
+    #endif
 }

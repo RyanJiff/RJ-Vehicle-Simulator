@@ -15,16 +15,19 @@ public class AirplaneEngine : MonoBehaviour
     [SerializeField] private float idleInput = 0.05f;
     [SerializeField] private float rampSpeed = 0.5f;
     [SerializeField] private AnimationCurve thrustAirspeedCurve;
+    [Space]
 
     [Header("Visual")]
     [SerializeField] private float RPM = 0;
     [SerializeField] private AnimationCurve RPMCurve;
     [SerializeField] private float RPMMult = 3000;
     [SerializeField] private Transform engineAnimationMesh;
+    [Space]
 
     [Header("Debug")]
     [SerializeField] float currentThrust; [Range(0.0f, 1.0f)]
     [SerializeField] float currentPower = 0.0f;
+    [Space]
 
     [Range(0.0f, 1.0f)] private float throttleInput = 0.0f;
     private Rigidbody rigid;

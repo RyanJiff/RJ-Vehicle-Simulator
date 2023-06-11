@@ -149,16 +149,16 @@ public class SimpleWing : MonoBehaviour
 		}
 	}
 
-// Prevent this code from throwing errors in a built game.
-#if UNITY_EDITOR
-	private void OnDrawGizmosSelected()
-	{
-		Matrix4x4 oldMatrix = Gizmos.matrix;
+	// Prevent this code from throwing errors in a built game.
+	#if UNITY_EDITOR
+		private void OnDrawGizmosSelected()
+		{
+			Matrix4x4 oldMatrix = Gizmos.matrix;
 
-		Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-		Gizmos.DrawWireCube(Vector3.zero, new Vector3(dimensions.x, 0f, dimensions.y));
+			Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+			Gizmos.DrawWireCube(Vector3.zero, new Vector3(dimensions.x, 0f, dimensions.y));
 
-		Gizmos.matrix = oldMatrix;
-	}
-#endif
+			Gizmos.matrix = oldMatrix;
+		}
+	#endif
 }
