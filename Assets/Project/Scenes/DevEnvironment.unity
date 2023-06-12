@@ -848,6 +848,17 @@ MonoBehaviour:
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.2
   dragMultiplier: {x: 0.2, y: 0.3, z: 0.001}
+--- !u!114 &816826085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6712620451567880571, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+  m_PrefabInstance: {fileID: 1781400221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832295121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1113355358}
   - component: {fileID: 1113355357}
-  - component: {fileID: 1113355359}
   m_Layer: 0
   m_Name: Dev
   m_TagString: Untagged
@@ -1228,20 +1238,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1113355359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113355356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa7c5c1e349ab647a88c3b508415157, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toEffect: {fileID: 3939786843633077669}
-  forceAmount: 5000
 --- !u!1 &1182197260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2420,7 @@ PrefabInstance:
     - target: {fileID: 4619381935290398541, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: startingVehicle
       value: 
-      objectReference: {fileID: 8530599883719319596}
+      objectReference: {fileID: 816826085}
     - target: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_Name
       value: Player
