@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
                 ApplicationManager.instance.ReloadScene();
         }
+
     }
 
 

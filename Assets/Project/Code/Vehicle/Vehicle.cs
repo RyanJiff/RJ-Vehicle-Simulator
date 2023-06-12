@@ -9,10 +9,6 @@ public class Vehicle : MonoBehaviour
      * Any controllable vehicle inherits from this class
      */
 
-    // Vehicle Type is used for controls and GUI
-    public enum VehicleType { LAND, AIR, WATER}
-    [SerializeField] VehicleType vehicleType = VehicleType.AIR;
-
     [Header("Vehicle Parameters")]
     [SerializeField] protected float baseWeightKG = 1000.0f;
     [Space]
@@ -82,10 +78,6 @@ public class Vehicle : MonoBehaviour
             return verticalTrim;
         }
         return 0f;
-    }
-    public VehicleType GetVehicleType()
-    {
-        return vehicleType;
     }
     public List<VehicleSystem> GetAllVehicleSystems()
     {

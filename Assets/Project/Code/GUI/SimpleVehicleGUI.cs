@@ -58,7 +58,7 @@ public class SimpleVehicleGUI : MonoBehaviour
 		if (showControls)
 		{
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Throttle Control(1,2) Flaps(3,4) Brakes(B) Engine Toggle(I) Toggle Mouse Yoke(Y)", style);
-			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Elevator(W,S) Aileron(A,D) Rudder(Q,E) Trim(-,+)" , style);
+			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Axis(W,S,A,D) Yaw(Q,E) Trim(-,+)" , style);
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Switch Camera Mode(Numpad5) Look Around Orbit Camera(Numpad)", style);
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "R TO RELOAD SCENE", style);
 		}

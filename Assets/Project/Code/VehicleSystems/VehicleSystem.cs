@@ -7,9 +7,6 @@ public class VehicleSystem : MonoBehaviour
      * Vehicles have a collection of vehicle systems that act as independent components, eg engines, fuel tanks, control surfaces, electrical systems.
      */
 
-    [Header("Base Vehicle System Information")]
-    [SerializeField] protected string vehicleSystemName = "Default Vehicle System";
-
     [Header("GUI Elements")]
     [SerializeField] protected List<VehicleGUIElement> vehicleGUIElements = new List<VehicleGUIElement>();
     [SerializeField] protected bool showGUIElements = false;

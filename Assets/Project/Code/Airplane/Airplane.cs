@@ -131,7 +131,7 @@ public class Airplane : Vehicle
 		// Engine throttle input handling
 		for (int i = 0; i < engines.Count; i++)
 		{
-			engines[0].SetThrottle(_inputThrottle);
+			engines[i].SetThrottle(_inputThrottle);
 		}
 	}
 
