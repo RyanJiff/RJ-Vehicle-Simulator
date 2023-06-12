@@ -1,10 +1,27 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
-public class Vehicle : MonoBehaviour, IControllable
+[RequireComponent(typeof(Rigidbody))]
+public class Vehicle : MonoBehaviour
 {
     /*
      * Any controllable vehicle inherits from this class
      */
+
+    // Vehicle Type is used for controls and GUI
+    public enum VehicleType { LAND, AIR, WATER}
+    [SerializeField] VehicleType vehicleType = VehicleType.AIR;
+
+    [Header("Vehicle Parameters")]
+    [SerializeField] protected float baseWeightKG = 1000.0f;
+    [Space]
+
+    [Header("Telemetry and information")]
+    public float pitch;
+    public float roll;
+    public float altitude;
+    [Space]
 
     // Inputs that are changed through external MonoBehaviours (VehicleController)
     protected float _inputRoll = 0;
@@ -14,15 +31,7 @@ public class Vehicle : MonoBehaviour, IControllable
     protected float _inputThrottle = 0;
     protected float verticalTrim = 0.0f;
 
-    [Header("General Vehicle Parameters")]
-    [Tooltip("Dry Weight of the vehicle without fuel or cargo")]
-    [SerializeField] protected float baseWeightKG = 1000.0f;
-    [Space]
-
-    [Header("Telemetry and information")]
-    public float pitch;
-    public float roll;
-
+    protected Rigidbody rigid;
 
     public virtual void SendAxisInputs(float y, float x, float z, bool brake, float throttle)
     {
@@ -58,9 +67,6 @@ public class Vehicle : MonoBehaviour, IControllable
     {
         Debug.Log("No Custom inputs!");
     }
-    /// <summary>
-	/// Change trim by amount on the selected axis
-	/// </summary>
 	public void ChangeTrim(float amount, Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL)
@@ -69,9 +75,6 @@ public class Vehicle : MonoBehaviour, IControllable
             verticalTrim = Mathf.Clamp01(verticalTrim);
         }
     }
-    /// <summary>
-	/// Get trim by amount on the selected axis
-	/// </summary>
     public float GetTrim(Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL) 
@@ -80,11 +83,87 @@ public class Vehicle : MonoBehaviour, IControllable
         }
         return 0f;
     }
-    /// <summary>
-    /// Vehicle update updates any vehicle related functions, use to update mass or any other vehicle specific function
-    /// </summary>
-    public virtual void VehicleUpdate()
+    public VehicleType GetVehicleType()
     {
-        Debug.Log("Vehicle update not implemented for this vehicle or base function called.");
+        return vehicleType;
     }
+    public List<VehicleSystem> GetAllVehicleSystems()
+    {
+        return gameObject.GetComponentsInChildren<VehicleSystem>().ToList();
+    }
+    #region CALCULATIONS
+    public float CalculatePitchG()
+    {
+        if (!rigid)
+        {
+            rigid = GetComponent<Rigidbody>();
+        }
+        // Angular velocity is in radians per second.
+        Vector3 localVelocity = transform.InverseTransformDirection(rigid.velocity);
+        Vector3 localAngularVel = transform.InverseTransformDirection(rigid.angularVelocity);
+
+        // Local pitch velocity (X) is positive when pitching down.
+
+        // Radius of turn = velocity / angular velocity
+        float radius = (Mathf.Approximately(localAngularVel.x, 0.0f)) ? float.MaxValue : localVelocity.z / localAngularVel.x;
+
+        // The radius of the turn will be negative when in a pitching down turn.
+
+        // Force is mass * radius * angular velocity^2
+        float verticalForce = (Mathf.Approximately(radius, 0.0f)) ? 0.0f : (localVelocity.z * localVelocity.z) / radius;
+
+        // Express in G (Always relative to Earth G)
+        float verticalG = verticalForce / -9.81f;
+
+        // Add the planet's gravity in. When the up is facing directly up, then the full
+        // force of gravity will be felt in the vertical.
+        verticalG += transform.up.y * (Physics.gravity.y / -9.81f);
+
+        return verticalG;
+    }
+    protected Vector3 ProjectPointOnPlane(Vector3 planeNormal, Vector3 planePoint, Vector3 point)
+    {
+        planeNormal.Normalize();
+        float distance = -Vector3.Dot(planeNormal.normalized, (point - planePoint));
+        return point + planeNormal * distance;
+    }
+    protected float SignedAngle(Vector3 v1, Vector3 v2, Vector3 normal)
+    {
+        Vector3 perp = Vector3.Cross(normal, v1);
+        float angle = Vector3.Angle(v1, v2);
+        angle *= Mathf.Sign(Vector3.Dot(perp, v2));
+        return angle;
+    }
+    public float GroundSpeedKnots()
+    {
+        if (!rigid)
+        {
+            rigid = GetComponent<Rigidbody>();
+        }
+        const float msToKnots = 1.94384f;
+        return rigid.velocity.magnitude * msToKnots;
+    }
+    public float VerticalSpeedFeetPerMinute()
+    {
+        if (!rigid)
+        {
+            rigid = GetComponent<Rigidbody>();
+        }
+        return rigid.velocity.y * 3.28084f * 60;
+    }
+    public float GetPitch()
+    {
+        Vector3 pos = ProjectPointOnPlane(Vector3.up, Vector3.zero, transform.forward);
+        pitch = SignedAngle(transform.forward, pos, transform.right);
+        return pitch;
+    }
+    public float GetRoll()
+    {
+		Vector3 pos = ProjectPointOnPlane(Vector3.up, Vector3.zero, transform.forward);	
+		pos = ProjectPointOnPlane(Vector3.up, Vector3.zero, transform.right);
+		roll = SignedAngle(transform.right, pos, transform.forward);
+        return roll;
+    }
+    #endregion
+
 }

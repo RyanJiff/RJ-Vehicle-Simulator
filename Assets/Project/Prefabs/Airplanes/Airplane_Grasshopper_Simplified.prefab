@@ -47,7 +47,7 @@ MonoBehaviour:
   effectorSize: 1
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.5
-  dragMultiplier: 0.25
+  dragMultiplier: {x: 1, y: 1, z: 1}
 --- !u!1 &1558943033
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   effectorSize: 1
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.5
-  dragMultiplier: 0.25
+  dragMultiplier: {x: 1, y: 1, z: 1}
 --- !u!1 &1897407412
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   effectorSize: 1
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.5
-  dragMultiplier: 0.25
+  dragMultiplier: {x: 1, y: 1, z: 1}
 --- !u!1 &2109601105
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   effectorSize: 1
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.5
-  dragMultiplier: 0.25
+  dragMultiplier: {x: 1, y: 1, z: 1}
 --- !u!1 &71579478505441518
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,53 +426,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &480901401059891529
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4399096904595609020}
-  - component: {fileID: 354450228659987250}
-  m_Layer: 0
-  m_Name: FuelTankL
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4399096904595609020
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480901401059891529}
-  m_LocalRotation: {x: -0.013089582, y: -0, z: -0, w: 0.99991435}
-  m_LocalPosition: {x: -3, y: -0.14476395, z: 1.9499512}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 192180060796775331}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &354450228659987250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480901401059891529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7874611a51b331d468e362cdf94324a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAmountLitres: 75
-  currentFuelAmountLitres: 75
-  fuelValve: 0
 --- !u!1 &524131643576387754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,8 +1233,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 192180060796775331}
+  - component: {fileID: 8503596440277745330}
   m_Layer: 0
-  m_Name: FuelTanks
+  m_Name: FuelTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1298,12 +1252,27 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7578438491488685876}
-  - {fileID: 4399096904595609020}
+  m_Children: []
   m_Father: {fileID: 6306797955743701687}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8503596440277745330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2933280512978201755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7874611a51b331d468e362cdf94324a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleSystemName: Fuel Tank
+  showGUIElements: 1
+  maxAmountLitres: 200
+  currentFuelAmountLitres: 100
+  fuelValve: 0
 --- !u!1 &3274657616377594622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,53 +1680,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4846797774787680724
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7578438491488685876}
-  - component: {fileID: 4226464356320550411}
-  m_Layer: 0
-  m_Name: FuelTankR
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7578438491488685876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4846797774787680724}
-  m_LocalRotation: {x: -0.013089582, y: -0, z: -0, w: 0.99991435}
-  m_LocalPosition: {x: 3, y: -0.14476395, z: 1.9499512}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 192180060796775331}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4226464356320550411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4846797774787680724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7874611a51b331d468e362cdf94324a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAmountLitres: 75
-  currentFuelAmountLitres: 75
-  fuelValve: 0
 --- !u!1 &4910588821091551422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,6 +2387,7 @@ GameObject:
   - component: {fileID: 6306797955743701687}
   - component: {fileID: 3584345113421144807}
   - component: {fileID: 6712620451567880571}
+  - component: {fileID: 7473704258276874980}
   - component: {fileID: 7794078104698723248}
   - component: {fileID: 6787403744584225170}
   - component: {fileID: 2120332796}
@@ -2526,13 +2449,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleType: 1
   baseWeightKG: 1000
-  controlSurfaces: []
-  defualtElevatorTrim: 0.2
+  pitch: 0
+  roll: 0
+  altitude: 0
   flapLevels:
   - 0
   - 0.5
   - 1
+  defualtElevatorTrim: 0.2
   brakeWheels:
   - {fileID: 4756589564281933467}
   - {fileID: 4041244827390529475}
@@ -2543,8 +2469,20 @@ MonoBehaviour:
   maxSteerAngle: 20
   invertedSteering: 0
   centerOfMassTransform: {fileID: 7014024735486883027}
-  pitch: 0
-  roll: 0
+--- !u!114 &7473704258276874980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051905340896815268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb851495b71314b8a79fe5f9e6dd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleSystemName: Telemetry System
+  showGUIElements: 1
 --- !u!114 &7794078104698723248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2557,6 +2495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0ac939b894254ab2ff7109bc93528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleSystemName: Prop Engine
+  showGUIElements: 1
   ignition: 0
   fuelUsePerSecondAtMaxPower: 0.012
   requireFuel: 1
@@ -2647,6 +2587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2074926c9349d9d4f9dc301469957a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleSystemName: Default Vehicle System
+  showGUIElements: 0
   wheels:
   - {fileID: 4756589564281933467}
   - {fileID: 976301557134771162}
@@ -2664,6 +2606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124db2a1874eb4d43bdc3badff5bd97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleSystemName: Default Vehicle System
+  showGUIElements: 0
   transforms:
   - {fileID: 6219454570669317171}
   - {fileID: 5812237688988268278}

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class LandingGear : MonoBehaviour
+public class LandingGear : VehicleSystem
 {
     /*
      * Landing gear script resposible for handling landing gear logic

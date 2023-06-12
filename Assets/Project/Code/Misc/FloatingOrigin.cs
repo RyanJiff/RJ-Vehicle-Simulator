@@ -77,10 +77,10 @@ public class FloatingOrigin : MonoBehaviour
         {
             w.enabled = false;
         }
-        foreach(Engine e in FindObjectsOfType<Engine>())
-        {
-            e.enabled = false;
-        }
+        //foreach(Engine e in FindObjectsOfType<Engine>())
+        //{
+        //    e.enabled = false;
+        //}
         
         if (UpdateAllScenes)
         {
@@ -99,10 +99,10 @@ public class FloatingOrigin : MonoBehaviour
         {
             w.enabled = true;
         }
-        foreach (Engine e in FindObjectsOfType<Engine>())
-        {
-            e.enabled = true;
-        }
+        //foreach (Engine e in FindObjectsOfType<Engine>())
+        //{
+        //    e.enabled = true;
+        //}
     }
     private void MoveTrailRenderers(Vector3 offset)
     {

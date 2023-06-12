@@ -75,7 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c6eed121c66574387d72b9db5f2dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: {fileID: 0}
+  startOffset: {x: 10, y: 40}
+  sizeOfInfoRect: {x: 300, y: 20}
+  spacingOfInfoRect: {x: 0, y: 20}
+  suffixXOffset: 0
 --- !u!114 &7048838770516537368
 MonoBehaviour:
   m_ObjectHideFlags: 0

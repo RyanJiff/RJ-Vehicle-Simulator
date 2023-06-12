@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GearVisuals : MonoBehaviour
+public class GearVisuals : VehicleSystem
 {
 	/*
 	 * Written by Brian Hernandez. 

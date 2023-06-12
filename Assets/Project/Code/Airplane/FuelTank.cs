@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-public class FuelTank : MonoBehaviour
+public class FuelTank : VehicleSystem
 {
     /*
      *Fuel tank to make engines run if they require fuel
      */
     public enum FuelValveState { OPEN, CLOSED}
 
-
     [SerializeField] private float maxAmountLitres = 200f;
     [SerializeField] private float currentFuelAmountLitres = 100f;
     [SerializeField] private FuelValveState fuelValve = FuelValveState.OPEN;
-
+    
     /// <summary>
     /// Returns true if fuel tank is empty
     /// </summary>
@@ -55,5 +54,13 @@ public class FuelTank : MonoBehaviour
     public void SetFuelValveState(FuelValveState fv)
     {
         fuelValve = fv;
+    }
+    protected override void InitializeGUIElements()
+    {
+        vehicleGUIElements.Add(new VehicleGUIElement("Fuel", "L", "0.0", showGUIElements));
+    }
+    protected override void UpdateGUIElements()
+    {
+        vehicleGUIElements[0].SetValue((currentFuelAmountLitres).ToString("0.0"));
     }
 }

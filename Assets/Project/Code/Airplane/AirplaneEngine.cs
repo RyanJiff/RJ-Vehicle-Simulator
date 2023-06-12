@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-public class AirplaneEngine : MonoBehaviour
+
+[RequireComponent(typeof(Airplane))]
+public class AirplaneEngine : VehicleSystem
 {
     /*
      * Simple airplane engine that adds a force based on inputted values
@@ -138,4 +140,15 @@ public class AirplaneEngine : MonoBehaviour
     {
         return ignition;
     }
+
+    #region VEHICLESYSTEMGUI
+    protected override void InitializeGUIElements()
+    {
+        vehicleGUIElements.Add(new VehicleGUIElement("Throttle", "%", "0.0", showGUIElements));
+    }
+    protected override void UpdateGUIElements()
+    {
+        vehicleGUIElements[0].SetValue((throttleInput * 100).ToString("0"));
+    }
+    #endregion
 }

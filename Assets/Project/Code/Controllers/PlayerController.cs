@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     SimpleVehicleGUI myVehicleGUI = null;
 
     // For Dev purposes, set the starting vehicle of the player
-    public GameObject startingVehicle; 
+    public Vehicle startingVehicle; 
 
     void Awake()
     {
@@ -44,13 +44,13 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Take control of an airplane gameobject and set the GUI to reflect it
     /// </summary>
-    public void TakeControl(GameObject vehicle)
+    public void TakeControl(Vehicle vehicle)
     {
         if(vehicle.GetComponent<Vehicle>() != null)
         {
-            myController.GiveControl(vehicle.GetComponent<Vehicle>());
+            myController.GiveControl(vehicle);
             myCameraController.SetTargetVehicle(vehicle.transform);
-            myVehicleGUI.vehicle = vehicle.GetComponent<Vehicle>();
+            myVehicleGUI.SetVehicle(vehicle);
         }
         else
         {
