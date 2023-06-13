@@ -54,8 +54,8 @@ public class BuoyancyEffector : MonoBehaviour
         // DEBUG
         if (rigid != null)
         {
-            Debug.DrawRay(transform.position, buoyancyForce * buoyancyForceDirection * 0.001f, Color.magenta);
-            Debug.DrawRay(transform.position, dragDirectionAndForce * underWaterPercent * 0.01f, Color.red);
+            //Debug.DrawRay(transform.position, buoyancyForce * buoyancyForceDirection * 0.001f, Color.magenta);
+            //Debug.DrawRay(transform.position, dragDirectionAndForce * underWaterPercent * 0.01f, Color.red);
         }
     }
 
@@ -87,7 +87,8 @@ public class BuoyancyEffector : MonoBehaviour
             buoyancyForce = waterDensity * g * underWaterPercent * buoyancyMultiplier * EffectorVolume;
             
             // Again, the water density variable should be removed as it has no real bearing on the final result.
-            dragForce = worldVelocity.sqrMagnitude * waterDensity;            
+            dragForce = worldVelocity.sqrMagnitude * waterDensity;
+            dragForce = Mathf.Clamp(dragForce, rigid.mass * -50f, rigid.mass * 50f);
 
             // Drag direciton should always be opposite of effector velocity.
             dragDirection = (-worldVelocity).normalized;

@@ -11,6 +11,9 @@ public class Vehicle : MonoBehaviour
 
     [Header("Vehicle Parameters")]
     [SerializeField] protected float baseWeightKG = 1000.0f;
+    [SerializeField] protected Transform centerOfMassTransform = null;
+    [SerializeField] protected float defualtVerticalTrim = 0.0f;
+    [SerializeField] protected float defualtHorizontalTrim = 0.0f;
     [Space]
 
     [Header("Telemetry and information")]
@@ -26,13 +29,30 @@ public class Vehicle : MonoBehaviour
     protected bool _inputBrake = false;
     protected float _inputThrottle = 0;
     protected float verticalTrim = 0.0f;
+    protected float horizontalTrim = 0.0f;
 
     protected Rigidbody rigid;
 
+    protected virtual void InitializeVehicle()
+    {
+        rigid = GetComponent<Rigidbody>();
+        rigid.mass = baseWeightKG;
+
+        horizontalTrim = defualtHorizontalTrim;
+        verticalTrim = defualtVerticalTrim;
+        if (centerOfMassTransform)
+        {
+            rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
+        }
+        else
+        {
+            Debug.LogWarning(name + ": Vehicle missing center of mass transform!");
+        }
+    }
     public virtual void SendAxisInputs(float y, float x, float z, bool brake, float throttle)
     {
-        _inputPitch = Mathf.Clamp(y, -1.0f, 1.0f);
-        _inputRoll = Mathf.Clamp(x, -1.0f, 1.0f);
+        _inputPitch = Mathf.Clamp(y + verticalTrim, -1.0f, 1.0f);
+        _inputRoll = Mathf.Clamp(x + horizontalTrim, -1.0f, 1.0f);
         _inputYaw = Mathf.Clamp(z, -1.0f, 1.0f);
         // Brake input has to be made an axis, not a boolean
         _inputBrake = brake;
@@ -70,12 +90,21 @@ public class Vehicle : MonoBehaviour
             verticalTrim += amount;
             verticalTrim = Mathf.Clamp01(verticalTrim);
         }
+        if (axis == Enums.Axis.HORIZONTAL)
+        {
+            horizontalTrim += amount;
+            horizontalTrim = Mathf.Clamp01(horizontalTrim);
+        }
     }
     public float GetTrim(Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL) 
         { 
             return verticalTrim;
+        }
+        if (axis == Enums.Axis.HORIZONTAL)
+        {
+            return horizontalTrim;
         }
         return 0f;
     }

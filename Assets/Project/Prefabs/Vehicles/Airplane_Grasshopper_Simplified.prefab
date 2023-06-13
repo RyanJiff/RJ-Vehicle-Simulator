@@ -1268,7 +1268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7874611a51b331d468e362cdf94324a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleSystemName: Fuel Tank
   showGUIElements: 1
   maxAmountLitres: 200
   currentFuelAmountLitres: 100
@@ -1547,55 +1546,6 @@ MonoBehaviour:
   applyForcesToCenter: 0
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 1
-  dragMultiplier: 1
---- !u!1 &4486697489310833136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6088659541833401689}
-  - component: {fileID: 4340109236227090932}
-  m_Layer: 0
-  m_Name: FlapLWing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6088659541833401689
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4486697489310833136}
-  m_LocalRotation: {x: -0.000000030908623, y: -0.7071068, z: 0.7071067, w: -0.000000030908616}
-  m_LocalPosition: {x: 0, y: 0.0098001575, z: 0}
-  m_LocalScale: {x: -1, y: -2.0656648, z: -0.48410583}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1073510428913521794}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4340109236227090932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4486697489310833136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0682376e198e254baa203ad9293f11b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dimensions: {x: 2, y: 0.3}
-  applyForcesToCenter: 1
-  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
-  liftMultiplier: 2
   dragMultiplier: 1
 --- !u!1 &4691798151034787098
 GameObject:
@@ -1912,55 +1862,6 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
---- !u!1 &5906706317961375346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551727817268937230}
-  - component: {fileID: 5069661374813831086}
-  m_Layer: 0
-  m_Name: FlapRWing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &551727817268937230
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5906706317961375346}
-  m_LocalRotation: {x: -0.000000030908623, y: -0.7071068, z: -0.7071067, w: 0.000000030908616}
-  m_LocalPosition: {x: 0, y: 0.0098, z: 0}
-  m_LocalScale: {x: 1, y: 2.0656648, z: 0.48410583}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4206441815788999716}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5069661374813831086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5906706317961375346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0682376e198e254baa203ad9293f11b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dimensions: {x: 2, y: 0.3}
-  applyForcesToCenter: 1
-  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
-  liftMultiplier: 2
-  dragMultiplier: 1
 --- !u!1 &5909230115733083115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,7 +2154,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4019928320673760178}
-  - {fileID: 551727817268937230}
   m_Father: {fileID: 3843227335481478244}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2352,7 +2252,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7665861938645932438}
-  - {fileID: 6088659541833401689}
   m_Father: {fileID: 3843227335481478244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2449,16 +2348,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleType: 1
   baseWeightKG: 1000
+  centerOfMassTransform: {fileID: 7014024735486883027}
+  defualtVerticalTrim: 1
+  defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
   altitude: 0
-  flapLevels:
-  - 0
-  - 0.5
-  - 1
-  defualtElevatorTrim: 0.2
   brakeWheels:
   - {fileID: 4756589564281933467}
   - {fileID: 4041244827390529475}
@@ -2468,7 +2364,6 @@ MonoBehaviour:
   - {fileID: 4756589564281933467}
   maxSteerAngle: 20
   invertedSteering: 0
-  centerOfMassTransform: {fileID: 7014024735486883027}
 --- !u!114 &7473704258276874980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2481,7 +2376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bb851495b71314b8a79fe5f9e6dd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleSystemName: Telemetry System
   showGUIElements: 1
 --- !u!114 &7794078104698723248
 MonoBehaviour:
@@ -2495,7 +2389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0ac939b894254ab2ff7109bc93528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleSystemName: Prop Engine
   showGUIElements: 1
   ignition: 0
   fuelUsePerSecondAtMaxPower: 0.012
@@ -2587,7 +2480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2074926c9349d9d4f9dc301469957a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleSystemName: Default Vehicle System
   showGUIElements: 0
   wheels:
   - {fileID: 4756589564281933467}
@@ -2606,7 +2498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124db2a1874eb4d43bdc3badff5bd97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleSystemName: Default Vehicle System
   showGUIElements: 0
   transforms:
   - {fileID: 6219454570669317171}

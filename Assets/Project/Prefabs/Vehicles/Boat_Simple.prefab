@@ -96,7 +96,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979010064477010406}
-  m_LocalRotation: {x: -0, y: 0.99977577, z: -0, w: -0.021175113}
+  m_LocalRotation: {x: 0, y: 0.9997757, z: -0, w: -0.021177914}
   m_LocalPosition: {x: 1499.7, y: 0.14, z: 281.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a336c3eb6f915e4fb4acaba18310b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeightKG: 1000
+  baseWeightKG: 500
   pitch: 0
   roll: 0
   altitude: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
-  maxThrust: 5000
+  maxThrust: 7500
   maxYaw: 45
   engineTransform: {fileID: 6860484969015894904}
 --- !u!1 &3302944638362048394
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 6395093630066700096}
   - component: {fileID: 8002954070458507493}
   - component: {fileID: 5257041184460821551}
+  - component: {fileID: 5733153071334545327}
   m_Layer: 0
   m_Name: rayvehiclesimbote 1
   m_TagString: Untagged
@@ -349,6 +350,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5733153071334545327
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049529926242891258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: 0a891a6d3dc40e0499d0fc4b7145464e, type: 3}
 --- !u!1 &6860484968938390459
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.2, y: 0.3, z: 0.03}
+  buoyancyMultiplier: 0.8
+  dragMultiplier: {x: 0.2, y: 0.5, z: 0.03}
 --- !u!1 &6860484969015894907
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6860484969015894907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.283, y: -0.443, z: -6.67}
+  m_LocalPosition: {x: 0, y: -0.443, z: -6.67}
   m_LocalScale: {x: 0.55208, y: 1, z: 0.9221757}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -670,8 +685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.2, y: 0.3, z: 0.03}
+  buoyancyMultiplier: 0.8
+  dragMultiplier: {x: 0.2, y: 0.5, z: 0.03}
 --- !u!1 &6860484970585231751
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +728,7 @@ BoxCollider:
   m_GameObject: {fileID: 6860484970585231751}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.91, y: 2.92, z: 10.54}
   m_Center: {x: 0, y: 0, z: 0}

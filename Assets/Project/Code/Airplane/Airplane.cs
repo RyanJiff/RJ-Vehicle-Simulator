@@ -8,13 +8,6 @@ public class Airplane : Vehicle
 	/*
 	 * Main airplane driver class
 	 */
-	[Header("Flaps")]
-	[SerializeField] private List<float> flapLevels = new List<float>();
-	[Space]
-
-	[Header("Trim")]
-	[SerializeField] private float defualtElevatorTrim = 0.0f;
-	[Space]
 
 	[Header("Brakes")]
 	[SerializeField] private WheelCollider[] brakeWheels;
@@ -27,20 +20,12 @@ public class Airplane : Vehicle
 	[SerializeField] private bool invertedSteering = false;
 	[Space]
 
-	[Header("Center Of Mass")]
-	[SerializeField] private Transform centerOfMassTransform;
-	[Space]
-
 	// Control surfaces
 	private List<ControlSurface> controlSurfaces = new List<ControlSurface>();
 	private List<ControlSurface> elevators = new List<ControlSurface>();
 	private List<ControlSurface> leftAilerons = new List<ControlSurface>();
 	private List<ControlSurface> rightAilerons = new List<ControlSurface>();
 	private List<ControlSurface> rudders = new List<ControlSurface>();
-	
-	// Flaps
-	private List<ControlSurface> flaps = new List<ControlSurface>();
-	private int currentFlapLevel;
 	
 	// Engines
 	private List<AirplaneEngine> engines = new List<AirplaneEngine>();
@@ -55,7 +40,7 @@ public class Airplane : Vehicle
 
 	private void Awake()
 	{
-		InitializeAirplane();
+		InitializeVehicle();
 	}
 	private void Start()
 	{
@@ -84,7 +69,7 @@ public class Airplane : Vehicle
 	void Update()
 	{
 		// Control surfaces inputs are handled first
-		SetControlSurfacesListDeflection(elevators, _inputPitch + verticalTrim);
+		SetControlSurfacesListDeflection(elevators, _inputPitch);
 		SetControlSurfacesListDeflection(leftAilerons, -_inputRoll);
 		SetControlSurfacesListDeflection(rightAilerons, _inputRoll);
 		
@@ -152,20 +137,6 @@ public class Airplane : Vehicle
 			case KeyCode.Minus:
 				ChangeTrim(-0.02f, Enums.Axis.VERTICAL);
 				break;
-			case KeyCode.Alpha3:
-				currentFlapLevel = Mathf.Clamp(currentFlapLevel - 1, 0, Mathf.Max(0, flapLevels.Count - 1));
-				foreach (ControlSurface c in flaps)
-                {
-					c.targetDeflection = flapLevels[currentFlapLevel];
-                }
-				break;
-			case KeyCode.Alpha4:
-				currentFlapLevel = Mathf.Clamp(currentFlapLevel + 1, 0, Mathf.Max(0, flapLevels.Count - 1));
-				foreach (ControlSurface c in flaps)
-				{
-					c.targetDeflection = flapLevels[currentFlapLevel];
-				}
-				break;
 		}
     }
     private void SetControlSurfacesListDeflection(List<ControlSurface> surfaces, float value)
@@ -178,43 +149,15 @@ public class Airplane : Vehicle
             }
         }
     }
-	public void ToggleEngine()
-	{
-		for (int i = 0; i < engines.Count; i++)
-		{
-			engines[i].ToggleIgnition();
-		}
-	}
-	public void ToggleGear()
-    {
-		if (landingGear)
-        {
-			landingGear.ToggleGear();
-        }
-        else
-        {
-			Debug.Log("No retractable gear!");
-        }
-    }
 	#endregion
-	void InitializeAirplane()
+	protected override void InitializeVehicle()
 	{
-		verticalTrim = defualtElevatorTrim;
+		base.InitializeVehicle();
 
 		controlSurfaces = GetComponentsInChildren<ControlSurface>().ToList();
 		engines = GetComponentsInChildren<AirplaneEngine>().ToList();
-		rigid = GetComponent<Rigidbody>();
 		landingGear = GetComponent<LandingGear>();
 		fuelTanks = GetFuelTanks();
-
-		if (centerOfMassTransform)
-		{
-			rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
-		}
-		else
-		{
-			Debug.LogWarning(name + ": Airplane missing center of mass transform!");
-		}
 
 		// Setup control surfaces based on their axis, this is needed for the airplane to have controllable surfaces
 		for (int i = 0; i < controlSurfaces.Count; i++)
@@ -244,13 +187,26 @@ public class Airplane : Vehicle
 				{
 					rudders.Add(controlSurfaces[i]);
 				}
-				else if (controlSurfaces[i].controlType == ControlSurface.ControlType.FLAPS)
-				{
-					flaps.Add(controlSurfaces[i]);
-				}
 			}
 		}
-
+	}
+	public void ToggleEngine()
+	{
+		for (int i = 0; i < engines.Count; i++)
+		{
+			engines[i].ToggleIgnition();
+		}
+	}
+	public void ToggleGear()
+	{
+		if (landingGear)
+		{
+			landingGear.ToggleGear();
+		}
+		else
+		{
+			Debug.Log("No retractable gear!");
+		}
 	}
 	public List<FuelTank> GetFuelTanks()
 	{

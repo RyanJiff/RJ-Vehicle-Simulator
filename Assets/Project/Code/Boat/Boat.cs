@@ -8,16 +8,13 @@ public class Boat: Vehicle
 	/*
 	 * Main boat driver class
 	 */
-	[Header("Center Of Mass")]
-	[SerializeField] private Transform centerOfMassTransform;
-	[Space]
 
 	// Engines
 	private List<WaterEngine> engines = new List<WaterEngine>();
 
 	private void Awake()
 	{
-		InitializeBoat();
+		InitializeVehicle();
 	}
 	private void Start()
 	{
@@ -48,18 +45,10 @@ public class Boat: Vehicle
 	}
 
 	#endregion
-	void InitializeBoat()
+	protected override void InitializeVehicle()
 	{
-		rigid = GetComponent<Rigidbody>();
-		engines = GetComponentsInChildren<WaterEngine>().ToList();
+		base.InitializeVehicle();
 
-		if (centerOfMassTransform)
-		{
-			rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
-		}
-		else
-		{
-			Debug.LogWarning(name + ": Boat missing center of mass transform!");
-		}
+		engines = GetComponentsInChildren<WaterEngine>().ToList();
 	}
 }
