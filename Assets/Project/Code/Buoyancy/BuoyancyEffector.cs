@@ -88,7 +88,7 @@ public class BuoyancyEffector : MonoBehaviour
             
             // Again, the water density variable should be removed as it has no real bearing on the final result.
             dragForce = worldVelocity.sqrMagnitude * waterDensity;
-            dragForce = Mathf.Clamp(dragForce, rigid.mass * -50f, rigid.mass * 50f);
+            dragForce = Mathf.Clamp(dragForce, rigid.mass * rigid.velocity.magnitude * -50f, rigid.mass * rigid.velocity.magnitude * 50f);
 
             // Drag direciton should always be opposite of effector velocity.
             dragDirection = (-worldVelocity).normalized;

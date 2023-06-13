@@ -137,11 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a336c3eb6f915e4fb4acaba18310b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeightKG: 500
+  baseWeightKG: 600
+  centerOfMassTransform: {fileID: 5486550361425244718}
+  defualtVerticalTrim: 0
+  defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
   altitude: 0
-  centerOfMassTransform: {fileID: 5486550361425244718}
 --- !u!114 &2979010064477010404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
-  maxThrust: 7500
+  maxThrust: 10000
   maxYaw: 45
   engineTransform: {fileID: 6860484969015894904}
 --- !u!1 &3302944638362048394
