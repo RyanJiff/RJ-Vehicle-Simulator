@@ -30,18 +30,7 @@ public class FloatingOrigin : MonoBehaviour
 
     private ParticleSystem.Particle[] parts = null;
 
-    private Transform worldCenterTransform;
-
-    void Start()
-    {
-        if (!worldCenterTransform)
-        {
-            // Some calculations use the Y height of objects. Because the floating origin shifts the position of all root objects, we need to keep a reference at pos (0,0,0)
-            // This way the calculalations 
-        }
-    }
-
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (!referenceObject)
         {
