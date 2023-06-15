@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.5
-  dragMultiplier: {x: 1, y: 1, z: 1}
+  buoyancyMultiplier: 0.4
+  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &1558943033
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.5
-  dragMultiplier: {x: 1, y: 1, z: 1}
+  buoyancyMultiplier: 0.4
+  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &1897407412
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.5
-  dragMultiplier: {x: 1, y: 1, z: 1}
+  buoyancyMultiplier: 0.4
+  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &2109601105
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectorSize: 1
   applyForcesToCenter: 0
-  buoyancyMultiplier: 0.5
-  dragMultiplier: {x: 1, y: 1, z: 1}
+  buoyancyMultiplier: 0.4
+  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &71579478505441518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseWeightKG: 1000
   centerOfMassTransform: {fileID: 7014024735486883027}
-  defualtVerticalTrim: 1
+  defualtVerticalTrim: 0
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
