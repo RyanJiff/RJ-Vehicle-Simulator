@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7353459963212634768}
   m_Layer: 0
-  m_Name: Colliders
+  m_Name: Colliders and Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +305,6 @@ Transform:
   m_Children:
   - {fileID: 4685877859574794309}
   - {fileID: 973523997563809884}
-  - {fileID: 2626898653948247527}
   m_Father: {fileID: 6306797955743701687}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -687,7 +686,6 @@ GameObject:
   - component: {fileID: 7332333932019382478}
   - component: {fileID: 2429268805292922445}
   - component: {fileID: 7148337078133863058}
-  - component: {fileID: 7399631560586393942}
   m_Layer: 0
   m_Name: Prop
   m_TagString: Untagged
@@ -760,19 +758,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7399631560586393942
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569936417101178349}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &678633095701162373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,54 +1209,6 @@ Transform:
   m_Father: {fileID: 6306797955743701687}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2933280512978201755
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 192180060796775331}
-  - component: {fileID: 8503596440277745330}
-  m_Layer: 0
-  m_Name: FuelTank
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &192180060796775331
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2933280512978201755}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6306797955743701687}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8503596440277745330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2933280512978201755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7874611a51b331d468e362cdf94324a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUIElements: 1
-  maxAmountLitres: 200
-  currentFuelAmountLitres: 100
-  fuelValve: 0
 --- !u!1 &3274657616377594622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,9 +1301,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626898653948247527}
-  - component: {fileID: 3093794284425482526}
+  - component: {fileID: 439235161862848146}
   m_Layer: 0
-  m_Name: engine
+  m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,27 +1316,34 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3508751935454543433}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.157, z: 0.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.04699993, z: 3.6899414}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7353459963212634768}
+  m_Father: {fileID: 6306797955743701687}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3093794284425482526
-BoxCollider:
+--- !u!114 &439235161862848146
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3508751935454543433}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3174fdb2986062343a90e221267fc7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 1
+  engineType: 0
+  ignition: 1
+  maxForce: 3000
+  rampSpeed: 0.5
+  worksUnderWater: 0
+  worksOverWater: 1
+  currentPower: 0
 --- !u!1 &4003932575844144685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2231,6 @@ GameObject:
   - component: {fileID: 3584345113421144807}
   - component: {fileID: 6712620451567880571}
   - component: {fileID: 7473704258276874980}
-  - component: {fileID: 7794078104698723248}
   - component: {fileID: 6787403744584225170}
   - component: {fileID: 2120332796}
   m_Layer: 0
@@ -2310,8 +2253,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6340579501132046806}
-  - {fileID: 192180060796775331}
   - {fileID: 7014024735486883027}
+  - {fileID: 2626898653948247527}
   - {fileID: 8973332255613054810}
   - {fileID: 7353459963212634768}
   - {fileID: 9154998854143849117}
@@ -2354,7 +2297,8 @@ MonoBehaviour:
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
-  altitude: 0
+  engines: []
+  landingGear: {fileID: 0}
   brakeWheels:
   - {fileID: 4756589564281933467}
   - {fileID: 4041244827390529475}
@@ -2377,97 +2321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
---- !u!114 &7794078104698723248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051905340896815268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f0ac939b894254ab2ff7109bc93528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUIElements: 1
-  ignition: 0
-  fuelUsePerSecondAtMaxPower: 0.012
-  requireFuel: 1
-  engineTransform: {fileID: 2626898653948247527}
-  maxThrust: 5000
-  idleInput: 0.02
-  rampSpeed: 0.5
-  thrustAirspeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1.1
-      inSlope: 0
-      outSlope: -0.0019230769
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 130
-      value: 0.85
-      inSlope: -0.0048544933
-      outSlope: 0
-      tangentMode: 1
-      weightedMode: 1
-      inWeight: 0.2544643
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RPM: 0
-  RPMCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.01
-      value: 0.23
-      inSlope: 1.9728744
-      outSlope: 1.9728744
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.49959823
-      value: 0.67517596
-      inSlope: 0.7398793
-      outSlope: 0.7398793
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.13646792
-      outWeight: 0.2339489
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RPMMult: 180
-  engineAnimationMesh: {fileID: 7332333932019382478}
-  currentThrust: 0
-  currentPower: 0
 --- !u!114 &6787403744584225170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3054,7 +2907,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6306797955743701687}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9098809187487476535
 GameObject:

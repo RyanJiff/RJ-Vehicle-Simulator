@@ -10,8 +10,6 @@ public class AirplaneEngine : VehicleSystem
 
     [Header("Engine")]
     [SerializeField] private bool ignition = false;
-    [SerializeField] private float fuelUsePerSecondAtMaxPower = 0.012f;
-    [SerializeField] private bool requireFuel = true;
     [SerializeField] private Transform engineTransform;
     [SerializeField] private float maxThrust = 3000;
     [SerializeField] private float idleInput = 0.05f;
@@ -33,7 +31,6 @@ public class AirplaneEngine : VehicleSystem
 
     [Range(0.0f, 1.0f)] private float throttleInput = 0.0f;
     private Rigidbody rigid;
-    private List<FuelTank> fuelTanks = new List<FuelTank>();
     private Airplane myAirplane;
 
     const float msToKnots = 1.94384f;
@@ -49,7 +46,6 @@ public class AirplaneEngine : VehicleSystem
             enabled = false;
             return;
         }
-        fuelTanks = myAirplane.GetFuelTanks();
     }
     void FixedUpdate()
     {
@@ -79,39 +75,6 @@ public class AirplaneEngine : VehicleSystem
         else
         {
             currentPower = Mathf.MoveTowards(currentPower, 0, rampSpeed/2 * Time.deltaTime);
-        }
-        if (requireFuel)
-        {
-            // Check how many tanks we can use
-            int numberOfTanksWithOpenValves = 0;
-            for(int i = 0;i < fuelTanks.Count; i++)
-            {
-                if (fuelTanks[i].IsFuelValveOpen())
-                {
-                    numberOfTanksWithOpenValves++;
-                }
-            }
-
-            // Fuel consumption calculations
-            float calculatedFuelUse = ((Mathf.Abs(fuelUsePerSecondAtMaxPower) * -1)/numberOfTanksWithOpenValves) * currentPower * Time.deltaTime;
-            bool allDry = true;
-            for (int i = 0; i < fuelTanks.Count; i++)
-            {
-                if (fuelTanks[i].IsFuelValveOpen())
-                {
-                    fuelTanks[i].ChangeAmount(calculatedFuelUse);
-                    if (!fuelTanks[i].IsDry())
-                    {
-                        allDry = false;
-                    }
-                }
-            }
-            if (allDry)
-            {
-                // A real engine would still have ignition on if there is no fuel, it would just not have any combustion.
-                // Need to re write the Airplane Engine to be a little bit more realistic and maybe implement temperatures and different systems? 
-                ignition = false;
-            }
         }
 
         // RPM Calculation, used for visual prop and for UI elements

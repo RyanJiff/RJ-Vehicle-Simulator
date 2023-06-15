@@ -6,11 +6,15 @@ public class Engine : VehicleSystem
     /*
      * All engines have some things in common, here is the super class that has all common engine functionality.
      */
+    public enum EngineType { Force, DriveWheels};
 
     [Header("Engine")]
+    [SerializeField] private EngineType engineType = EngineType.Force;
     [SerializeField] private bool ignition = false;
-    [SerializeField] private float maxPower = 3000;
+    [SerializeField] private float maxForce = 3000;
     [SerializeField] private float rampSpeed = 0.5f;
+    [SerializeField] private bool worksUnderWater = false;
+    [SerializeField] private bool worksOverWater = true;
     [Space]
 
     [Header("Debug")]
@@ -18,19 +22,20 @@ public class Engine : VehicleSystem
     [Space]
 
     private float throttleInput = 0.0f;
+    private bool isOverWater = false;
+    private bool applyForceFlag = false;
     
     private Rigidbody rigid;
     private Vehicle myVehicle;
 
-    const float msToKnots = 1.94384f;
-
     void Awake()
     {
         myVehicle = GetComponentInParent<Vehicle>();
+
         if (!myVehicle)
         {
             // If we don't have a vehicle on us or our parents then disable the script
-            Debug.LogWarning(name + ": SimpleAirplaneEngine missing Vehicle!");
+            Debug.LogWarning(name + ": Engine missing Vehicle!");
             enabled = false;
             return;
         }
@@ -41,8 +46,35 @@ public class Engine : VehicleSystem
     {
         if (rigid != null)
         {
-            // Apply forces or affect vehicle systems here
-            rigid.AddForceAtPosition(transform.forward * currentPower , transform.position, ForceMode.Force);
+            isOverWater = false;
+            applyForceFlag = false;
+
+            if (EnvironmentSystem.instance)
+            {
+                if(transform.position.y > EnvironmentSystem.instance.GetSeaLineYPos())
+                {
+                    isOverWater = true;
+                }
+            }
+
+            if((worksOverWater && isOverWater) || (worksUnderWater && !isOverWater))
+            {
+                applyForceFlag = true;
+            }
+
+            if (applyForceFlag)
+            {
+                // Force engines apply a force at thier position.
+                if (engineType == EngineType.Force)
+                {
+                    rigid.AddForceAtPosition(transform.forward * currentPower * maxForce, transform.position, ForceMode.Force);
+                }
+                // Wheel drive engines drive wheels, needs to be implemented still.
+                else if (engineType == EngineType.DriveWheels)
+                {
+
+                }
+            }
         }
     }
     void Update()
@@ -54,7 +86,7 @@ public class Engine : VehicleSystem
         }
         else
         {
-            currentPower = Mathf.MoveTowards(currentPower, 0, rampSpeed / 2 * Time.deltaTime);
+            currentPower = Mathf.MoveTowards(currentPower, 0, rampSpeed * Time.deltaTime);
         }
     }
     /// <summary>

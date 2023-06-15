@@ -67,7 +67,7 @@ Transform:
   m_Children:
   - {fileID: 6860484970585231748}
   m_Father: {fileID: 4138896785169424472}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2979010064477010406
 GameObject:
@@ -81,7 +81,6 @@ GameObject:
   - component: {fileID: 7609317527820358767}
   - component: {fileID: 2979010064477010405}
   - component: {fileID: 2979010064477010404}
-  - component: {fileID: 2979010064477010426}
   m_Layer: 0
   m_Name: Boat_Simple
   m_TagString: Untagged
@@ -103,6 +102,7 @@ Transform:
   m_Children:
   - {fileID: 3737257044688199049}
   - {fileID: 5486550361425244718}
+  - {fileID: 7525782731476262835}
   - {fileID: 5584936834122870563}
   - {fileID: 3714893495428700572}
   - {fileID: 4054677858935914720}
@@ -144,6 +144,8 @@ MonoBehaviour:
   pitch: 0
   roll: 0
   altitude: 0
+  engines: []
+  landingGear: {fileID: 0}
 --- !u!114 &2979010064477010404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,22 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
---- !u!114 &2979010064477010426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979010064477010406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4a317ae723be6c43b7a4a761a478803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUIElements: 1
-  maxThrust: 10000
-  maxYaw: 45
-  engineTransform: {fileID: 6860484969015894904}
 --- !u!1 &3302944638362048394
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +188,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4138896785169424472}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4318638024348455359
 GameObject:
@@ -264,9 +250,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6395093630066700096}
-  - {fileID: 6860484969015894904}
   m_Father: {fileID: 4138896785169424472}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6049529926242891258
 GameObject:
@@ -425,8 +410,9 @@ GameObject:
   - component: {fileID: 6860484969015894904}
   - component: {fileID: 6860484969015894910}
   - component: {fileID: 6860484969015894905}
+  - component: {fileID: 3420011033862940681}
   m_Layer: 0
-  m_Name: WaterEngine
+  m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,13 +425,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6860484969015894907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.443, z: -6.67}
-  m_LocalScale: {x: 0.55208, y: 1, z: 0.9221757}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.45200014, y: 0.010942668, z: -0.26501513}
+  m_LocalScale: {x: 0.55207986, y: 1, z: 0.9221757}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3714893495428700572}
-  m_RootOrder: 1
+  m_Father: {fileID: 7525782731476262835}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6860484969015894910
 MeshFilter:
@@ -497,6 +483,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3420011033862940681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860484969015894907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3174fdb2986062343a90e221267fc7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 1
+  engineType: 0
+  ignition: 0
+  maxForce: 6000
+  rampSpeed: 0.5
+  worksUnderWater: 1
+  worksOverWater: 0
+  currentPower: 0
+  isOverWater: 0
+  applyForceFlag: 0
+  rigid: {fileID: 0}
 --- !u!1 &6860484969125152317
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,3 +791,56 @@ MonoBehaviour:
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.2
   dragMultiplier: {x: 0.1, y: 0.3, z: 0.03}
+--- !u!1 &8753269714698707856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7525782731476262835}
+  - component: {fileID: 6915344041199388023}
+  m_Layer: 0
+  m_Name: EngineYaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7525782731476262835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753269714698707856}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.011, y: 0.009, z: -6.405}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6860484969015894904}
+  m_Father: {fileID: 4138896785169424472}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &6915344041199388023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753269714698707856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb69e006a35e3024ebd75b9b251ff551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlType: 3
+  max: 45
+  min: 45
+  moveSpeed: 90
+  targetDeflection: 0
+  inverted: 0
+  wing: {fileID: 0}
+  maxTorque: 6000

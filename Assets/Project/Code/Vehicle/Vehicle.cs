@@ -19,7 +19,6 @@ public class Vehicle : MonoBehaviour
     [Header("Telemetry and information")]
     public float pitch;
     public float roll;
-    public float altitude;
     [Space]
 
     // Inputs that are changed through external MonoBehaviours (VehicleController)
@@ -32,14 +31,28 @@ public class Vehicle : MonoBehaviour
     protected float horizontalTrim = 0.0f;
 
     protected Rigidbody rigid;
+    [SerializeField] protected List<Engine> engines = new List<Engine>();
+    [SerializeField] protected LandingGear landingGear;
+
+    // Control surfaces
+    protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
+    protected List<ControlSurface> pitchControlSurfaces = new List<ControlSurface>();
+    protected List<ControlSurface> leftRollControlSurfaces = new List<ControlSurface>();
+    protected List<ControlSurface> rightRollControlSurfaces = new List<ControlSurface>();
+    protected List<ControlSurface> yawControlSurfaces = new List<ControlSurface>();
 
     protected virtual void InitializeVehicle()
     {
+        // Setup vehicle, here we get all control systems and tie them to the vehicle based on what they do.
         rigid = GetComponent<Rigidbody>();
         rigid.mass = baseWeightKG;
 
+        engines = GetComponentsInChildren<Engine>().ToList();
+        landingGear = GetComponentInChildren<LandingGear>();
+
         horizontalTrim = defualtHorizontalTrim;
         verticalTrim = defualtVerticalTrim;
+
         if (centerOfMassTransform)
         {
             rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
@@ -47,6 +60,31 @@ public class Vehicle : MonoBehaviour
         else
         {
             Debug.LogWarning(name + ": Vehicle missing center of mass transform!");
+        }
+
+        // Finally setup control surfaces
+        SetupControlSurfaces();
+    }
+    protected virtual void VehicleUpdate()
+    {
+        // Update telemetry information
+        GetPitch();
+        GetRoll();
+
+        // Control surfaces inputs are handled first
+        SetControlSurfacesDeflection(pitchControlSurfaces, _inputPitch);
+        SetControlSurfacesDeflection(leftRollControlSurfaces, -_inputRoll);
+        SetControlSurfacesDeflection(rightRollControlSurfaces, _inputRoll);
+        SetControlSurfacesDeflection(yawControlSurfaces, _inputYaw);
+
+        // Clamp trim, there has to be a better way to do this.
+        verticalTrim = Mathf.Clamp(verticalTrim, -0.8f, 0.8f);
+        horizontalTrim = Mathf.Clamp(horizontalTrim, -0.8f, 0.8f);
+
+        // Engine throttle input handling
+        for (int i = 0; i < engines.Count; i++)
+        {
+            engines[i].SetThrottle(_inputThrottle);
         }
     }
     public virtual void SendAxisInputs(float y, float x, float z, bool brake, float throttle)
@@ -81,9 +119,51 @@ public class Vehicle : MonoBehaviour
     }
     public virtual void SendKeyInput(KeyCode key)
     {
-        Debug.Log("No Custom inputs!");
+        switch (key)
+        {
+            case KeyCode.G:
+                ToggleGear();
+                break;
+            case KeyCode.I:
+                ToggleEngine();
+                break;
+            case KeyCode.Equals:
+                ChangeTrim(0.02f, Enums.Axis.VERTICAL);
+                break;
+            case KeyCode.Minus:
+                ChangeTrim(-0.02f, Enums.Axis.VERTICAL);
+                break;
+        }
     }
-	public void ChangeTrim(float amount, Enums.Axis axis)
+    protected void SetControlSurfacesDeflection(List<ControlSurface> surfaces, float value)
+    {
+        if (surfaces.Count > 0)
+        {
+            for (int i = 0; i < surfaces.Count; i++)
+            {
+                surfaces[i].targetDeflection = value;
+            }
+        }
+    }
+    public void ToggleEngine()
+    {
+        for (int i = 0; i < engines.Count; i++)
+        {
+            engines[i].ToggleIgnition();
+        }
+    }
+    public void ToggleGear()
+    {
+        if (landingGear)
+        {
+            landingGear.ToggleGear();
+        }
+        else
+        {
+            Debug.Log("No retractable gear!");
+        }
+    }
+    public void ChangeTrim(float amount, Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL)
         {
@@ -111,6 +191,47 @@ public class Vehicle : MonoBehaviour
     public List<VehicleSystem> GetAllVehicleSystems()
     {
         return gameObject.GetComponentsInChildren<VehicleSystem>().ToList();
+    }
+    private void SetupControlSurfaces()
+    {
+        // Make sure all control surface lists are clear before we add new ones
+        controlSurfaces.Clear();
+        pitchControlSurfaces.Clear();
+        leftRollControlSurfaces.Clear();
+        rightRollControlSurfaces.Clear();
+        yawControlSurfaces.Clear();
+
+        controlSurfaces = GetComponentsInChildren<ControlSurface>().ToList();
+        // Setup control surfaces based on their axis, this is needed for any flyable vehicle to have controllable surfaces
+        for (int i = 0; i < controlSurfaces.Count; i++)
+        {
+            if (controlSurfaces[i])
+            {
+                if (controlSurfaces[i].controlType == ControlSurface.ControlType.PITCH)
+                {
+                    // Check if we are infront or behind the wings center and set the invert accordingly 
+                    // Frontal elevators will be inverted
+                    controlSurfaces[i].inverted = controlSurfaces[i].transform.localPosition.z > 0;
+                    pitchControlSurfaces.Add(controlSurfaces[i]);
+                }
+                else if (controlSurfaces[i].controlType == ControlSurface.ControlType.ROLL)
+                {
+                    // Left Ailerons will have their local X position negative
+                    if (controlSurfaces[i].transform.localPosition.x < 0)
+                    {
+                        leftRollControlSurfaces.Add(controlSurfaces[i]);
+                    }
+                    else
+                    {
+                        rightRollControlSurfaces.Add(controlSurfaces[i]);
+                    }
+                }
+                else if (controlSurfaces[i].controlType == ControlSurface.ControlType.YAW)
+                {
+                    yawControlSurfaces.Add(controlSurfaces[i]);
+                }
+            }
+        }
     }
     #region CALCULATIONS
     public float CalculatePitchG()
