@@ -121,16 +121,16 @@ public class Vehicle : MonoBehaviour
     {
         switch (key)
         {
-            case KeyCode.G:
+            case Enums.GEAR_TOGGLE:
                 ToggleGear();
                 break;
-            case KeyCode.I:
+            case Enums.ENGINE_TOGGLE:
                 ToggleEngine();
                 break;
-            case KeyCode.Equals:
+            case Enums.TRIM_VERTICAL_INCREASE:
                 ChangeTrim(0.02f, Enums.Axis.VERTICAL);
                 break;
-            case KeyCode.Minus:
+            case Enums.TRIM_VERTICAL_DECREASE:
                 ChangeTrim(-0.02f, Enums.Axis.VERTICAL);
                 break;
         }
