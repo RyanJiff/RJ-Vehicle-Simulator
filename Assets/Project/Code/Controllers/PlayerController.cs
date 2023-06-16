@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(VehicleController))]
 [RequireComponent(typeof(CameraController))]
@@ -12,6 +14,10 @@ public class PlayerController : MonoBehaviour
     CameraController myCameraController = null;
     SimpleVehicleGUI myVehicleGUI = null;
 
+    // List of all selectable vehicles
+    public List<Vehicle> vehiclesInPlay = new List<Vehicle>();
+    private int currentSelected = 0;
+
     // For Dev purposes, set the starting vehicle of the player
     public Vehicle startingVehicle; 
 
@@ -20,6 +26,8 @@ public class PlayerController : MonoBehaviour
         myController = GetComponent<VehicleController>();
         myCameraController = GetComponent<CameraController>();
         myVehicleGUI = GetComponent<SimpleVehicleGUI>();
+
+        vehiclesInPlay = FindObjectsOfType<Vehicle>().ToList();
     }
     private void Start()
     {
@@ -37,6 +45,11 @@ public class PlayerController : MonoBehaviour
             // Still need to make a proper menu for such functionality
             if (Input.GetKeyDown(KeyCode.R))
                 ApplicationManager.instance.ReloadScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            currentSelected = (currentSelected + 1) % vehiclesInPlay.Count;
+            TakeControl(vehiclesInPlay[currentSelected]);
         }
 
     }

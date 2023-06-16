@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ControlSurface : MonoBehaviour
+public class ControlSurface : VehicleSystem
 {
 	public enum ControlType { STATIC, PITCH, ROLL, YAW, FLAPS};
 	public ControlType controlType = ControlType.STATIC;
