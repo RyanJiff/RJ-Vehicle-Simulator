@@ -24,27 +24,29 @@ public class VehicleController : MonoBehaviour
 		if (vehicle)
 		{
 			// Engine ignition toggle
-			if (Input.GetKeyDown(KeyCode.I))
-				vehicle.SendKeyInput(KeyCode.I);
+			if (Input.GetKeyDown(Enums.VEHICLE_ENGINE_TOGGLE))
+				vehicle.SendKeyInput(Enums.VEHICLE_ENGINE_TOGGLE );
 
 			// Gear toggle
-			if (Input.GetKeyDown(KeyCode.G))
-				vehicle.SendKeyInput(KeyCode.G);
+			if (Input.GetKeyDown(Enums.VEHICLE_GEAR_TOGGLE))
+				vehicle.SendKeyInput(Enums.VEHICLE_GEAR_TOGGLE);
 
 			// Trim inputs
-			if (Input.GetKeyDown(KeyCode.Equals))
-				vehicle.SendKeyInput(KeyCode.Equals);
+			if (Input.GetKeyDown(Enums.VEHICLE_TRIM_VERTICAL_INCREASE))
+				vehicle.SendKeyInput(Enums.VEHICLE_TRIM_VERTICAL_INCREASE);
 
-			if (Input.GetKeyDown(KeyCode.Minus))
-				vehicle.SendKeyInput(KeyCode.Minus);
+			if (Input.GetKeyDown(Enums.VEHICLE_TRIM_VERTICAL_DECREASE))
+				vehicle.SendKeyInput(Enums.VEHICLE_TRIM_VERTICAL_DECREASE);
 
 			// Flaps for planes
+			// Unused right now
+			/*
 			if (Input.GetKeyDown(KeyCode.Alpha3))
 				vehicle.SendKeyInput(KeyCode.Alpha3);
 
 			if (Input.GetKeyDown(KeyCode.Alpha4))
 				vehicle.SendKeyInput(KeyCode.Alpha4);
-
+			*/
 
 			// Control Axis and brakes
 			_inputRoll = Mathf.Clamp(Input.GetAxis("Horizontal") + MouseControlX(), -1, 1);

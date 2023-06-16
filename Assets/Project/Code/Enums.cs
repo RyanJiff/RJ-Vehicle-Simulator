@@ -6,6 +6,10 @@ public class Enums
     public enum Axis { VERTICAL, HORIZONTAL};
     public enum AxisInput { PITCH, ROLL, YAW, THROTTLE, BRAKE};
 
+    // Player Controller Inputs
+    public const KeyCode PLAYER_SWITCH_VEHICLE = KeyCode.Tab;
+
+    // Vehicle Inputs
     public const KeyCode VEHICLE_BRAKES = KeyCode.B;
     public const KeyCode VEHICLE_ENGINE_TOGGLE = KeyCode.I;
     public const KeyCode VEHICLE_GEAR_TOGGLE = KeyCode.G;

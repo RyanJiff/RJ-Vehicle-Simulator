@@ -1,7 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
 public class Boat: Vehicle
 {
@@ -20,6 +17,7 @@ public class Boat: Vehicle
 	public override void SendKeyInput(KeyCode key)
 	{
 		base.SendKeyInput(key);
+		// After here we add any custom inputs
 	}
 	protected override void InitializeVehicle()
 	{

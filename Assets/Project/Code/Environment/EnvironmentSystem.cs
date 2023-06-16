@@ -16,7 +16,7 @@ public class EnvironmentSystem : MonoBehaviour
     public Vector3 globalWindVector = Vector3.zero;
 
     // Used in the calculation of the wind vector
-    [Range(0,360)] [SerializeField] float windDirectionDegrees = 0f;
+    [Range(0,359)] [SerializeField] float windDirectionDegrees = 0f;
     [Range(0,100)] [SerializeField] float windSpeedMetersPerSecond = 0f;
 
     void Awake()
@@ -46,9 +46,22 @@ public class EnvironmentSystem : MonoBehaviour
     /// <summary>
     /// The Y position of the origin transform is the sea level line.
     /// </summary>
-    /// <returns></returns>
     public float GetSeaLineYPos()
     {
         return worldOriginTransform.position.y;
+    }
+    /// <summary>
+    /// Set the global wind direction in degrees.
+    /// </summary>
+    public void SetGlobalbWindDirection(float dir)
+    {
+        windDirectionDegrees = Mathf.Clamp(dir, 0, 359);
+    }
+    /// <summary>
+    /// Set the global wind speed in Meters per second.
+    /// </summary>
+    public void SetGlobalWindSpeed(float spd)
+    {
+        windSpeedMetersPerSecond = spd;
     }
 }

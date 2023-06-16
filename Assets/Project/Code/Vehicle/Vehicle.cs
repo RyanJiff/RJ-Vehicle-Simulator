@@ -32,35 +32,34 @@ public class Vehicle : MonoBehaviour
 
     protected Rigidbody rigid;
 
-    // Engines
+    // General Vehicle systems
     protected List<Engine> engines = new List<Engine>();
     
-    // Landing Gear is for retractable wheel colliders/transform
+    protected List<Wheel> wheels = new List<Wheel>();
     protected LandingGear landingGear;
-
-    // Wheels
-    [SerializeField] protected List<Wheel> wheels = new List<Wheel>();
-
-    // Control surfaces
+    
     protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> pitchControlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> leftRollControlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> rightRollControlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> yawControlSurfaces = new List<ControlSurface>();
+    // End of General Vehicle Systems
 
     protected virtual void InitializeVehicle()
     {
-        // Setup vehicle, here we get all control systems and tie them to the vehicle based on what they do.
-        horizontalTrim = defualtHorizontalTrim;
-        verticalTrim = defualtVerticalTrim;
+        // Setup vehicle, here we get all vehicle systems and tie them to the vehicle based on what they do.
+        // First setup vehicle systems
+        engines = GetComponentsInChildren<Engine>().ToList();
+        wheels = GetComponentsInChildren<Wheel>().ToList();
+        landingGear = GetComponentInChildren<LandingGear>();
+        SetupControlSurfaces();
 
+        // Initial vehicle mass should not take anything into consideration
         rigid = GetComponent<Rigidbody>();
         rigid.mass = baseWeightKG;
 
-        engines = GetComponentsInChildren<Engine>().ToList();
-        landingGear = GetComponentInChildren<LandingGear>();
-        wheels = GetComponentsInChildren<Wheel>().ToList();
-
+        // If we have a center of mass transform then set the vehicles rigidbody centerOfMass vector to the its local position.
+        // A vehicle should always have a center of mass transform!
         if (centerOfMassTransform)
         {
             rigid.centerOfMass = centerOfMassTransform.transform.localPosition;
@@ -69,9 +68,6 @@ public class Vehicle : MonoBehaviour
         {
             Debug.LogWarning(name + ": Vehicle missing center of mass transform!");
         }
-
-        // Finally setup control surfaces
-        SetupControlSurfaces();
     }
     protected virtual void VehicleUpdate()
     {
@@ -83,7 +79,7 @@ public class Vehicle : MonoBehaviour
         GetPitch();
         GetRoll();
 
-        // Control Surface deflection inputs are given to the vehicle through inputs that are given from SendAxisInputs()
+        // Control Surface deflection inputs are given to the vehicle through inputs from SendAxisInputs()
         SetControlSurfacesDeflection(pitchControlSurfaces, _inputPitch);
         SetControlSurfacesDeflection(leftRollControlSurfaces, -_inputRoll);
         SetControlSurfacesDeflection(rightRollControlSurfaces, _inputRoll);
@@ -139,7 +135,7 @@ public class Vehicle : MonoBehaviour
                 ToggleGear();
                 break;
             case Enums.VEHICLE_ENGINE_TOGGLE:
-                ToggleEngine();
+                ToggleEngines();
                 break;
             case Enums.VEHICLE_TRIM_VERTICAL_INCREASE:
                 ChangeTrim(0.02f, Enums.Axis.VERTICAL);
@@ -159,14 +155,14 @@ public class Vehicle : MonoBehaviour
             }
         }
     }
-    public void ToggleEngine()
+    private void ToggleEngines()
     {
         for (int i = 0; i < engines.Count; i++)
         {
             engines[i].ToggleIgnition();
         }
     }
-    public void ToggleGear()
+    private void ToggleGear()
     {
         if (landingGear)
         {
@@ -177,7 +173,7 @@ public class Vehicle : MonoBehaviour
             Debug.Log("No retractable gear!");
         }
     }
-    public void ChangeTrim(float amount, Enums.Axis axis)
+    private void ChangeTrim(float amount, Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL)
         {
@@ -247,6 +243,7 @@ public class Vehicle : MonoBehaviour
             }
         }
     }
+
     #region CALCULATIONS
     public float CalculatePitchG()
     {
@@ -277,13 +274,13 @@ public class Vehicle : MonoBehaviour
 
         return verticalG;
     }
-    protected Vector3 ProjectPointOnPlane(Vector3 planeNormal, Vector3 planePoint, Vector3 point)
+    public Vector3 ProjectPointOnPlane(Vector3 planeNormal, Vector3 planePoint, Vector3 point)
     {
         planeNormal.Normalize();
         float distance = -Vector3.Dot(planeNormal.normalized, (point - planePoint));
         return point + planeNormal * distance;
     }
-    protected float SignedAngle(Vector3 v1, Vector3 v2, Vector3 normal)
+    public float SignedAngle(Vector3 v1, Vector3 v2, Vector3 normal)
     {
         Vector3 perp = Vector3.Cross(normal, v1);
         float angle = Vector3.Angle(v1, v2);

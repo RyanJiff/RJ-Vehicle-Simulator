@@ -27,6 +27,7 @@ public class VehicleSystem : MonoBehaviour
     protected virtual void UpdateGUIElements()
     {
         // Implementation differs from each vehicle system
+        // Example usage: 
     }
     /// <summary>
     /// Update elements and return the results
