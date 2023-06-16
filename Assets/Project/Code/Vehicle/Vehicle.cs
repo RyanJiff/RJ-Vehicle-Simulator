@@ -25,14 +25,21 @@ public class Vehicle : MonoBehaviour
     protected float _inputRoll = 0;
     protected float _inputPitch = 0;
     protected float _inputYaw = 0;
-    protected bool _inputBrake = false;
+    protected float _inputBrake = 0;
     protected float _inputThrottle = 0;
     protected float verticalTrim = 0.0f;
     protected float horizontalTrim = 0.0f;
 
     protected Rigidbody rigid;
-    [SerializeField] protected List<Engine> engines = new List<Engine>();
-    [SerializeField] protected LandingGear landingGear;
+
+    // Engines
+    protected List<Engine> engines = new List<Engine>();
+    
+    // Landing Gear is for retractable wheel colliders/transform
+    protected LandingGear landingGear;
+
+    // Wheels
+    [SerializeField] protected List<Wheel> wheels = new List<Wheel>();
 
     // Control surfaces
     protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
@@ -44,14 +51,15 @@ public class Vehicle : MonoBehaviour
     protected virtual void InitializeVehicle()
     {
         // Setup vehicle, here we get all control systems and tie them to the vehicle based on what they do.
+        horizontalTrim = defualtHorizontalTrim;
+        verticalTrim = defualtVerticalTrim;
+
         rigid = GetComponent<Rigidbody>();
         rigid.mass = baseWeightKG;
 
         engines = GetComponentsInChildren<Engine>().ToList();
         landingGear = GetComponentInChildren<LandingGear>();
-
-        horizontalTrim = defualtHorizontalTrim;
-        verticalTrim = defualtVerticalTrim;
+        wheels = GetComponentsInChildren<Wheel>().ToList();
 
         if (centerOfMassTransform)
         {
@@ -67,19 +75,26 @@ public class Vehicle : MonoBehaviour
     }
     protected virtual void VehicleUpdate()
     {
+        // Clamp trim, there has to be a better way to do this.
+        verticalTrim = Mathf.Clamp(verticalTrim, -0.8f, 0.8f);
+        horizontalTrim = Mathf.Clamp(horizontalTrim, -0.8f, 0.8f);
+
         // Update telemetry information
         GetPitch();
         GetRoll();
 
-        // Control surfaces inputs are handled first
+        // Control Surface deflection inputs are given to the vehicle through inputs that are given from SendAxisInputs()
         SetControlSurfacesDeflection(pitchControlSurfaces, _inputPitch);
         SetControlSurfacesDeflection(leftRollControlSurfaces, -_inputRoll);
         SetControlSurfacesDeflection(rightRollControlSurfaces, _inputRoll);
         SetControlSurfacesDeflection(yawControlSurfaces, _inputYaw);
 
-        // Clamp trim, there has to be a better way to do this.
-        verticalTrim = Mathf.Clamp(verticalTrim, -0.8f, 0.8f);
-        horizontalTrim = Mathf.Clamp(horizontalTrim, -0.8f, 0.8f);
+        // Wheel Steering and Brake inputs
+        for (int i = 0; i < wheels.Count; i++)
+        {
+            wheels[i].SetSteerInput(_inputYaw);
+            wheels[i].SetBrakeInput(_inputBrake);
+        }
 
         // Engine throttle input handling
         for (int i = 0; i < engines.Count; i++)
@@ -87,13 +102,12 @@ public class Vehicle : MonoBehaviour
             engines[i].SetThrottle(_inputThrottle);
         }
     }
-    public virtual void SendAxisInputs(float y, float x, float z, bool brake, float throttle)
+    public virtual void SendAxisInputs(float y, float x, float z, float brake, float throttle)
     {
         _inputPitch = Mathf.Clamp(y + verticalTrim, -1.0f, 1.0f);
         _inputRoll = Mathf.Clamp(x + horizontalTrim, -1.0f, 1.0f);
         _inputYaw = Mathf.Clamp(z, -1.0f, 1.0f);
-        // Brake input has to be made an axis, not a boolean
-        _inputBrake = brake;
+        _inputBrake = Mathf.Clamp01(brake);
         _inputThrottle = Mathf.Clamp01(throttle);
     }
     public virtual float GetAxisInput(Enums.AxisInput aI)
@@ -121,16 +135,16 @@ public class Vehicle : MonoBehaviour
     {
         switch (key)
         {
-            case Enums.GEAR_TOGGLE:
+            case Enums.VEHICLE_GEAR_TOGGLE:
                 ToggleGear();
                 break;
-            case Enums.ENGINE_TOGGLE:
+            case Enums.VEHICLE_ENGINE_TOGGLE:
                 ToggleEngine();
                 break;
-            case Enums.TRIM_VERTICAL_INCREASE:
+            case Enums.VEHICLE_TRIM_VERTICAL_INCREASE:
                 ChangeTrim(0.02f, Enums.Axis.VERTICAL);
                 break;
-            case Enums.TRIM_VERTICAL_DECREASE:
+            case Enums.VEHICLE_TRIM_VERTICAL_DECREASE:
                 ChangeTrim(-0.02f, Enums.Axis.VERTICAL);
                 break;
         }

@@ -20,7 +20,7 @@ You might need to add the Yaw Axis to the unity input manager settings.
 - [x] Reasonably realistic flight characteristics for vehicles.
 - [x] A simple boat with mouse and keyboard controls.
 - [x] Reasonably realistic vehicle buoyancy characteristics.
-- [ ] A simple car with with mouse and keyboard controls.
+- [x] A simple car with with mouse and keyboard controls.
 - [x] Simple Environment Wind simulation.
 
 ## Contributing

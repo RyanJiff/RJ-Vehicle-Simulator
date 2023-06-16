@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Engine : VehicleSystem
 {
@@ -27,6 +28,7 @@ public class Engine : VehicleSystem
     
     private Rigidbody rigid;
     private Vehicle myVehicle;
+    private List<Wheel> wheels = new List<Wheel>();
 
     void Awake()
     {
@@ -39,7 +41,7 @@ public class Engine : VehicleSystem
             enabled = false;
             return;
         }
-
+        wheels = myVehicle.GetComponentsInChildren<Wheel>().ToList();
         rigid = myVehicle.GetComponent<Rigidbody>();
     }
     void FixedUpdate()
@@ -52,6 +54,13 @@ public class Engine : VehicleSystem
             if (EnvironmentSystem.instance)
             {
                 if(transform.position.y > EnvironmentSystem.instance.GetSeaLineYPos())
+                {
+                    isOverWater = true;
+                }
+            }
+            else
+            {
+                if (transform.position.y > 0)
                 {
                     isOverWater = true;
                 }
@@ -72,8 +81,12 @@ public class Engine : VehicleSystem
                 // Wheel drive engines drive wheels, needs to be implemented still.
                 else if (engineType == EngineType.DriveWheels)
                 {
-
+                    SetPowerWheelsTorque(wheels, currentPower * maxForce);
                 }
+            }
+            else
+            {
+                SetPowerWheelsTorque(wheels ,0);
             }
         }
     }
@@ -107,6 +120,20 @@ public class Engine : VehicleSystem
     public bool IsOn()
     {
         return ignition;
+    }
+    private void SetPowerWheelsTorque(List<Wheel> w, float torque)
+    {
+        for(int i = 0; i < w.Count; i++)
+        {
+            if (w[i].GetPowerEnabled())
+            {
+                w[i].SetTorque(torque);
+            }
+            else
+            {
+                w[i].SetTorque(0);
+            }
+        }
     }
 
     #region VEHICLESYSTEMGUI

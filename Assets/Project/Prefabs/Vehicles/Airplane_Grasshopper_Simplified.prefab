@@ -1754,6 +1754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5812237688988268278}
   - component: {fileID: 4041244827390529475}
+  - component: {fileID: 7937536008312549922}
   m_Layer: 0
   m_Name: MainLeft
   m_TagString: Untagged
@@ -1791,7 +1792,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0.87
-  m_Mass: 1.5
+  m_Mass: 7
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -1806,6 +1807,27 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &7937536008312549922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551090179609018931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6489031b10d2cdb45bd0b1e60ef16fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 0
+  powerEnabled: 0
+  steerEnabled: 0
+  invertSteering: 0
+  maxSteerAngle: 40
+  brakeWheel: 1
+  maxBrakeForce: 500
+  steerInput: 0
+  brakeInput: 0
 --- !u!1 &5909230115733083115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,6 +1892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2928794273816104068}
   - component: {fileID: 976301557134771162}
+  - component: {fileID: 5440551209936526215}
   m_Layer: 0
   m_Name: MainRight
   m_TagString: Untagged
@@ -1907,7 +1930,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0.87
-  m_Mass: 1.5
+  m_Mass: 7
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -1922,6 +1945,27 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &5440551209936526215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072630080893420015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6489031b10d2cdb45bd0b1e60ef16fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 0
+  powerEnabled: 0
+  steerEnabled: 0
+  invertSteering: 0
+  maxSteerAngle: 40
+  brakeWheel: 1
+  maxBrakeForce: 500
+  steerInput: 0
+  brakeInput: 0
 --- !u!1 &6113974717249330743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +1976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6219454570669317171}
   - component: {fileID: 4756589564281933467}
+  - component: {fileID: 1211894167651433882}
   m_Layer: 0
   m_Name: Nose
   m_TagString: Untagged
@@ -1969,7 +2014,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0.87
-  m_Mass: 1.5
+  m_Mass: 7
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -1984,6 +2029,27 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 0.7
   m_Enabled: 1
+--- !u!114 &1211894167651433882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113974717249330743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6489031b10d2cdb45bd0b1e60ef16fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 0
+  powerEnabled: 0
+  steerEnabled: 1
+  invertSteering: 0
+  maxSteerAngle: 40
+  brakeWheel: 0
+  maxBrakeForce: 500
+  steerInput: 0
+  brakeInput: 0
 --- !u!1 &6352616880366392737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,7 +2344,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6712620451567880571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,17 +2363,7 @@ MonoBehaviour:
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
-  engines: []
-  landingGear: {fileID: 0}
-  brakeWheels:
-  - {fileID: 4756589564281933467}
-  - {fileID: 4041244827390529475}
-  - {fileID: 976301557134771162}
-  brakeTorque: 500
-  steeringWheels:
-  - {fileID: 4756589564281933467}
-  maxSteerAngle: 20
-  invertedSteering: 0
+  wheels: []
 --- !u!114 &7473704258276874980
 MonoBehaviour:
   m_ObjectHideFlags: 0

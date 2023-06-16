@@ -17,14 +17,10 @@ public class Boat: Vehicle
 	{
 		VehicleUpdate();
 	}
-
-	#region INPUTS
 	public override void SendKeyInput(KeyCode key)
 	{
 		base.SendKeyInput(key);
 	}
-
-	#endregion
 	protected override void InitializeVehicle()
 	{
 		base.InitializeVehicle();

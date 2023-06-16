@@ -10,7 +10,7 @@ public class VehicleController : MonoBehaviour
     private float _inputRoll = 0;
     private float _inputPitch = 0;
     private float _inputYaw = 0;
-    private bool _inputBrake = false;
+    private float _inputBrake = 0;
 	private float _inputThrottle = 0;
 
     public bool mouseYoke = true;
@@ -50,7 +50,7 @@ public class VehicleController : MonoBehaviour
 			_inputRoll = Mathf.Clamp(Input.GetAxis("Horizontal") + MouseControlX(), -1, 1);
 			_inputPitch = Mathf.Clamp(-Input.GetAxis("Vertical") - MouseControlY(), -1, 1);
 			_inputYaw = Mathf.Clamp(Input.GetAxis("Yaw"), -1, 1);
-			_inputBrake = Input.GetKey(KeyCode.B);
+			_inputBrake = Mathf.Clamp01(Input.GetAxis("Brake"));
 
 			// Throttle inputs
 			if (Input.GetKey(KeyCode.Alpha2))

@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System;
+using UnityEngine;
 
-public class Airplane : Vehicle
+public class Car : Vehicle
 {
 	/*
-	 * Main airplane driver class
+	 * Main car driver class
 	 */
 
 	private void Awake()
@@ -17,10 +16,10 @@ public class Airplane : Vehicle
 	{
 		VehicleUpdate();
 	}
-    public override void SendKeyInput(KeyCode key)
-    {
+	public override void SendKeyInput(KeyCode key)
+	{
 		base.SendKeyInput(key);
-    }
+	}
 	protected override void InitializeVehicle()
 	{
 		base.InitializeVehicle();
