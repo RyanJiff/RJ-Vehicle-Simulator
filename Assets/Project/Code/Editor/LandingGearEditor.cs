@@ -1,28 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(LandingGear))]
+[CustomEditor(typeof(RetractableWheels))]
 public class LandingGearEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        LandingGear myGearScript = (LandingGear)target;
+        RetractableWheels myRetractableWheelsScript = (RetractableWheels)target;
 
         DrawDefaultInspector();
 
         if(GUILayout.Button("Get Pos and Rot"))
         {
-            myGearScript.GetPosRot();
+            myRetractableWheelsScript.GetPosRot();
         }
-        if(GUILayout.Button("Gear Up"))
+        if(GUILayout.Button("Wheels Up"))
         {
-            myGearScript.GearUpInstant();
+            myRetractableWheelsScript.WheelsUpInstant();
         }
-        if (GUILayout.Button("Gear Down"))
+        if (GUILayout.Button("Wheels Down"))
         {
-            myGearScript.GearDownInstant();
+            myRetractableWheelsScript.WheelsDownInstant();
         }
 
     }

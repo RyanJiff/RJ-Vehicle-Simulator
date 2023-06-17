@@ -1823,14 +1823,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 0
-  steerEnabled: 0
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &5909230115733083115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,14 +1964,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 0
-  steerEnabled: 0
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &6113974717249330743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,14 +2050,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 0
-  steerEnabled: 1
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 0
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &6352616880366392737
 GameObject:
   m_ObjectHideFlags: 0

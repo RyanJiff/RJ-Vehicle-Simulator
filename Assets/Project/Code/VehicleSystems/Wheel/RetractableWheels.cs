@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class LandingGear : VehicleSystem
+public class RetractableWheels : VehicleSystem
 {
     /*
-     * Landing gear script resposible for handling landing gear logic
+     * Retractable Wheels script resposible for handling wheel retract/extend logic
      * has some editor tools for helping get/set positions of up down.
      * Needs to be documeted better
      */
@@ -53,9 +53,9 @@ public class LandingGear : VehicleSystem
     }
 
     /// <summary>
-    /// toggle if gear is extended
+    /// Toggle if wheels are extended
     /// </summary>
-    public void ToggleGear()
+    public void ToggleExtendableWheels()
     {
         extended = !extended;
     }
@@ -66,9 +66,9 @@ public class LandingGear : VehicleSystem
     }
 
     /// <summary>
-    /// instantly lower gear
+    /// Instantly extend wheels
     /// </summary>
-    public void GearDownInstant()
+    public void WheelsDownInstant()
     {
         for (int i = 0; i < transforms.Count; i++)
         {
@@ -80,9 +80,9 @@ public class LandingGear : VehicleSystem
     }
 
     /// <summary>
-    /// instantly raise gear
+    /// Instantly retract wheels
     /// </summary>
-    public void GearUpInstant()
+    public void WheelsUpInstant()
     {
         for (int i = 0; i < transforms.Count; i++)
         {

@@ -1497,6 +1497,17 @@ MonoBehaviour:
   applyForcesToCenter: 0
   buoyancyMultiplier: 2
   dragMultiplier: {x: 1, y: 1, z: 1}
+--- !u!114 &338959499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6712620451567880571, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+  m_PrefabInstance: {fileID: 1781400221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &357089820
 GameObject:
   m_ObjectHideFlags: 0
@@ -8121,6 +8132,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2928794273816104068, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812237688988268278, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219454570669317171, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6306797955743701687, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9742,6 +9765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car_Simple
       objectReference: {fileID: 0}
+    - target: {fileID: 3725296924689698570, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: m_Name
+      value: BuoyantEffector
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
 --- !u!1001 &6860484970362902986
@@ -9799,7 +9826,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5733153071334545327, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
 --- !u!1001 &7438492511906889143
 PrefabInstance:
@@ -9811,7 +9839,7 @@ PrefabInstance:
     - target: {fileID: 4619381935290398541, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: startingVehicle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 338959499}
     - target: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_Name
       value: Player

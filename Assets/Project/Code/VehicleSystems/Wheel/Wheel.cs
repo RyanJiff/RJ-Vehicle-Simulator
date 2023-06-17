@@ -10,16 +10,23 @@ public class Wheel : VehicleSystem
      */
 
     [Header("Wheel Settings")]
-    [SerializeField] private bool powerEnabled = false;
-    [SerializeField] private bool steerEnabled = false;
+    [SerializeField] private bool isPowerWheel = false;
+    [SerializeField] private bool isSteerWheel = false;
     [SerializeField] private bool invertSteering = false;
     [SerializeField] private float maxSteerAngle = 40f;
-    [SerializeField] private bool brakeWheel = false;
+    [SerializeField] private bool isBrakeWheel = false;
+    [SerializeField] private bool hasParkingBrake = false;
     [SerializeField] private float maxBrakeForce = 500;
 
     private WheelCollider wheelCollider;
-    [SerializeField] private float steerInput = 0;
-    [SerializeField] private float brakeInput = 0;
+    private float steerInput = 0;
+    private float brakeInput = 0;
+    private bool parkingBrakeOn = false;
+
+    // DEBUG
+    public float brakeForce = 0;
+    public float torqueForce = 0;
+    public float steerAngle = 0;
 
     private void Awake()
     {
@@ -29,11 +36,23 @@ public class Wheel : VehicleSystem
     private void Update()
     {
         wheelCollider.steerAngle = maxSteerAngle * steerInput;
-        wheelCollider.brakeTorque = maxBrakeForce * brakeInput;
+        if (!hasParkingBrake)
+        {
+            wheelCollider.brakeTorque = maxBrakeForce * brakeInput;
+        }
+        else if(hasParkingBrake && parkingBrakeOn)
+        {
+            wheelCollider.brakeTorque = maxBrakeForce;
+        }
+
+        // DEBUG
+        brakeForce = wheelCollider.brakeTorque;
+        torqueForce = wheelCollider.motorTorque;
+        steerAngle = wheelCollider.steerAngle;
     }
     public void SetSteerInput(float s)
     {
-        if (steerEnabled)
+        if (isSteerWheel)
         {
             s = Mathf.Clamp(s, -1.0f, 1.0f);
             if (invertSteering)
@@ -50,7 +69,7 @@ public class Wheel : VehicleSystem
     public void SetBrakeInput(float b)
     {
         // We have a minimum threshold for braking, otherwise funny things happen
-        if (brakeWheel && b >= 0.2f)
+        if (isBrakeWheel && b >= 0.2f)
         {
             b = Mathf.Clamp01(b);
             brakeInput = b;
@@ -62,7 +81,7 @@ public class Wheel : VehicleSystem
     }
     public void SetTorque(float t)
     {
-        if (powerEnabled)
+        if (isPowerWheel)
         {
             wheelCollider.motorTorque = t + 0.000001f;
         }
@@ -73,10 +92,14 @@ public class Wheel : VehicleSystem
     }
     public bool GetSteerEnabled()
     {
-        return steerEnabled;
+        return isSteerWheel;
     }
     public bool GetPowerEnabled()
     {
-        return powerEnabled;
+        return isPowerWheel;
+    }
+    public void SetParkingBrake(bool b)
+    {
+        parkingBrakeOn = b;
     }
 }

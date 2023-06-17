@@ -36,7 +36,7 @@ public class Vehicle : MonoBehaviour
     protected List<Engine> engines = new List<Engine>();
     
     protected List<Wheel> wheels = new List<Wheel>();
-    protected LandingGear landingGear;
+    protected RetractableWheels retractableWheels = null;
     
     protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> pitchControlSurfaces = new List<ControlSurface>();
@@ -51,7 +51,7 @@ public class Vehicle : MonoBehaviour
         // First setup vehicle systems
         engines = GetComponentsInChildren<Engine>().ToList();
         wheels = GetComponentsInChildren<Wheel>().ToList();
-        landingGear = GetComponentInChildren<LandingGear>();
+        retractableWheels = GetComponentInChildren<RetractableWheels>();
         SetupControlSurfaces();
 
         // Initial vehicle mass should not take anything into consideration
@@ -132,7 +132,7 @@ public class Vehicle : MonoBehaviour
         switch (key)
         {
             case Enums.VEHICLE_GEAR_TOGGLE:
-                ToggleGear();
+                ToggleExtendableWheels();
                 break;
             case Enums.VEHICLE_ENGINE_TOGGLE:
                 ToggleEngines();
@@ -162,11 +162,11 @@ public class Vehicle : MonoBehaviour
             engines[i].ToggleIgnition();
         }
     }
-    private void ToggleGear()
+    private void ToggleExtendableWheels()
     {
-        if (landingGear)
+        if (retractableWheels)
         {
-            landingGear.ToggleGear();
+            retractableWheels.ToggleExtendableWheels();
         }
         else
         {
