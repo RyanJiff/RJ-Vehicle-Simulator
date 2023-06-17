@@ -54,8 +54,8 @@ public class BuoyancyEffector : MonoBehaviour
         // DEBUG
         if (rigid != null)
         {
-            //Debug.DrawRay(transform.position, buoyancyForce * buoyancyForceDirection * 0.001f, Color.magenta);
-            //Debug.DrawRay(transform.position, dragDirectionAndForce * underWaterPercent * 0.01f, Color.red);
+            Debug.DrawRay(transform.position, buoyancyForce * buoyancyForceDirection * 0.001f, Color.magenta);
+            Debug.DrawRay(transform.position, dragDirectionAndForce * underWaterPercent * 0.01f, Color.red);
         }
     }
 
