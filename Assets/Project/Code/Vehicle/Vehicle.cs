@@ -34,8 +34,8 @@ public class Vehicle : MonoBehaviour
 
     // General Vehicle systems
     protected List<Engine> engines = new List<Engine>();
-    
     protected List<Wheel> wheels = new List<Wheel>();
+    protected ParkingBrake parkingBrake = null;
     protected RetractableWheels retractableWheels = null;
     
     protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
@@ -51,6 +51,7 @@ public class Vehicle : MonoBehaviour
         // First setup vehicle systems
         engines = GetComponentsInChildren<Engine>().ToList();
         wheels = GetComponentsInChildren<Wheel>().ToList();
+        parkingBrake = GetComponentInChildren<ParkingBrake>();
         retractableWheels = GetComponentInChildren<RetractableWheels>();
         SetupControlSurfaces();
 
@@ -137,6 +138,9 @@ public class Vehicle : MonoBehaviour
             case Enums.VEHICLE_ENGINE_TOGGLE:
                 ToggleEngines();
                 break;
+            case Enums.VEHICLE_PARKING_BRAKE_TOGGLE:
+                ToggleParkingBrake();
+                break;
             case Enums.VEHICLE_TRIM_VERTICAL_INCREASE:
                 ChangeTrim(0.02f, Enums.Axis.VERTICAL);
                 break;
@@ -160,6 +164,13 @@ public class Vehicle : MonoBehaviour
         for (int i = 0; i < engines.Count; i++)
         {
             engines[i].ToggleIgnition();
+        }
+    }
+    private void ToggleParkingBrake()
+    {
+        if (parkingBrake)
+        {
+            parkingBrake.ToggleParkingBrake();
         }
     }
     private void ToggleExtendableWheels()
@@ -318,5 +329,4 @@ public class Vehicle : MonoBehaviour
         return roll;
     }
     #endregion
-
 }

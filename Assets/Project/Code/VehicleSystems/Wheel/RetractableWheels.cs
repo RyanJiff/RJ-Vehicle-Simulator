@@ -28,11 +28,14 @@ public class RetractableWheels : VehicleSystem
 
     public bool extended = true;
     public float speed = 0.5f;
-    void Update()
+
+    protected override void VehicleSystemUpdate()
     {
+        base.VehicleSystemUpdate();
+
         if (!extended)
         {
-            for(int i = 0; i < transforms.Count; i++)
+            for (int i = 0; i < transforms.Count; i++)
             {
                 transforms[i].localPosition = Vector3.MoveTowards(transforms[i].localPosition, UpPositions[i], speed * Time.deltaTime);
                 transforms[i].localRotation = Quaternion.RotateTowards(transforms[i].localRotation, UpRotations[i], speed * Time.deltaTime);

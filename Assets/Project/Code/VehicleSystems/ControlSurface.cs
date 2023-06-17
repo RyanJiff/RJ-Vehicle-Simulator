@@ -37,21 +37,26 @@ public class ControlSurface : VehicleSystem
 
 	private float angle = 0f;
 
-	private void Awake()
-	{
+    protected override void VehicleSystemAwake()
+    {
+        base.VehicleSystemAwake();
+		
 		// If the wing has been referenced, then control stiffening will want to be used.
 		if (wing != null)
-            rigid = GetComponentInParent<Rigidbody>();
-	}
+			rigid = GetComponentInParent<Rigidbody>();
 
-	private void Start()
-	{
+	}
+    protected override void VehicleSystemStart()
+    {
+        base.VehicleSystemStart();
+
 		// Dirty hack so that the rotation can be reset before applying the deflection.
 		startLocalRotation = transform.localRotation;
 	}
-
-	private void FixedUpdate()
+	protected override void VehicleSystemFixedUpdate()
 	{
+		base.VehicleSystemFixedUpdate();
+
 		// -1 if invert is true
 		float targetDeflectionInvert = 1 * targetDeflection;
         if (inverted)

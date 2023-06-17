@@ -27,12 +27,11 @@ public class Engine : VehicleSystem
     private bool applyForceFlag = false;
     
     private Rigidbody rigid;
-    private Vehicle myVehicle;
     private List<Wheel> wheels = new List<Wheel>();
 
-    void Awake()
+    protected override void VehicleSystemAwake()
     {
-        myVehicle = GetComponentInParent<Vehicle>();
+        base.VehicleSystemAwake();
 
         if (!myVehicle)
         {
@@ -44,8 +43,24 @@ public class Engine : VehicleSystem
         wheels = myVehicle.GetComponentsInChildren<Wheel>().ToList();
         rigid = myVehicle.GetComponent<Rigidbody>();
     }
-    void FixedUpdate()
+    protected override void VehicleSystemUpdate()
     {
+        base.VehicleSystemUpdate();
+
+        if (ignition)
+        {
+            // Power calculations
+            currentPower = Mathf.MoveTowards(currentPower, throttleInput, rampSpeed * Time.deltaTime);
+        }
+        else
+        {
+            currentPower = Mathf.MoveTowards(currentPower, 0, rampSpeed * Time.deltaTime);
+        }
+    }
+    protected override void VehicleSystemFixedUpdate()
+    {
+        base.VehicleSystemFixedUpdate();
+
         if (rigid != null)
         {
             isOverWater = false;
@@ -53,7 +68,7 @@ public class Engine : VehicleSystem
 
             if (EnvironmentSystem.instance)
             {
-                if(transform.position.y > EnvironmentSystem.instance.GetSeaLineYPos())
+                if (transform.position.y > EnvironmentSystem.instance.GetSeaLineYPos())
                 {
                     isOverWater = true;
                 }
@@ -66,7 +81,7 @@ public class Engine : VehicleSystem
                 }
             }
 
-            if((worksOverWater && isOverWater) || (worksUnderWater && !isOverWater))
+            if ((worksOverWater && isOverWater) || (worksUnderWater && !isOverWater))
             {
                 applyForceFlag = true;
             }
@@ -86,20 +101,8 @@ public class Engine : VehicleSystem
             }
             else
             {
-                SetPowerWheelsTorque(wheels ,0);
+                SetPowerWheelsTorque(wheels, 0);
             }
-        }
-    }
-    void Update()
-    {
-        if (ignition)
-        {
-            // Power calculations
-            currentPower = Mathf.MoveTowards(currentPower, throttleInput, rampSpeed * Time.deltaTime);
-        }
-        else
-        {
-            currentPower = Mathf.MoveTowards(currentPower, 0, rampSpeed * Time.deltaTime);
         }
     }
     /// <summary>

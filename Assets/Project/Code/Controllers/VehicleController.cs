@@ -31,6 +31,10 @@ public class VehicleController : MonoBehaviour
 			if (Input.GetKeyDown(Enums.VEHICLE_GEAR_TOGGLE))
 				vehicle.SendKeyInput(Enums.VEHICLE_GEAR_TOGGLE);
 
+			// Parking brake toggle
+			if (Input.GetKeyDown(Enums.VEHICLE_PARKING_BRAKE_TOGGLE))
+				vehicle.SendKeyInput(Enums.VEHICLE_PARKING_BRAKE_TOGGLE);
+
 			// Trim inputs
 			if (Input.GetKeyDown(Enums.VEHICLE_TRIM_VERTICAL_INCREASE))
 				vehicle.SendKeyInput(Enums.VEHICLE_TRIM_VERTICAL_INCREASE);

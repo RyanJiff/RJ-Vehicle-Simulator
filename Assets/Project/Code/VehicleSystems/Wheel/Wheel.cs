@@ -6,7 +6,7 @@ using UnityEngine;
 public class Wheel : VehicleSystem
 {
     /*
-     * All wheel colliders on vehicles should have a Wheel script 
+     * All wheel colliders on vehicles should have a Wheel script as it is used by other vehicle systems to control the wheel collider.
      */
 
     [Header("Wheel Settings")]
@@ -28,22 +28,57 @@ public class Wheel : VehicleSystem
     public float torqueForce = 0;
     public float steerAngle = 0;
 
-    private void Awake()
+    protected override void VehicleSystemAwake()
     {
+        base.VehicleSystemAwake();
+
         wheelCollider = GetComponent<WheelCollider>();
         wheelCollider.motorTorque = 0.000001f;
     }
-    private void Update()
+    protected override void VehicleSystemUpdate()
     {
+        base.VehicleSystemUpdate();
+
+        // Set steer angle first
         wheelCollider.steerAngle = maxSteerAngle * steerInput;
-        if (!hasParkingBrake)
+
+        // TODO: I wrote this for clarity more than effeciency, with some very basic boolean algebra this can be made more effecient.
+        // The braking of the wheel is different for parking brake enabled and non parking brake wheels.
+        if (hasParkingBrake)
         {
-            wheelCollider.brakeTorque = maxBrakeForce * brakeInput;
+            if (parkingBrakeOn)
+            {
+                // We have a parking brake and it is enabled. Brake the wheel.
+                wheelCollider.brakeTorque = maxBrakeForce;
+            }
+            else if (!parkingBrakeOn && isBrakeWheel)
+            {
+                // We have a parking brake and it is off and we are a braking wheel. Use normal brake input.
+                wheelCollider.brakeTorque = brakeInput * maxBrakeForce;
+            }
+            else if (!parkingBrakeOn && !isBrakeWheel)
+            {
+                // We have a parking brake but we are not a braking wheel. Do not brake unless the parking brake is on.
+                wheelCollider.brakeTorque = 0;
+            }
         }
-        else if(hasParkingBrake && parkingBrakeOn)
+        // Here if we do not have a parking brake we just brake if we are a brake wheel
+        else
         {
-            wheelCollider.brakeTorque = maxBrakeForce;
+            if (isBrakeWheel)
+            {
+                // We have brakes. Brake normally.
+                wheelCollider.brakeTorque = brakeInput * maxBrakeForce;
+            }
+            else
+            {
+                // We have no parking brake or brakes. Never brake.
+                wheelCollider.brakeTorque = 0;
+            }
         }
+
+
+        Debug.Log("updating wheel");
 
         // DEBUG
         brakeForce = wheelCollider.brakeTorque;

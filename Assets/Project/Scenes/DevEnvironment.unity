@@ -3466,6 +3466,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860474108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5414060135341204545, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+  m_PrefabInstance: {fileID: 401832118593195661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &860474110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860474108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d8549201fbaa144959329f4661f54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUIElements: 1
+  parkingBrakeSet: 1
 --- !u!1 &875680834
 GameObject:
   m_ObjectHideFlags: 0
@@ -8121,18 +8140,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2928794273816104068, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5812237688988268278, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219454570669317171, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 6306797955743701687, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9636,25 +9643,6 @@ MonoBehaviour:
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.1
   dragMultiplier: {x: 0.05, y: 0.05, z: 0.05}
---- !u!1 &2099938278 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6049529926242891258, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
-  m_PrefabInstance: {fileID: 6860484970362902986}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &2099938282
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099938278}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4493585093827132993, guid: 0a891a6d3dc40e0499d0fc4b7145464e, type: 3}
 --- !u!1 &2106468082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9703,6 +9691,17 @@ MonoBehaviour:
   applyForcesToCenter: 0
   buoyancyMultiplier: 0.1
   dragMultiplier: {x: 0.05, y: 0.05, z: 0.05}
+--- !u!114 &2116703835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6712620451567880571, guid: 27b7455ce8979af42a548e800ec3b97b, type: 3}
+  m_PrefabInstance: {fileID: 1781400221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &401832118593195661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9754,13 +9753,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isBrakeWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isPowerWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isSteerWheel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1953208541568752254, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
       propertyPath: m_Name
       value: Car_Simple
       objectReference: {fileID: 0}
+    - target: {fileID: 3368504124832480538, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: maxForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368504124832480538, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: rampSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3725296924689698570, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
       propertyPath: m_Name
       value: BuoyantEffector
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isBrakeWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isPowerWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: hasParkingBrake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isBrakeWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isPowerWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: hasParkingBrake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isBrakeWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isPowerWheel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+      propertyPath: isSteerWheel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
@@ -9781,7 +9836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138896785169424472, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8677.1
+      value: 1127
       objectReference: {fileID: 0}
     - target: {fileID: 4138896785169424472, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9789,7 +9844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138896785169424472, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8784.8
+      value: 427
       objectReference: {fileID: 0}
     - target: {fileID: 4138896785169424472, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9831,7 +9886,7 @@ PrefabInstance:
     - target: {fileID: 4619381935290398541, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: startingVehicle
       value: 
-      objectReference: {fileID: 8530599883719319598}
+      objectReference: {fileID: 2116703835}
     - target: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9948,14 +10003,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2979010064477010406, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
   m_PrefabInstance: {fileID: 6860484970362902986}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8530599883719319598 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2979010064477010405, guid: 589f7ba75fa41b843add524886137ecf, type: 3}
-  m_PrefabInstance: {fileID: 6860484970362902986}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8530599883719319596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a336c3eb6f915e4fb4acaba18310b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

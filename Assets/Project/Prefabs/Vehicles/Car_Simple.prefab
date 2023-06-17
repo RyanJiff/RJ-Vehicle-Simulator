@@ -107,14 +107,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 1
-  steerEnabled: 0
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 1500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &1464803708532493944
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,14 +193,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 0
-  steerEnabled: 1
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 1500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &1496315977772149895
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +236,7 @@ Transform:
   - {fileID: 8984362411380516408}
   - {fileID: 4499497107327224576}
   m_Father: {fileID: 809787829973828544}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667967018205721804
 GameObject:
@@ -263,7 +267,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 809787829973828544}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953208541568752254
 GameObject:
@@ -300,10 +304,11 @@ Transform:
   - {fileID: 113089667615079953}
   - {fileID: 9108676976264810934}
   - {fileID: 3489381075202575940}
+  - {fileID: 6212921709837867732}
+  - {fileID: 6142567542921971363}
   - {fileID: 9209033833828224187}
   - {fileID: 126473509150800388}
   - {fileID: 723317059836289912}
-  - {fileID: 6142567542921971363}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -341,7 +346,6 @@ MonoBehaviour:
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
-  wheels: []
 --- !u!114 &4339726840971667016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 809787829973828544}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3655044236464371563
 GameObject:
@@ -585,14 +589,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 1
-  steerEnabled: 0
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 1500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &3725296924689698570
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,14 +723,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  powerEnabled: 0
-  steerEnabled: 1
+  isPowerWheel: 0
+  isSteerWheel: 0
   invertSteering: 0
   maxSteerAngle: 40
-  brakeWheel: 1
+  isBrakeWheel: 0
+  hasParkingBrake: 0
   maxBrakeForce: 1500
-  steerInput: 0
-  brakeInput: 0
+  brakeForce: 0
+  torqueForce: 0
+  steerAngle: 0
 --- !u!1 &5227081569821233778
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +830,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5414060135341204545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6212921709837867732}
+  m_Layer: 0
+  m_Name: ParkingBrake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6212921709837867732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414060135341204545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 809787829973828544}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8650071614415455483
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,5 +891,5 @@ Transform:
   m_Children:
   - {fileID: 7450286420487186464}
   m_Father: {fileID: 809787829973828544}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

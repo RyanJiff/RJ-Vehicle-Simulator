@@ -9,13 +9,6 @@ public class VehicleTelemetrySystem : VehicleSystem
      * Gets vehicle info (whatever vehicle information we desire) and creates GUI elements for it
      */
 
-    Vehicle vehicle;
-
-    private void Awake()
-    {
-        vehicle = GetComponent<Vehicle>();
-    }
-
     protected override void InitializeGUIElements()
     {
         vehicleGUIElements.Add(new VehicleGUIElement("Ground Speed", "kn", "0", true));
@@ -23,7 +16,7 @@ public class VehicleTelemetrySystem : VehicleSystem
     }
     protected override void UpdateGUIElements()
     {
-        vehicleGUIElements[0].SetValue(vehicle.GroundSpeedKnots().ToString("0"));
-        vehicleGUIElements[1].SetValue(vehicle.VerticalSpeedFeetPerMinute().ToString("0"));
+        vehicleGUIElements[0].SetValue(myVehicle.GroundSpeedKnots().ToString("0"));
+        vehicleGUIElements[1].SetValue(myVehicle.VerticalSpeedFeetPerMinute().ToString("0"));
     }
 }

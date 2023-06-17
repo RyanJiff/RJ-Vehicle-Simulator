@@ -5,6 +5,7 @@ public class GearVisuals : VehicleSystem
 {
 	/*
 	 * Written by Brian Hernandez. 
+	 * TODO: Need to write a new visual system for wheels
 	 */
 
 	public WheelCollider[] wheels;
@@ -12,14 +13,18 @@ public class GearVisuals : VehicleSystem
 
 	private Dictionary<Transform, WheelCollider> visualToWheelMap;
 
-	private void Awake()
+	protected override void VehicleSystemAwake()
 	{
+		base.VehicleSystemAwake();
+
 		visualToWheelMap = new Dictionary<Transform, WheelCollider>();
 	}
 
-	// Use this for initialization
-	private void Start()
-	{
+    // Use this for initialization
+    protected override void VehicleSystemStart()
+    {
+        base.VehicleSystemStart();
+
 		if (wheelVisualizerPrefab != null)
 		{
 			// Create a cylinder and associate each cylinder with a wheel.
@@ -31,8 +36,10 @@ public class GearVisuals : VehicleSystem
 		}
 	}
 
-	private void Update()
+	protected override void VehicleSystemUpdate()
 	{
+		base.VehicleSystemUpdate();
+
 		if (visualToWheelMap.Count > 0)
 		{
 			Vector3 pos;

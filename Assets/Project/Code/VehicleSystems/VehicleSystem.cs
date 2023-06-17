@@ -13,6 +13,52 @@ public class VehicleSystem : MonoBehaviour
     [Space]
     private bool guiElementsInitialized = false;
 
+    protected Vehicle myVehicle = null;
+
+    void Awake()
+    {
+        VehicleSystemAwake();
+    }
+    void Start()
+    {
+        VehicleSystemStart();
+    }
+    void Update()
+    {
+        VehicleSystemUpdate();
+    }
+    void FixedUpdate()
+    {
+        VehicleSystemFixedUpdate();
+    }
+    /// <summary>
+    /// This function runs on Awake()
+    /// </summary>
+    protected virtual void VehicleSystemAwake()
+    {
+        myVehicle = GetComponentInParent<Vehicle>();
+    }
+    /// <summary>
+    /// This function runs on Start()
+    /// </summary>
+    protected virtual void VehicleSystemStart()
+    {
+        
+    }
+    /// <summary>
+    /// This function runs every in Update()
+    /// </summary>
+    protected virtual void VehicleSystemUpdate()
+    {
+
+    }
+    /// <summary>
+    /// This function runs every in FixedUpdate()
+    /// </summary>
+    protected virtual void VehicleSystemFixedUpdate()
+    {
+
+    }
     /// <summary>
     /// Initialize all the GUI elements of the vehicle system and set its parameters and base values.
     /// </summary>
@@ -20,6 +66,7 @@ public class VehicleSystem : MonoBehaviour
     {
         // Implementation differs from each vehicle system
         // Example usage: vehicleGUIElements.Add(new VehicleGUIElement("This is shown on the GUI", "%", "0.0", showGUIElements));
+        vehicleGUIElements.Clear();
     }
 
     /// <summary>
