@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4838471741255769854}
   - component: {fileID: 4838471741255769852}
   - component: {fileID: 7048838770516537368}
+  - component: {fileID: 1827051358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328c134d5b58ae949aa4e346f4c50df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehiclesInPlay: []
   startingVehicle: {fileID: 0}
 --- !u!114 &4838471741255769854
 MonoBehaviour:
@@ -104,6 +106,25 @@ MonoBehaviour:
   - 0
   distanceFromCenterOrbit: 14
   lookAroundSpeed: 55
-  OffsetOribt: {x: 0, y: 0, z: 0}
+  OffsetOribt: {x: 0, y: 0, z: 2.9}
   RotAroundY: -55
   RotAroundXZ: 80
+--- !u!114 &1827051358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838471741255769840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d1ffb392ec25d4f91155c18ef91472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceObject: {fileID: 0}
+  Threshold: 150
+  Use2DDistance: 0
+  UpdateAllScenes: 1
+  UpdateParticles: 1
+  UpdateTrailRenderers: 1
+  UpdateLineRenderers: 1

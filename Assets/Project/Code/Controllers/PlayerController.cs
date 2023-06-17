@@ -5,17 +5,20 @@ using System.Linq;
 [RequireComponent(typeof(VehicleController))]
 [RequireComponent(typeof(CameraController))]
 [RequireComponent(typeof(SimpleVehicleGUI))]
+[RequireComponent(typeof(FloatingOrigin))]
 public class PlayerController : MonoBehaviour
 {
     /*
      * Handles handing player control over a vehicle and any non vehicle inputs
      */
+
     VehicleController myController = null;
     CameraController myCameraController = null;
     SimpleVehicleGUI myVehicleGUI = null;
+    FloatingOrigin floatingOrigin = null;
 
     // List of all selectable vehicles
-    public List<Vehicle> vehiclesInPlay = new List<Vehicle>();
+    private List<Vehicle> vehiclesInPlay = new List<Vehicle>();
     private int currentSelected = 0;
 
     // For Dev purposes, set the starting vehicle of the player
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         myController = GetComponent<VehicleController>();
         myCameraController = GetComponent<CameraController>();
         myVehicleGUI = GetComponent<SimpleVehicleGUI>();
+        floatingOrigin = GetComponent<FloatingOrigin>();
 
         vehiclesInPlay = FindObjectsOfType<Vehicle>().ToList();
     }
@@ -46,12 +50,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
                 ApplicationManager.instance.ReloadScene();
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(Enums.PLAYER_SWITCH_VEHICLE))
         {
             currentSelected = (currentSelected + 1) % vehiclesInPlay.Count;
             TakeControl(vehiclesInPlay[currentSelected]);
         }
-
     }
 
 
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
             myController.GiveControl(vehicle);
             myCameraController.SetTargetVehicle(vehicle.transform);
             myVehicleGUI.SetVehicle(vehicle);
+            floatingOrigin.referenceObject = vehicle.transform;
         }
         else
         {

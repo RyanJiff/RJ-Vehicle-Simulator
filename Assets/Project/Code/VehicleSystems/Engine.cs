@@ -140,10 +140,12 @@ public class Engine : VehicleSystem
     protected override void InitializeGUIElements()
     {
         vehicleGUIElements.Add(new VehicleGUIElement("Throttle", "%", "0.0", showGUIElements));
+        vehicleGUIElements.Add(new VehicleGUIElement("Engine Ignition", "", "", showGUIElements));
     }
     protected override void UpdateGUIElements()
     {
         vehicleGUIElements[0].SetValue((throttleInput * 100).ToString("0"));
+        vehicleGUIElements[1].SetValue(ignition.ToString());
     }
     #endregion
 

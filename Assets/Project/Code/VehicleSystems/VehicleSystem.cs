@@ -19,6 +19,7 @@ public class VehicleSystem : MonoBehaviour
     protected virtual void InitializeGUIElements()
     {
         // Implementation differs from each vehicle system
+        // Example usage: vehicleGUIElements.Add(new VehicleGUIElement("This is shown on the GUI", "%", "0.0", showGUIElements));
     }
 
     /// <summary>
@@ -27,7 +28,7 @@ public class VehicleSystem : MonoBehaviour
     protected virtual void UpdateGUIElements()
     {
         // Implementation differs from each vehicle system
-        // Example usage: 
+        // Example usage: vehicleGUIElements[0].SetValue((value * 100).ToString("0"));
     }
     /// <summary>
     /// Update elements and return the results

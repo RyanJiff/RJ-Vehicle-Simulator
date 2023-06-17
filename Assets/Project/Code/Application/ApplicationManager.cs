@@ -9,7 +9,7 @@ public class ApplicationManager : MonoBehaviour
      */
     public static ApplicationManager instance { get; private set; }
 
-    void Awake()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -22,8 +22,12 @@ public class ApplicationManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-        // Get out of the first loaded scene.
+        // Get out of the first loaded scene to the main menu
         SceneManager.LoadScene(1);
+    }
+    private void Update()
+    {
+        
     }
 
     public void ReloadScene()
