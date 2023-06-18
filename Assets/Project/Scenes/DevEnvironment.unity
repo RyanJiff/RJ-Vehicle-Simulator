@@ -3466,25 +3466,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &860474108 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5414060135341204545, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-  m_PrefabInstance: {fileID: 401832118593195661}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &860474110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860474108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d8549201fbaa144959329f4661f54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUIElements: 1
-  parkingBrakeSet: 1
 --- !u!1 &875680834
 GameObject:
   m_ObjectHideFlags: 0
@@ -9685,69 +9666,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isBrakeWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isPowerWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186332058880539387, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isSteerWheel
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1953208541568752254, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
       propertyPath: m_Name
       value: Car_Simple
-      objectReference: {fileID: 0}
-    - target: {fileID: 3368504124832480538, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: maxForce
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 3368504124832480538, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: rampSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3725296924689698570, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: m_Name
-      value: BuoyantEffector
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isBrakeWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isPowerWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784201081721342619, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: hasParkingBrake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isBrakeWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isPowerWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439213923956565555, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: hasParkingBrake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isBrakeWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isPowerWheel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5198142070091487025, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
-      propertyPath: isSteerWheel
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
@@ -9758,22 +9679,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 831820498717984062, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
-      propertyPath: effectOnAOACoeffecient
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134337432572813986, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
-      propertyPath: effectOnAOACoeffecient
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719782540552081261, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
-      propertyPath: numberOfCalculationPoints
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194977309783944367, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
-      propertyPath: numberOfCalculationPoints
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 6587974338018532262, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
       propertyPath: m_RootOrder
       value: 1
