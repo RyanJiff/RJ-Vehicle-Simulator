@@ -77,9 +77,6 @@ public class Wheel : VehicleSystem
             }
         }
 
-
-        Debug.Log("updating wheel");
-
         // DEBUG
         brakeForce = wheelCollider.brakeTorque;
         torqueForce = wheelCollider.motorTorque;

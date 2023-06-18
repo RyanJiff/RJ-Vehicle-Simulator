@@ -95,4 +95,15 @@ public class RetractableWheels : VehicleSystem
         
         extended = false;
     }
+    protected override void InitializeGUIElements()
+    {
+        base.InitializeGUIElements();
+
+        vehicleGUIElements.Add(new VehicleGUIElement("Gear Extended", "", "", showGUIElements));
+    }
+    protected override void UpdateGUIElements()
+    {
+        base.UpdateGUIElements();
+        vehicleGUIElements[0].SetValue(extended.ToString());
+    }
 }

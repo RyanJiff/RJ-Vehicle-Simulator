@@ -35,7 +35,6 @@ public class GearVisuals : VehicleSystem
 			}
 		}
 	}
-
 	protected override void VehicleSystemUpdate()
 	{
 		base.VehicleSystemUpdate();

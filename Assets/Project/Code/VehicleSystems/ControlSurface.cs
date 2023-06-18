@@ -2,7 +2,7 @@
 
 public class ControlSurface : VehicleSystem
 {
-	public enum ControlType { STATIC, PITCH, ROLL, YAW, FLAPS};
+	public enum ControlType { STATIC, PITCH, ROLL, YAW};
 	public ControlType controlType = ControlType.STATIC;
 
 	[Header("Deflection")]
@@ -21,6 +21,12 @@ public class ControlSurface : VehicleSystem
 
 	[Tooltip("When set to true the target deflection is multiplied by -1")]
 	public bool inverted = false;
+	[Space]
+
+	[Header("Affects Parent Wing")]
+	[SerializeField] private bool affectsWing = false;
+	[SerializeField][Range(0, 0.5f)]  float effectOnAOACoeffecient = 0.25f;
+	[Space]
 
 	[Header("Speed Stiffening")]
 
@@ -31,9 +37,12 @@ public class ControlSurface : VehicleSystem
 	[Tooltip("How much force the control surface can exert. The lower this is, " +
 		"the more the control surface stiffens with speed.")]
 	public float maxTorque = 6000f;
+	[Space]
 
 	private Rigidbody rigid = null;
 	private Quaternion startLocalRotation = Quaternion.identity;
+
+	[SerializeField] private Wing myWing;
 
 	private float angle = 0f;
 
@@ -44,6 +53,9 @@ public class ControlSurface : VehicleSystem
 		// If the wing has been referenced, then control stiffening will want to be used.
 		if (wing != null)
 			rigid = GetComponentInParent<Rigidbody>();
+
+		if (affectsWing)
+			myWing = GetComponentInParent<Wing>();
 
 	}
     protected override void VehicleSystemStart()
@@ -84,6 +96,11 @@ public class ControlSurface : VehicleSystem
 		// Hacky way to do this!
 		transform.localRotation = startLocalRotation;
 		transform.Rotate(Vector3.right, angle, Space.Self);
-	}
 
+        // Tell the wing we control our current angle
+        if (affectsWing && myWing) 
+		{
+			myWing.SetControlSurfaceDeflection(angle, effectOnAOACoeffecient);
+		}
+	}
 }

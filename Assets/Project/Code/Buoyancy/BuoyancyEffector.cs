@@ -20,7 +20,7 @@ public class BuoyancyEffector : MonoBehaviour
     [Tooltip("The higher the value, the more buoyancy the effector")]
     public float buoyancyMultiplier = 1f;
     [Tooltip("Drag multiplier, the higher the value the more the drag force")]
-    public Vector3 dragMultiplier = Vector3.one;
+    public Vector3 dragMultiplier = Vector3.one * 0.025f;
 
     private Rigidbody rigid;
 
