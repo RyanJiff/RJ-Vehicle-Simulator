@@ -3,7 +3,7 @@
 
 ### Features
 - A simple airplane with semi-realistic flight characteristics.
-![Flying screenshot](screenshot1.JPG)
+![Flying screenshot](screenshot2.PNG)
 
 # Table of Contents
 1. [Setup](#Setup)
