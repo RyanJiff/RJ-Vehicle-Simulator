@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEditor;
 
 public class Wing : MonoBehaviour
 {
@@ -26,6 +26,10 @@ public class Wing : MonoBehaviour
 	private Vector3 liftDirection = Vector3.up;
 	private Vector3 globalWindVector = Vector3.zero;
 
+	private Vector3 rigidVelocity = Vector3.zero;
+	private Vector3 worldVelocity = Vector3.zero;
+	private Vector3 localVelocity = Vector3.zero;
+
 	private float liftCoefficient = 0f;
 	private float dragCoefficient = 0f;
 	private float liftForce = 0;
@@ -36,6 +40,9 @@ public class Wing : MonoBehaviour
 	//private float controlsurfaceLiftMultiplier = 1f;
 	//private float controlsurfaceDragMultiplier = 1f;
 	private float controlSurfaceAOACoefficientEffectStrength = 0;
+
+	// If the origin shifted we will calculate based on last frame velocity because the shift will cause a spike in values.
+	private Vector3 originShiftBy = Vector3.zero;
 
 	public float WingArea
 	{
@@ -52,6 +59,8 @@ public class Wing : MonoBehaviour
 		// I don't especially like doing this, but there are many cases where wings might not
 		// have the rigidbody on themselves (e.g. they are on a child gameobject of a plane).
 		rigid = GetComponentInParent<Rigidbody>();
+
+		FloatingOrigin.OnOriginShiftEnded.AddListener(OriginShiftingEnded);
 	}
 
 	private void Start()
@@ -90,14 +99,19 @@ public class Wing : MonoBehaviour
 
 			for (int i = 0; i < numberOfCalculationPoints; i++)
 			{
+
 				calculationPointPosition = transform.position + (-transform.right * (dimensions.x / 2)) + ((transform.right * (dimensions.x / (numberOfCalculationPoints - 1))) * i);
+				calculationPointPosition += originShiftBy;
 
-				Vector3 forceApplyPos = (applyForcesToCenter) ? rigid.transform.TransformPoint(rigid.centerOfMass) : calculationPointPosition;
+				//Vector3 forceApplyPos = (applyForcesToCenter) ? rigid.transform.TransformPoint(rigid.centerOfMass) : calculationPointPosition;
+				Vector3 forceApplyPos = calculationPointPosition;
 
-				Vector3 worldVelocity = rigid.GetPointVelocity(calculationPointPosition);
+				rigidVelocity = rigid.velocity;
+
+				worldVelocity = rigid.GetPointVelocity(calculationPointPosition);
 				worldVelocity += -globalWindVector;
 
-				Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
+				localVelocity = transform.InverseTransformDirection(worldVelocity);
 				localVelocity.x = 0f;
 
 				// Angle of attack is used as the look up for the lift and drag curves. We also add the control surface lift Coefficient to the the liftCoefficient to affect the lift curve verticaly.
@@ -105,7 +119,7 @@ public class Wing : MonoBehaviour
 				angleOfAttack = Vector3.Angle(Vector3.forward, localVelocity);
 				liftCoefficient = wing.GetLiftAtAOA(angleOfAttack) + ((controlSurfaceDeflection / 45f) * Mathf.Sign(localVelocity.y) * controlSurfaceAOACoefficientEffectStrength);
 				dragCoefficient = wing.GetDragAtAOA(angleOfAttack);
-
+				
 				// Here I tried to make the control surface change the wing Drag/Lift multiplier, this was not a very good idea. Below is the implementation attempt
 
 				// Drag Multiplier based on control surface deflection
@@ -122,18 +136,21 @@ public class Wing : MonoBehaviour
 				liftForce *= -Mathf.Sign(localVelocity.y);
 
 				// Lift is always perpendicular to air flow.
-				liftDirection = Vector3.Cross(rigid.velocity - globalWindVector, transform.right).normalized;
+				liftDirection = Vector3.Cross(rigidVelocity - globalWindVector, transform.right).normalized;
 				rigid.AddForceAtPosition(liftDirection * liftForce, forceApplyPos, ForceMode.Force);
 
 				// Drag is always opposite of the wind velocity.
-				rigid.AddForceAtPosition((-rigid.velocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
-
+				rigid.AddForceAtPosition((-rigidVelocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
+				
 				// DEBUG
 				Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
-				Debug.DrawRay(calculationPointPosition, -rigid.velocity.normalized * dragForce * 0.001f, Color.red);
+				Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
 				//Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.01f, Color.yellow);
 			}
 		}
+		
+		originShiftBy = Vector3.zero;
+		
 	}
 	public void SetControlSurfaceDeflection(float deflectionAngle, float strength)
     {
@@ -165,6 +182,12 @@ public class Wing : MonoBehaviour
 			return 0.0f;
 		}
 	}
+	public void OriginShiftingEnded(Vector3 v)
+    {
+		Debug.Log("Origin shifted!");
+		originShiftBy = v;
+    }
+
 	// Prevent this code from throwing errors in a built game.
 	#if UNITY_EDITOR
 	private void OnDrawGizmosSelected()

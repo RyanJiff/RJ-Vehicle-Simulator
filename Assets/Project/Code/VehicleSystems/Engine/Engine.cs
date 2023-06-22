@@ -29,6 +29,8 @@ public class Engine : VehicleSystem
     private Rigidbody rigid;
     private List<Wheel> wheels = new List<Wheel>();
 
+    private Vector3 originShiftBy = Vector3.zero;
+
     protected override void VehicleSystemAwake()
     {
         base.VehicleSystemAwake();
@@ -42,6 +44,8 @@ public class Engine : VehicleSystem
         }
         wheels = myVehicle.GetComponentsInChildren<Wheel>().ToList();
         rigid = myVehicle.GetComponent<Rigidbody>();
+
+        FloatingOrigin.OnOriginShiftEnded.AddListener(OriginShifted);
     }
     protected override void VehicleSystemUpdate()
     {
@@ -91,7 +95,8 @@ public class Engine : VehicleSystem
                 // Force engines apply a force at thier position.
                 if (engineType == EngineType.Force)
                 {
-                    rigid.AddForceAtPosition(transform.forward * currentPower * maxForce, transform.position, ForceMode.Force);
+                    rigid.AddForceAtPosition(transform.forward * currentPower * maxForce, (transform.position), ForceMode.Force);
+                    originShiftBy = Vector3.zero;
                 }
                 // Wheel drive engines drive wheels, needs to be implemented still.
                 else if (engineType == EngineType.DriveWheels)
@@ -105,6 +110,11 @@ public class Engine : VehicleSystem
             }
         }
     }
+    public void OriginShifted(Vector3 v)
+    {
+        originShiftBy = v;
+    }
+
     /// <summary>
     /// Current power of engine, between 0.0f and 1.0f
     /// </summary>

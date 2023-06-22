@@ -4,13 +4,6 @@ public class BuoyancyEffector : MonoBehaviour
 {
     /*
      * Applies an upward force or drag based on if we are under the sea line and by how much.
-     * Simple buoyancy force equation: F = waterDensity*g*displacementVolume*buoyancyMultiplier*underwaterPercent
-        F: Force in netwons ( this is what we want to calculate )
-        waterDensity: Density of fluid ( for water this is ~997 kg/m^3 )
-        g: gravity ( for earth at sea level this is ~9.8m/s^2 )
-        displacementVolume: Volume displaced by object
-        buoyancyMultiplier: A constant multiplier to the total force
-        underWaterPercent: How much of the object is under the water line 
      */
 
     [Tooltip("How big the effector is, used for the volume calculation.")]
@@ -39,6 +32,7 @@ public class BuoyancyEffector : MonoBehaviour
     private const float g = 9.81f;
     // Water density constant (KG/M^3)
     private const float waterDensity = 997f;
+
 
     public float EffectorVolume
     {
@@ -115,7 +109,7 @@ public class BuoyancyEffector : MonoBehaviour
             Matrix4x4 oldMatrix = Gizmos.matrix;
 
             Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
+            //Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
             //Gizmos.DrawWireSphere(transform.InverseTransformDirection(Vector3.down) * effectorSize/2 , effectorSize/4f);
             Gizmos.matrix = oldMatrix;
         }

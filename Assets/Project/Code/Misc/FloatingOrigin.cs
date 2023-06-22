@@ -2,6 +2,7 @@
 // URL: http://wiki.unity3d.com/index.php/Floating_Origin
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class FloatingOrigin : MonoBehaviour
@@ -30,6 +31,14 @@ public class FloatingOrigin : MonoBehaviour
 
     private ParticleSystem.Particle[] parts = null;
 
+    public static OriginShiftEvent OnOriginShiftEnded = new OriginShiftEvent();
+
+    [System.Serializable]
+    public class OriginShiftEvent : UnityEvent<Vector3>
+    {
+
+    }
+
     void LateUpdate()
     {
         if (!referenceObject)
@@ -56,21 +65,12 @@ public class FloatingOrigin : MonoBehaviour
 
             if (UpdateLineRenderers)
                 MoveLineRenderers(referencePosition);
+
+            OnOriginShiftEnded.Invoke(referencePosition);
         }
     }
     private void MoveRootTransforms(Vector3 offset)
-    {
-        // This is really bad, need to make a better system for floating origin.
-        // The reason we have to disable engines and wings is because a sudden shift of all root objects will cause a spike in the lift/drag calculations of airfoils
-        foreach(SimpleWing w in FindObjectsOfType<SimpleWing>())
-        {
-            w.enabled = false;
-        }
-        //foreach(Engine e in FindObjectsOfType<Engine>())
-        //{
-        //    e.enabled = false;
-        //}
-        
+    {   
         if (UpdateAllScenes)
         {
             for (int z = 0; z < SceneManager.sceneCount; z++)
@@ -84,14 +84,6 @@ public class FloatingOrigin : MonoBehaviour
             foreach (GameObject g in SceneManager.GetActiveScene().GetRootGameObjects())
                 g.transform.position -= offset;
         }
-        foreach (SimpleWing w in FindObjectsOfType<SimpleWing>())
-        {
-            w.enabled = true;
-        }
-        //foreach (Engine e in FindObjectsOfType<Engine>())
-        //{
-        //    e.enabled = true;
-        //}
     }
     private void MoveTrailRenderers(Vector3 offset)
     {
