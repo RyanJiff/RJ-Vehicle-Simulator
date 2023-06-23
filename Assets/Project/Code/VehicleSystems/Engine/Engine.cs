@@ -7,7 +7,7 @@ public class Engine : VehicleSystem
     /*
      * All engines have some things in common, here is the super class that has all common engine functionality.
      */
-    public enum EngineType { Force, DriveWheels};
+    public enum EngineType {Force, DriveWheels};
 
     [Header("Engine")]
     [SerializeField] private EngineType engineType = EngineType.Force;
@@ -92,11 +92,12 @@ public class Engine : VehicleSystem
 
             if (applyForceFlag)
             {
+                Vector3 forceDirection = transform.forward;
+                
                 // Force engines apply a force at thier position.
                 if (engineType == EngineType.Force)
                 {
-                    rigid.AddForceAtPosition(transform.forward * currentPower * maxForce, (transform.position), ForceMode.Force);
-                    originShiftBy = Vector3.zero;
+                    rigid.AddForceAtPosition(forceDirection * currentPower * maxForce, (transform.position + originShiftBy), ForceMode.Force);
                 }
                 // Wheel drive engines drive wheels, needs to be implemented still.
                 else if (engineType == EngineType.DriveWheels)
@@ -109,6 +110,9 @@ public class Engine : VehicleSystem
                 SetPowerWheelsTorque(wheels, 0);
             }
         }
+
+        // Origin shift hack part 2
+        originShiftBy = Vector3.zero;
     }
     public void OriginShifted(Vector3 v)
     {

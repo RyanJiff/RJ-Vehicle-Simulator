@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceObject: {fileID: 0}
-  Threshold: 150
+  Threshold: 500
   Use2DDistance: 0
   UpdateAllScenes: 1
   UpdateParticles: 1

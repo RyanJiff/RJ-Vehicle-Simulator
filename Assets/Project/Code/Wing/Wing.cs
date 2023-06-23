@@ -10,8 +10,6 @@ public class Wing : MonoBehaviour
 
 	[Tooltip("Size of the wing. The bigger the wing, the more lift it provides.")]
 	public Vector2 dimensions = new Vector2(5f, 2f);
-	[Tooltip("When true, wing forces will be applied only at the center of mass.")]
-	public bool applyForcesToCenter = false;
 	[Tooltip("Lift coefficient curve.")]
 	public WingCurves wing;
 	[Tooltip("The higher the value, the more lift the wing applie at a given angle of attack.")]
@@ -101,9 +99,10 @@ public class Wing : MonoBehaviour
 			{
 
 				calculationPointPosition = transform.position + (-transform.right * (dimensions.x / 2)) + ((transform.right * (dimensions.x / (numberOfCalculationPoints - 1))) * i);
+
+				// Origin shift hack
 				calculationPointPosition += originShiftBy;
 
-				//Vector3 forceApplyPos = (applyForcesToCenter) ? rigid.transform.TransformPoint(rigid.centerOfMass) : calculationPointPosition;
 				Vector3 forceApplyPos = calculationPointPosition;
 
 				rigidVelocity = rigid.velocity;
