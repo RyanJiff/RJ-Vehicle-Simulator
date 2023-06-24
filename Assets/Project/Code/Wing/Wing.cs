@@ -142,8 +142,8 @@ public class Wing : MonoBehaviour
 				rigid.AddForceAtPosition((-rigidVelocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
 				
 				// DEBUG
-				Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
-				Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
+				//Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
+				//Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
 				//Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.01f, Color.yellow);
 			}
 		}

@@ -73,8 +73,8 @@ public class Vehicle : MonoBehaviour
     protected virtual void VehicleUpdate()
     {
         // Clamp trim, there has to be a better way to do this.
-        verticalTrim = Mathf.Clamp(verticalTrim, -0.8f, 0.8f);
-        horizontalTrim = Mathf.Clamp(horizontalTrim, -0.8f, 0.8f);
+        verticalTrim = Mathf.Clamp(verticalTrim, -1f, 1f);
+        horizontalTrim = Mathf.Clamp(horizontalTrim, -1f, 1f);
 
         // Update telemetry information
         GetPitch();
@@ -120,8 +120,7 @@ public class Vehicle : MonoBehaviour
             case Enums.AxisInput.THROTTLE:
                 return _inputThrottle;
             case Enums.AxisInput.BRAKE:
-                // Still need to make brake input a float
-                return 0f;
+                return _inputBrake;
         }
 
         // If we get here, there is an axis we did not set a case for.
