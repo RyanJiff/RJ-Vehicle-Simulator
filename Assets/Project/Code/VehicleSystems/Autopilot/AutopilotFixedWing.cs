@@ -100,7 +100,7 @@ public class AutopilotFixedWing : VehicleSystem
     }
     public bool GetHoldPitch()
     {
-        return holdPitch
+        return holdPitch;
     }
     public bool GetHoldRoll()
     {
