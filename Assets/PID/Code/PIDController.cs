@@ -3,6 +3,9 @@ namespace PID_Controller
 {
     public class PIDController : MonoBehaviour
     {
+        // What is the PID system for ?
+        [SerializeField] string PIDControllerTag = "Tag";
+
         // Gains
         [Header("Gains")]
         [SerializeField] float Kp = 2.0f;
@@ -75,6 +78,11 @@ namespace PID_Controller
             prevMeasurement = measurement;
 
             return output;
+        }
+
+        public void SetPIDTag(string tag)
+        {
+            PIDControllerTag = tag;
         }
     }
 }

@@ -196,6 +196,17 @@ public class Vehicle : MonoBehaviour
             horizontalTrim = Mathf.Clamp01(horizontalTrim);
         }
     }
+    public void SetTrim(Enums.Axis axis, float trim)
+    {
+        if (axis == Enums.Axis.VERTICAL)
+        {
+            verticalTrim = trim;
+        }
+        if (axis == Enums.Axis.HORIZONTAL)
+        {
+            horizontalTrim = trim;
+        }
+    }
     public float GetTrim(Enums.Axis axis)
     {
         if (axis == Enums.Axis.VERTICAL) 
