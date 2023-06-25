@@ -195,14 +195,17 @@ MonoBehaviour:
   masterEngage: 1
   holdRoll: 1
   holdPitch: 1
+  holdVerticalSpeed: 1
   rollPIDController: {fileID: 549524646}
   pitchPIDController: {fileID: 549524648}
-  targetRoll: 25
+  targetRoll: 0
   targetPitch: 0
+  targetVerticalSpeed: 0
   currentRoll: 0
   requestedRollTrim: 0
   currentPitch: 0
   requestedPitchTrim: 0
+  currentVerticalSpeed: 0
 --- !u!114 &549524648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +428,10 @@ PrefabInstance:
     - target: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838471741255769854, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
+      propertyPath: mouseYoke
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4838471741255769855, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_RootOrder
