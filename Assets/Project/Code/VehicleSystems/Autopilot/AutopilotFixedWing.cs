@@ -9,22 +9,28 @@ public class AutopilotFixedWing : VehicleSystem
      * Somehow this works ??
      */
 
+    [Header("Control")]
     // Autopilot state variables
     [SerializeField] private bool masterEngage = false;
-
     [SerializeField] private bool holdRoll = true;
     [SerializeField] private bool holdPitch = true;
     [SerializeField] private bool holdVerticalSpeed = false;
+    [Space]
 
-    // Autopilot PID systems
-    [SerializeField] private PIDController rollPIDController;
-    [SerializeField] private PIDController pitchPIDController;
-
+    [Header("Settings")]
     // Autopilot settings
     [SerializeField][Range(-90, 90)] private float targetRoll = 0f;
     [SerializeField] [Range(-90, 90)] private float targetPitch = 0f;
     [SerializeField] private float targetVerticalSpeed = 0f;
+    [Space]
 
+    [Header("PID controllers")]
+    // Autopilot PID systems
+    [SerializeField] private PIDController rollPIDController;
+    [SerializeField] private PIDController pitchPIDController;
+    [Space]
+
+    [Header("DEBUG INFO")]
     // Autopilot memory
     [SerializeField] private float currentRoll = 0f;
     [SerializeField] private float requestedRollTrim = 0f;
@@ -46,6 +52,7 @@ public class AutopilotFixedWing : VehicleSystem
 
         if(holdVerticalSpeed && holdPitch)
         {
+            // Holding VS has more authority over holding pitch, if both are on we want holding VS to take over.
             holdPitch = false;
         }
 
