@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enums
 {
     // CONTROL ENUMS
-    public enum Axis { VERTICAL, HORIZONTAL};
+    public enum Axis { PITCH, ROLL};
     public enum AxisInput { PITCH, ROLL, YAW, THROTTLE, BRAKE};
 
     // Player Controller Inputs
@@ -16,4 +16,5 @@ public class Enums
     public const KeyCode VEHICLE_GEAR_TOGGLE = KeyCode.G;
     public const KeyCode VEHICLE_TRIM_VERTICAL_INCREASE = KeyCode.Equals;
     public const KeyCode VEHICLE_TRIM_VERTICAL_DECREASE = KeyCode.Minus;
+    public const KeyCode VEHICLE_AUTOPILOT_MASTER_TOGGLE = KeyCode.Z;
 }

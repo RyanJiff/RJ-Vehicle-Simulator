@@ -37,6 +37,7 @@ public class Vehicle : MonoBehaviour
     protected List<Wheel> wheels = new List<Wheel>();
     protected ParkingBrake parkingBrake = null;
     protected RetractableWheels retractableWheels = null;
+    protected Autopilot autopilot = null;
     
     protected List<ControlSurface> controlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> pitchControlSurfaces = new List<ControlSurface>();
@@ -53,6 +54,7 @@ public class Vehicle : MonoBehaviour
         wheels = GetComponentsInChildren<Wheel>().ToList();
         parkingBrake = GetComponentInChildren<ParkingBrake>();
         retractableWheels = GetComponentInChildren<RetractableWheels>();
+        autopilot = GetComponentInChildren<Autopilot>();
         SetupControlSurfaces();
 
         // Initial vehicle mass should not take anything into consideration
@@ -141,10 +143,13 @@ public class Vehicle : MonoBehaviour
                 ToggleParkingBrake();
                 break;
             case Enums.VEHICLE_TRIM_VERTICAL_INCREASE:
-                ChangeTrim(0.02f, Enums.Axis.VERTICAL);
+                ChangeTrim(0.02f, Enums.Axis.PITCH);
                 break;
             case Enums.VEHICLE_TRIM_VERTICAL_DECREASE:
-                ChangeTrim(-0.02f, Enums.Axis.VERTICAL);
+                ChangeTrim(-0.02f, Enums.Axis.PITCH);
+                break;
+            case Enums.VEHICLE_AUTOPILOT_MASTER_TOGGLE:
+                ToggleAutopilot();
                 break;
         }
     }
@@ -178,19 +183,22 @@ public class Vehicle : MonoBehaviour
         {
             retractableWheels.ToggleExtendableWheels();
         }
-        else
+    }
+    private void ToggleAutopilot()
+    {
+        if (autopilot)
         {
-            Debug.Log("No retractable gear!");
+            autopilot.ToggleMasterEngage();
         }
     }
     private void ChangeTrim(float amount, Enums.Axis axis)
     {
-        if (axis == Enums.Axis.VERTICAL)
+        if (axis == Enums.Axis.PITCH)
         {
             verticalTrim += amount;
             verticalTrim = Mathf.Clamp01(verticalTrim);
         }
-        if (axis == Enums.Axis.HORIZONTAL)
+        if (axis == Enums.Axis.ROLL)
         {
             horizontalTrim += amount;
             horizontalTrim = Mathf.Clamp01(horizontalTrim);
@@ -198,22 +206,22 @@ public class Vehicle : MonoBehaviour
     }
     public void SetTrim(Enums.Axis axis, float trim)
     {
-        if (axis == Enums.Axis.VERTICAL)
+        if (axis == Enums.Axis.PITCH)
         {
             verticalTrim = trim;
         }
-        if (axis == Enums.Axis.HORIZONTAL)
+        if (axis == Enums.Axis.ROLL)
         {
             horizontalTrim = trim;
         }
     }
     public float GetTrim(Enums.Axis axis)
     {
-        if (axis == Enums.Axis.VERTICAL) 
+        if (axis == Enums.Axis.PITCH) 
         { 
             return verticalTrim;
         }
-        if (axis == Enums.Axis.HORIZONTAL)
+        if (axis == Enums.Axis.ROLL)
         {
             return horizontalTrim;
         }

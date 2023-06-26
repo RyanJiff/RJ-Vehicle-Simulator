@@ -42,6 +42,10 @@ public class VehicleController : MonoBehaviour
 			if (Input.GetKeyDown(Enums.VEHICLE_TRIM_VERTICAL_DECREASE))
 				vehicle.SendKeyInput(Enums.VEHICLE_TRIM_VERTICAL_DECREASE);
 
+			if (Input.GetKeyDown(Enums.VEHICLE_AUTOPILOT_MASTER_TOGGLE))
+				vehicle.SendKeyInput(Enums.VEHICLE_AUTOPILOT_MASTER_TOGGLE);
+
+
 			// Flaps for planes
 			// Unused right now
 			/*
