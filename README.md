@@ -23,7 +23,7 @@ You might need to add the Yaw Axis to the unity input manager settings.
 - [x] A boat with keyboard controls.
 - [x] A car with with keyboard controls.
 - [x] Environment Wind simulation.
-- [ ] TBD
+- [ ] Release a playable binary with a main menu and in game menu.
 
 ## Contributing
 Roadmap items are being developed, if you would like to contribute create a pull request and document your changes well.
