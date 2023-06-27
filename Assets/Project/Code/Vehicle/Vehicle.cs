@@ -19,6 +19,7 @@ public class Vehicle : MonoBehaviour
     [Header("Telemetry and information")]
     public float pitch;
     public float roll;
+    public float altitude;
     [Space]
 
     // Inputs that are changed through external MonoBehaviours (VehicleController)
@@ -316,7 +317,7 @@ public class Vehicle : MonoBehaviour
         angle *= Mathf.Sign(Vector3.Dot(perp, v2));
         return angle;
     }
-    public float GroundSpeedKnots()
+    public float GetGroundSpeedKnots()
     {
         if (!rigid)
         {
@@ -325,7 +326,17 @@ public class Vehicle : MonoBehaviour
         const float msToKnots = 1.94384f;
         return rigid.velocity.magnitude * msToKnots;
     }
-    public float VerticalSpeedFeetPerMinute()
+    public float GetAltitude()
+    {
+        float vehicleAlt = transform.position.y;
+        if (EnvironmentSystem.instance)
+        {
+            vehicleAlt -= EnvironmentSystem.instance.transform.position.y;
+        }
+        altitude = vehicleAlt;
+        return altitude;
+    }
+    public float GetVerticalSpeedFeetPerMinute()
     {
         if (!rigid)
         {

@@ -73,7 +73,7 @@ public class Autopilot : VehicleSystem
             if (pitchPIDController != null && holdVerticalSpeed)
             {
                 // Somehow this works, because the PID controller deals in values between -1 and 1 dividing the currentVS by 1000 to artificially reduce the PIDs inputs works.
-                currentVerticalSpeed = myVehicle.VerticalSpeedFeetPerMinute();
+                currentVerticalSpeed = myVehicle.GetVerticalSpeedFeetPerMinute();
                 requestedPitchTrim = pitchPIDController.PID_Update(targetVerticalSpeed/1000, currentVerticalSpeed/1000, Time.deltaTime);
                 myVehicle.SetTrim(Enums.Axis.PITCH, requestedPitchTrim);
             }
