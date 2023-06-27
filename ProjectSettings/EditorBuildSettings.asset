@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/LoadFirst.unity
     guid: 6643ec1282256d94391292e63865d4df
   - enabled: 1
+    path: Assets/Project/Scenes/MainMenu.unity
+    guid: 9023a9f576c42bb4f9bfe7ed3fec6c8e
+  - enabled: 1
+    path: Assets/Project/Scenes/GameLevel.unity
+    guid: 6f56d116bc68c2b4585058f76021deb7
+  - enabled: 1
     path: Assets/Project/Scenes/DevEnvironment.unity
     guid: 67ca56f641deafb43b053e9f72fe9d13
   m_configObjects: {}

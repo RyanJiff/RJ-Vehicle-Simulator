@@ -24,6 +24,7 @@ public class EnvironmentSystem : MonoBehaviour
         if (instance != null && instance != this)
         {
             // We already have an instance
+            Debug.Log("already have an instance of EnvironmentSystem!");
             Destroy(this);
         }
         else
