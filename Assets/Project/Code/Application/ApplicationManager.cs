@@ -28,23 +28,10 @@ public class ApplicationManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         // Get out of the first loaded scene to the main menu
         SceneManager.LoadScene(SCENES_MAINMENU);
-    }
-    private void Start()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            LoadGameScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Home))
-        {
-            LoadMainMenuScene();
-        }
     }
     public void LoadMainMenuScene()
     {
@@ -73,5 +60,9 @@ public class ApplicationManager : MonoBehaviour
             Vehicle v = Instantiate(gameSessionStartData.playerStartingVehicle, gameSessionStartData.playerVehicleStartingPosition, Quaternion.identity).GetComponent<Vehicle>();
             Instantiate(gameSessionStartData.playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerController>().TakeControl(v);
         }
+    }
+    public void QuitApplication()
+    {
+        Application.Quit(0);
     }
 }

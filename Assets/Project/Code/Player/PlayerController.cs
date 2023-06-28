@@ -12,14 +12,23 @@ public class PlayerController : MonoBehaviour
      * Handles handing player control over a vehicle and any non vehicle inputs
      */
 
-    VehicleController myController = null;
-    CameraController myCameraController = null;
-    SimpleVehicleGUI myVehicleGUI = null;
-    FloatingOrigin floatingOrigin = null;
+    // Controllers
+    private VehicleController myController = null;
+    private CameraController myCameraController = null;
+    private SimpleVehicleGUI myVehicleGUI = null;
+
+    // Floating origin reference
+    private FloatingOrigin floatingOrigin = null;
+
+    // Pause menu
+    [SerializeField] private GameObject pauseMenuPrefab = null;
+    GameObject pauseMenuObject = null;
 
     // List of all selectable vehicles
     private List<Vehicle> vehiclesInPlay = new List<Vehicle>();
     private int currentSelected = 0;
+
+    [SerializeField] private bool paused = false;
 
     // For Dev purposes, set the starting vehicle of the player
     public Vehicle startingVehicle; 
@@ -30,6 +39,11 @@ public class PlayerController : MonoBehaviour
         myCameraController = GetComponent<CameraController>();
         myVehicleGUI = GetComponent<SimpleVehicleGUI>();
         floatingOrigin = GetComponent<FloatingOrigin>();
+
+        if (pauseMenuPrefab)
+        {
+            pauseMenuObject = Instantiate(pauseMenuPrefab);
+        }
 
         vehiclesInPlay = FindObjectsOfType<Vehicle>().ToList();
     }
@@ -43,6 +57,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        if (pauseMenuObject != null)
+        {
+            pauseMenuObject.SetActive(paused);
+        }
         if (ApplicationManager.instance)
         {
             // If we have an application manager then R to reload the scene, for early builds.
@@ -55,11 +81,15 @@ public class PlayerController : MonoBehaviour
             currentSelected = (currentSelected + 1) % vehiclesInPlay.Count;
             TakeControl(vehiclesInPlay[currentSelected]);
         }
+        if (Input.GetKeyUp(Enums.PLAYER_PAUSE_GAME))
+        {
+            TogglePause();
+        }
     }
 
 
     /// <summary>
-    /// Take control of an airplane gameobject and set the GUI to reflect it
+    /// Take control of a vehicle gameobject.
     /// </summary>
     public void TakeControl(Vehicle vehicle)
     {
@@ -74,5 +104,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogWarning("Tried to take control of non controllable object!");
         }
+    }
+    public void TogglePause()
+    {
+        paused = !paused;
     }
 }

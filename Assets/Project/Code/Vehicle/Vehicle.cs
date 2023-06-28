@@ -31,8 +31,6 @@ public class Vehicle : MonoBehaviour
     protected float verticalTrim = 0.0f;
     protected float horizontalTrim = 0.0f;
 
-    protected Rigidbody rigid;
-
     // General Vehicle systems
     protected List<Engine> engines = new List<Engine>();
     protected List<Wheel> wheels = new List<Wheel>();
@@ -46,6 +44,8 @@ public class Vehicle : MonoBehaviour
     protected List<ControlSurface> rightRollControlSurfaces = new List<ControlSurface>();
     protected List<ControlSurface> yawControlSurfaces = new List<ControlSurface>();
     // End of General Vehicle Systems
+
+    protected Rigidbody rigid;
 
     protected virtual void InitializeVehicle()
     {

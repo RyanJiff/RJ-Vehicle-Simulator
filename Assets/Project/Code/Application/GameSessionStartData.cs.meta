@@ -6,8 +6,8 @@ MonoImporter:
   defaultReferences:
   - worldPrefab: {fileID: 8899087271580517829, guid: 974d7342751228f49a2c9735f72f983e, type: 3}
   - environmentSystemPrefab: {fileID: 5200190211876167392, guid: e731b47af2e4020409cdb216e0959128, type: 3}
+  - playerPrefab: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
   - playerStartingVehicle: {fileID: 6281352682964769459, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
-  - playerGameObject: {fileID: 4838471741255769840, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -265,9 +265,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showGUIElements: 1
   masterEngage: 0
-  holdRoll: 0
+  holdRoll: 1
   holdPitch: 0
-  holdVerticalSpeed: 0
+  holdVerticalSpeed: 1
   targetRoll: 0
   targetPitch: 0
   targetVerticalSpeed: 0
@@ -1400,7 +1400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5634306701127824478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.119, z: 2.835}
+  m_LocalPosition: {x: 0, y: -0.119, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1646,7 +1646,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6281352682964769459}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 200, z: -291.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1698,6 +1698,7 @@ MonoBehaviour:
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
+  altitude: 0
 --- !u!114 &5855049069032941811
 MonoBehaviour:
   m_ObjectHideFlags: 0

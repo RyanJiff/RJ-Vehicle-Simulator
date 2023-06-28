@@ -8,6 +8,7 @@ public class Enums
 
     // Player Controller Inputs
     public const KeyCode PLAYER_SWITCH_VEHICLE = KeyCode.Tab;
+    public const KeyCode PLAYER_PAUSE_GAME = KeyCode.Escape;
 
     // Vehicle Inputs
     public const KeyCode VEHICLE_BRAKES = KeyCode.B;

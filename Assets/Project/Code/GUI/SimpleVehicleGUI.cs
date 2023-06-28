@@ -13,7 +13,7 @@ public class SimpleVehicleGUI : MonoBehaviour
 	[SerializeField] float suffixXOffset = 30f;
 	[Space]
 
-	bool showControls = false;
+	//bool showControls = false;
 
 	private Vehicle vehicle = null;
 	private List<VehicleSystem> vehicleSystems = new List<VehicleSystem>();
@@ -51,7 +51,8 @@ public class SimpleVehicleGUI : MonoBehaviour
             }
 		}
 
-		if (GUI.Button(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Show Controls"))
+		// Have to make a proper controls screen.
+		/*if (GUI.Button(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Show Controls"))
 		{
 			showControls = !showControls;
 		}
@@ -61,7 +62,7 @@ public class SimpleVehicleGUI : MonoBehaviour
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Axis(W,S,A,D) Yaw(Q,E) Trim(-,+)" , style);
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Switch Camera Mode(Numpad5) Look Around Orbit Camera(Numpad)", style);
 			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "R TO RELOAD SCENE", style);
-		}
+		}*/
 		
 	}
 
