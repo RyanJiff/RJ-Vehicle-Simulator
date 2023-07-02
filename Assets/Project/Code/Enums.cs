@@ -10,6 +10,9 @@ public class Enums
     public const KeyCode PLAYER_SWITCH_VEHICLE = KeyCode.Tab;
     public const KeyCode PLAYER_PAUSE_GAME = KeyCode.Escape;
 
+    // Camera Controller Inputs
+    public const KeyCode CAMERA_MODE_NEXT = KeyCode.Alpha0;
+
     // Vehicle Inputs
     public const KeyCode VEHICLE_BRAKES = KeyCode.B;
     public const KeyCode VEHICLE_ENGINE_TOGGLE = KeyCode.I;

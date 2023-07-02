@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         if(vehicle.GetComponent<Vehicle>() != null)
         {
             myController.GiveControl(vehicle);
-            myCameraController.SetTargetVehicle(vehicle.transform);
+            myCameraController.SetTargetVehicle(vehicle);
             myVehicleGUI.SetVehicle(vehicle);
             floatingOrigin.referenceObject = vehicle.transform;
         }

@@ -107,9 +107,7 @@ MonoBehaviour:
   - 0
   distanceFromCenterOrbit: 14
   lookAroundSpeed: 55
-  OffsetOribt: {x: 0, y: 0, z: 2.9}
-  RotAroundY: -55
-  RotAroundXZ: 80
+  OffsetOrbit: {x: 0, y: 0, z: 0}
 --- !u!114 &93955327385795960
 MonoBehaviour:
   m_ObjectHideFlags: 0
