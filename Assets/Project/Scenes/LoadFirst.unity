@@ -152,9 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934a1dafd93b7441b96a3815f65e06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuPrefab: {fileID: 2467945062283479782, guid: 6eb6b32283384864b80b0c12ed1d9d5e, type: 3}
-  GameMenuPrefab: {fileID: 0}
-  gameSessionStartData: {fileID: 11400000, guid: 8b6288d5e755dbc439126a11b7f3f6b9, type: 2}
+  levelData: {fileID: 11400000, guid: 11845585bf0458243aa49ea48874a7fb, type: 2}
 --- !u!4 &330728279
 Transform:
   m_ObjectHideFlags: 0
