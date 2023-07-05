@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "GameSession/StartData", order = 1)]
-public class GameSessionStartData : ScriptableObject
+[CreateAssetMenu(fileName = "LevelData", menuName = "Levels/LevelData", order = 1)]
+public class LevelData : ScriptableObject
 {
     /*
      * This class contains references that are used by the application manager to load a level.

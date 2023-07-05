@@ -14,7 +14,7 @@ public class ApplicationManager : MonoBehaviour
     public const int SCENES_MAINMENU = 1;
     public const int SCENES_GAME = 2;
 
-    public GameSessionStartData gameSessionStartData = null;
+    public LevelData levelData = null;
 
     private void Awake()
     {
@@ -39,8 +39,14 @@ public class ApplicationManager : MonoBehaviour
     }
     public void LoadGameScene()
     {
-        // We should probably check the GameSessionStartData validity before continuing here.
-        SceneManager.LoadScene(SCENES_GAME);
+        if (levelData != null)
+        {
+            SceneManager.LoadScene(SCENES_GAME);
+        }
+        else
+        {
+            Debug.Log("No level data set!");
+        }
     }
     public void ReloadScene()
     {
@@ -55,10 +61,10 @@ public class ApplicationManager : MonoBehaviour
         else if(scene.buildIndex == SCENES_GAME)
         {
             // We just loaded the game scene.
-            Instantiate(gameSessionStartData.worldPrefab, Vector3.zero, Quaternion.identity);
-            Instantiate(gameSessionStartData.environmentSystemPrefab, Vector3.zero, Quaternion.identity);
-            Vehicle v = Instantiate(gameSessionStartData.playerStartingVehicle, gameSessionStartData.playerVehicleStartingPosition, Quaternion.identity).GetComponent<Vehicle>();
-            Instantiate(gameSessionStartData.playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerController>().TakeControl(v);
+            Instantiate(levelData.worldPrefab, Vector3.zero, Quaternion.identity);
+            Instantiate(levelData.environmentSystemPrefab, Vector3.zero, Quaternion.identity);
+            Vehicle v = Instantiate(levelData.playerStartingVehicle, levelData.playerVehicleStartingPosition, Quaternion.identity).GetComponent<Vehicle>();
+            Instantiate(levelData.playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerController>().TakeControl(v);
         }
     }
     public void QuitApplication()
