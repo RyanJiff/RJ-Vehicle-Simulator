@@ -18,13 +18,14 @@ public class CameraController : MonoBehaviour
     private Transform target;
     private Rigidbody targetRigid;
 
-    // Parameters to set for cam angles
+    // Parameters to set for fixed cam angles
     [SerializeField] private List<Vector3> offsets = new List<Vector3>();
     [SerializeField] private List<Vector3> lookOffsets = new List<Vector3>();
     [SerializeField] private List<float> distances = new List<float>();
 
     // Chase camera
     [SerializeField] private Vector3 chaseOffset = Vector3.zero;
+    [SerializeField] private float distanceFromCenterChase = 12f;
 
     // Orbit camera
     [SerializeField] private float distanceFromCenterOrbit = 8f;
@@ -54,6 +55,7 @@ public class CameraController : MonoBehaviour
             // This is bad, need to write a proper switching function
             if (Input.GetKeyDown(Enums.CAMERA_MODE_NEXT))
             {
+                ResetCameraVars();
                 switch (cameraMode)
                 {
                     case CameraMode.CHASE:
@@ -95,9 +97,9 @@ public class CameraController : MonoBehaviour
         cameraMode = CameraMode.CHASE;
         cameraRigTransform = Instantiate(cameraRigPrefab).transform;
         cameraTransform = cameraRigTransform.GetComponentInChildren<Camera>().transform;
-        InitCameraVars();
+        ResetCameraVars();
     }
-    void InitCameraVars()
+    void ResetCameraVars()
     {
         nextPosRig = Vector3.zero;
         nextPosCam = Vector3.zero;
@@ -110,7 +112,7 @@ public class CameraController : MonoBehaviour
     {
         target = t.transform;
         targetRigid = t.GetComponent<Rigidbody>();
-        InitCameraVars();
+        ResetCameraVars();
     }
     public Transform GetCameraRigTransform()
     {
@@ -127,11 +129,11 @@ public class CameraController : MonoBehaviour
             cameraRigTransform.rotation = Quaternion.identity;
 
             rigidVelocity = targetRigid.velocity;
-            rigidVelocitySmoothed = Vector3.SmoothDamp(rigidVelocitySmoothed, rigidVelocity + target.forward, ref refVelocity, 1f, Mathf.Abs(Vector3.Distance(rigidVelocitySmoothed, rigidVelocity)) * 4f, Time.deltaTime);
+            rigidVelocitySmoothed = Vector3.SmoothDamp(rigidVelocitySmoothed, rigidVelocity + target.forward, ref refVelocity, 1f, Mathf.Abs(Vector3.Distance(rigidVelocitySmoothed, rigidVelocity)) * 4f + 0.5f, Time.deltaTime);
             rigidVelocityNormalized = rigidVelocitySmoothed.normalized;
             
             nextPosRig = target.position;
-            nextPosCam = -rigidVelocityNormalized * 8f;
+            nextPosCam = -rigidVelocityNormalized * distanceFromCenterChase;
 
             cameraTransform.localPosition = nextPosCam + chaseOffset;
             cameraRigTransform.position= nextPosRig;
