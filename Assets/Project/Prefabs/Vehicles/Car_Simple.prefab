@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4499497107327224576}
   - component: {fileID: 1430813924679811871}
   - component: {fileID: 4439213923956565555}
+  - component: {fileID: 4382283950681882373}
   m_Layer: 0
   m_Name: RR
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MonoBehaviour:
   brakeForce: 0
   torqueForce: 0
   steerAngle: 0
+--- !u!114 &4382283950681882373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185485479224942054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4990a11713fd8214cadf6886d11aa0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
 --- !u!1 &1464803708532493944
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +142,7 @@ GameObject:
   - component: {fileID: 7892442532861953347}
   - component: {fileID: 6427202296555267583}
   - component: {fileID: 5198142070091487025}
+  - component: {fileID: 900346397735089716}
   m_Layer: 0
   m_Name: FL
   m_TagString: Untagged
@@ -203,6 +218,19 @@ MonoBehaviour:
   brakeForce: 0
   torqueForce: 0
   steerAngle: 0
+--- !u!114 &900346397735089716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464803708532493944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4990a11713fd8214cadf6886d11aa0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
 --- !u!1 &1496315977772149895
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +309,6 @@ GameObject:
   - component: {fileID: 6617222676289370103}
   - component: {fileID: 6617222676289370102}
   - component: {fileID: 4339726840971667016}
-  - component: {fileID: 1452194108619817340}
   m_Layer: 0
   m_Name: Car_Simple
   m_TagString: Untagged
@@ -346,6 +373,7 @@ MonoBehaviour:
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
+  altitude: 0
 --- !u!114 &4339726840971667016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,25 +387,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
---- !u!114 &1452194108619817340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953208541568752254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2074926c9349d9d4f9dc301469957a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUIElements: 0
-  wheels:
-  - {fileID: 8509312816855769750}
-  - {fileID: 6427202296555267583}
-  - {fileID: 8642028573509595594}
-  - {fileID: 1430813924679811871}
-  wheelVisualizerPrefab: {fileID: 4216227330857642, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
 --- !u!1 &2128447327931881946
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,8 +484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 1
-  engineType: 1
   ignition: 0
+  engineType: 1
   maxForce: 200
   rampSpeed: 1
   worksUnderWater: 0
@@ -524,6 +533,7 @@ GameObject:
   - component: {fileID: 8984362411380516408}
   - component: {fileID: 8642028573509595594}
   - component: {fileID: 3784201081721342619}
+  - component: {fileID: 4256601544364003701}
   m_Layer: 0
   m_Name: RL
   m_TagString: Untagged
@@ -599,6 +609,19 @@ MonoBehaviour:
   brakeForce: 0
   torqueForce: 0
   steerAngle: 0
+--- !u!114 &4256601544364003701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655044236464371563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4990a11713fd8214cadf6886d11aa0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
 --- !u!1 &3725296924689698570
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +681,7 @@ GameObject:
   - component: {fileID: 7437842239313036289}
   - component: {fileID: 8509312816855769750}
   - component: {fileID: 1186332058880539387}
+  - component: {fileID: 5325615811097506581}
   m_Layer: 0
   m_Name: FR
   m_TagString: Untagged
@@ -733,6 +757,19 @@ MonoBehaviour:
   brakeForce: 0
   torqueForce: 0
   steerAngle: 0
+--- !u!114 &5325615811097506581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550345479189183981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4990a11713fd8214cadf6886d11aa0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
 --- !u!1 &5227081569821233778
 GameObject:
   m_ObjectHideFlags: 0

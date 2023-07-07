@@ -19,46 +19,25 @@ public class VehicleSystem : MonoBehaviour
     {
         VehicleSystemAwake();
     }
-    void Start()
-    {
-        VehicleSystemStart();
-    }
-    void Update()
-    {
-        VehicleSystemUpdate();
-    }
-    void FixedUpdate()
-    {
-        VehicleSystemFixedUpdate();
-    }
+    void Start() { VehicleSystemStart(); }
+    void Update() { VehicleSystemUpdate(); }
+    void FixedUpdate() { VehicleSystemFixedUpdate(); }
     /// <summary>
     /// This function runs on Awake()
     /// </summary>
-    protected virtual void VehicleSystemAwake()
-    {
-        myVehicle = GetComponentInParent<Vehicle>();
-    }
+    protected virtual void VehicleSystemAwake() { myVehicle = GetComponentInParent<Vehicle>(); }
     /// <summary>
     /// This function runs on Start()
     /// </summary>
-    protected virtual void VehicleSystemStart()
-    {
-        
-    }
+    protected virtual void VehicleSystemStart() { }
     /// <summary>
     /// This function runs every in Update()
     /// </summary>
-    protected virtual void VehicleSystemUpdate()
-    {
-
-    }
+    protected virtual void VehicleSystemUpdate() { }
     /// <summary>
     /// This function runs every in FixedUpdate()
     /// </summary>
-    protected virtual void VehicleSystemFixedUpdate()
-    {
-
-    }
+    protected virtual void VehicleSystemFixedUpdate() { }
     /// <summary>
     /// Initialize all the GUI elements of the vehicle system and set its parameters and base values.
     /// </summary>

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WheelCollider))]
+[RequireComponent(typeof(WheelVisual))]
 public class Wheel : VehicleSystem
 {
     /*
