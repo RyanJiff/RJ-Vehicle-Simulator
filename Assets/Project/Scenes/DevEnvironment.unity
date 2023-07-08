@@ -478,11 +478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5200190211876167394, guid: e731b47af2e4020409cdb216e0959128, type: 3}
       propertyPath: windDirectionDegrees
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5200190211876167394, guid: e731b47af2e4020409cdb216e0959128, type: 3}
       propertyPath: windSpeedMetersPerSecond
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e731b47af2e4020409cdb216e0959128, type: 3}

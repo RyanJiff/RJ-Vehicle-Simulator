@@ -89,13 +89,6 @@ public class Vehicle : MonoBehaviour
         SetControlSurfacesDeflection(rightRollControlSurfaces, _inputRoll);
         SetControlSurfacesDeflection(yawControlSurfaces, _inputYaw);
 
-        // Wheel Steering and Brake inputs
-        for (int i = 0; i < wheels.Count; i++)
-        {
-            wheels[i].SetSteerInput(_inputYaw);
-            wheels[i].SetBrakeInput(_inputBrake);
-        }
-
         // Engine throttle input handling
         for (int i = 0; i < engines.Count; i++)
         {

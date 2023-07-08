@@ -9,6 +9,7 @@ public class Wheel : VehicleSystem
      */
 
     [Header("Wheel Settings")]
+    [SerializeField] private Enums.AxisInput controlAxis = Enums.AxisInput.YAW;
     [SerializeField] private bool isPowerWheel = false;
     [SerializeField] private bool isSteerWheel = false;
     [SerializeField] private bool invertSteering = false;
@@ -38,7 +39,11 @@ public class Wheel : VehicleSystem
     {
         base.VehicleSystemUpdate();
 
-        // Set steer angle first
+        // First we get the steer and brake inputs from the vehicle
+        SetSteerInput(myVehicle.GetAxisInput(controlAxis));
+        SetBrakeInput(myVehicle.GetAxisInput(Enums.AxisInput.BRAKE));
+
+        // Set steer angle 
         wheelCollider.steerAngle = maxSteerAngle * steerInput;
 
         // TODO: I wrote this for clarity more than effeciency, with some very basic boolean algebra this can be made more effecient.
