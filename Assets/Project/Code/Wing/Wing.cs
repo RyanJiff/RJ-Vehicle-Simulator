@@ -18,6 +18,8 @@ public class Wing : MonoBehaviour
 	public float dragMultiplier = 1f;
 	[Tooltip("The amount of calculation points on the wing")]
 	public int numberOfCalculationPoints = 10;
+	[Tooltip("Show Debug Lines?")]
+	public bool showDebugLines = false;
 
 	private Rigidbody rigid;
 
@@ -35,8 +37,6 @@ public class Wing : MonoBehaviour
 	private float angleOfAttack = 0;
 	private Vector3 calculationPointPosition = Vector3.zero;
     private float controlSurfaceDeflection = 0f;
-	//private float controlsurfaceLiftMultiplier = 1f;
-	//private float controlsurfaceDragMultiplier = 1f;
 	private float controlSurfaceAOACoefficientEffectStrength = 0;
 
 	// If the origin shifted we will calculate based on last frame velocity because the shift will cause a spike in values.
@@ -54,10 +54,7 @@ public class Wing : MonoBehaviour
 
 	private void Awake()
 	{
-		// I don't especially like doing this, but there are many cases where wings might not
-		// have the rigidbody on themselves (e.g. they are on a child gameobject of a plane).
 		rigid = GetComponentInParent<Rigidbody>();
-
 		FloatingOrigin.OnOriginShiftEnded.AddListener(OriginShiftingEnded);
 	}
 
@@ -114,18 +111,10 @@ public class Wing : MonoBehaviour
 				localVelocity.x = 0f;
 
 				// Angle of attack is used as the look up for the lift and drag curves. We also add the control surface lift Coefficient to the the liftCoefficient to affect the lift curve verticaly.
-				// TODO: When we change the control surface angle we should probably shift the lift curve to the right, not just upwards.
+				// TODO: When we change the control surface angle we should probably shift the drag curve to the right, not just upwards.
 				angleOfAttack = Vector3.Angle(Vector3.forward, localVelocity);
 				liftCoefficient = wing.GetLiftAtAOA(angleOfAttack) + ((controlSurfaceDeflection / 45f) * Mathf.Sign(localVelocity.y) * controlSurfaceAOACoefficientEffectStrength);
 				dragCoefficient = wing.GetDragAtAOA(angleOfAttack);
-				
-				// Here I tried to make the control surface change the wing Drag/Lift multiplier, this was not a very good idea. Below is the implementation attempt
-
-				// Drag Multiplier based on control surface deflection
-				//controlsurfaceDragMultiplier = 1 + (Mathf.Abs((controlSurfaceDeflection / 45f)) * controlSurfaceEffectStrengthMult);
-				// Lift Multiplier based on control surface deflection
-				// Multiplying by the sign of localVelocity.y will make sure the lift Multiplier behaves corectly in cases where the wing is pushing the opposite way.
-				//controlsurfaceLiftMultiplier = 1 + (controlSurfaceDeflection / 45f) * Mathf.Sign(localVelocity.y * controlSurfaceEffectStrengthMult);
 
 				// Calculate lift/drag.
 				liftForce = localVelocity.sqrMagnitude * liftCoefficient * WingArea * liftMultiplier / numberOfCalculationPoints;
@@ -140,11 +129,14 @@ public class Wing : MonoBehaviour
 
 				// Drag is always opposite of the wind velocity.
 				rigid.AddForceAtPosition((-rigidVelocity + globalWindVector).normalized * dragForce, forceApplyPos, ForceMode.Force);
-				
+
 				// DEBUG
-				//Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
-				//Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
-				//Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.01f, Color.yellow);
+				if (showDebugLines)
+				{
+					Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
+					Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
+					Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.01f, Color.yellow);
+				}
 			}
 		}
 		

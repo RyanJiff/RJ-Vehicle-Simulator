@@ -137,7 +137,7 @@ public class CameraController : MonoBehaviour
             nextPosRig = target.position;
             nextPosCam = -rigidVelocityNormalized * distanceFromCenterChase;
 
-            cameraTransform.localPosition = nextPosCam + chaseOffset;
+            cameraTransform.localPosition = nextPosCam + (Vector3.up * 2f);
             cameraRigTransform.position= nextPosRig;
             cameraTransform.LookAt(target.position + rigidVelocityNormalized * 50f, Vector3.up);
         }

@@ -13,8 +13,6 @@ public class SimpleVehicleGUI : MonoBehaviour
 	[SerializeField] float suffixXOffset = 30f;
 	[Space]
 
-	//bool showControls = false;
-
 	private Vehicle vehicle = null;
 	private List<VehicleSystem> vehicleSystems = new List<VehicleSystem>();
 
@@ -50,20 +48,6 @@ public class SimpleVehicleGUI : MonoBehaviour
                 }
             }
 		}
-
-		// Have to make a proper controls screen.
-		/*if (GUI.Button(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Show Controls"))
-		{
-			showControls = !showControls;
-		}
-		if (showControls)
-		{
-			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Throttle Control(1,2) Flaps(3,4) Brakes(B) Engine Toggle(I) Toggle Mouse Yoke(Y)", style);
-			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Axis(W,S,A,D) Yaw(Q,E) Trim(-,+)" , style);
-			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "Switch Camera Mode(Numpad5) Look Around Orbit Camera(Numpad)", style);
-			GUI.Label(new Rect(startOffset.x, startOffset.y + spacingOfInfoRect.y * yCount++, sizeOfInfoRect.x, sizeOfInfoRect.y), "R TO RELOAD SCENE", style);
-		}*/
-		
 	}
 
 	public void SetVehicle(Vehicle v)

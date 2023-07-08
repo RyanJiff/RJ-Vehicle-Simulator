@@ -30,9 +30,8 @@ public class ControlSurface : VehicleSystem
 
 	[Header("Speed Stiffening")]
 
-	[Tooltip("Wing to use for deflection forces. Deflection limited based on " +
-		"airspeed will not function without a reference wing.")]
-	[SerializeField] private SimpleWing wing = null;
+	[Tooltip("Should we stiffen based on velocity?")]
+	[SerializeField] private bool stiffenWithSpeed = false;
 
 	[Tooltip("How much force the control surface can exert. The lower this is, " +
 		"the more the control surface stiffens with speed.")]
@@ -49,14 +48,12 @@ public class ControlSurface : VehicleSystem
     protected override void VehicleSystemAwake()
     {
         base.VehicleSystemAwake();
-		
-		// If the wing has been referenced, then control stiffening will want to be used.
-		if (wing != null)
-			rigid = GetComponentInParent<Rigidbody>();
 
 		if (affectsWing)
+		{
 			myWing = GetComponentInParent<Wing>();
-
+			rigid = GetComponentInParent<Rigidbody>();
+		}
 	}
     protected override void VehicleSystemStart()
     {
@@ -80,9 +77,9 @@ public class ControlSurface : VehicleSystem
 		float targetAngle = targetDeflectionInvert > 0f ? targetDeflectionInvert * max : targetDeflectionInvert * min;
 
 		// How much you can deflect, depends on how much force it would take
-		if (rigid != null && wing != null && rigid.velocity.sqrMagnitude > 1f)
+		if (rigid != null && stiffenWithSpeed && rigid.velocity.sqrMagnitude > 1f)
 		{
-			float torqueAtMaxDeflection = rigid.velocity.sqrMagnitude * wing.WingArea;
+			float torqueAtMaxDeflection = rigid.velocity.sqrMagnitude * myWing.WingArea;
 			float maxAvailableDeflection = Mathf.Asin(maxTorque / torqueAtMaxDeflection) * Mathf.Rad2Deg;
 
 			// Asin(x) where x > 1 or x < -1 is not a number.
