@@ -180,6 +180,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1477f87c34c05f64ba8df89bc88c22a5, type: 3}
+--- !u!114 &796508137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7772855391811255148, guid: aa69a360396fcdc41bacb0dc9f6f9ede, type: 3}
+  m_PrefabInstance: {fileID: 1437810139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c02a8e3880ad145843b186b0fc5ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &1092170355
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -355,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 4708122785080434027, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: startingVehicle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 796508137}
     - target: {fileID: 4785215027569472726, guid: c092cf5b81d8c0144a78f1d253d09f65, type: 3}
       propertyPath: m_Name
       value: Player
