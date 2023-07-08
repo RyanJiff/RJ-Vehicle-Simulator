@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     // Orbit camera
     [SerializeField] private float distanceFromCenterOrbit = 8f;
     [SerializeField] private float lookAroundSpeed = 20f;
-    [SerializeField] private Vector3 offsetOrbit = Vector3.zero;
+    [SerializeField] private Vector3 orbitOffset = Vector3.zero;
 
     private Vector3 nextPosRig;
     private Vector3 nextPosCam;
@@ -112,6 +112,8 @@ public class CameraController : MonoBehaviour
     {
         target = t.transform;
         targetRigid = t.GetComponent<Rigidbody>();
+        chaseOffset = targetRigid.centerOfMass + (Vector3.up * 2f);
+        orbitOffset = targetRigid.centerOfMass;
         ResetCameraVars();
     }
     public Transform GetCameraRigTransform()
@@ -192,7 +194,7 @@ public class CameraController : MonoBehaviour
             RotAroundY = RotAroundY - lookAroundSpeed * 2 * Time.deltaTime;
         }
 
-        nextPosRig = target.position + target.up * offsetOrbit.y + target.right * -offsetOrbit.x + target.forward * offsetOrbit.z;
+        nextPosRig = target.position + target.up * orbitOffset.y + target.right * -orbitOffset.x + target.forward * orbitOffset.z;
 
         float XPosCam = distanceFromCenterOrbit * Mathf.Cos(RotAroundY * Mathf.Deg2Rad) * Mathf.Sin(RotAroundXZ * Mathf.Deg2Rad);
         float ZPosCam = distanceFromCenterOrbit * Mathf.Sin(RotAroundY * Mathf.Deg2Rad) * Mathf.Sin(RotAroundXZ * Mathf.Deg2Rad);
@@ -201,6 +203,6 @@ public class CameraController : MonoBehaviour
 
         cameraTransform.localPosition = nextPosCam;
         cameraRigTransform.position = nextPosRig;
-        cameraTransform.LookAt(target.position + target.up * offsetOrbit.y + target.right * -offsetOrbit.x + target.forward * offsetOrbit.z, Vector3.up);
+        cameraTransform.LookAt(target.position + target.up * orbitOffset.y + target.right * -orbitOffset.x + target.forward * orbitOffset.z, Vector3.up);
     }
 }

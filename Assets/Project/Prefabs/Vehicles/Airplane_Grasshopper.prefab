@@ -2085,6 +2085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 0.5
+  radiusMultiplier: 1
 --- !u!1 &7111446138973811704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 0.5
+  radiusMultiplier: 1
 --- !u!1 &7275410222319264252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,3 +2860,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 0.5
+  radiusMultiplier: 1

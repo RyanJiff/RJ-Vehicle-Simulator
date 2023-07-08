@@ -14,10 +14,13 @@ public class SetInitialVelocity : MonoBehaviour
 
     void Start()
     {
-        Rigidbody rigid = objectToAffect.GetComponent<Rigidbody>();
-        if (rigid)
+        if (objectToAffect)
         {
-            rigid.velocity = objectToAffect.transform.forward * speedToSet;
-        }    
+            Rigidbody rigid = objectToAffect.GetComponent<Rigidbody>();
+            if (rigid)
+            {
+                rigid.velocity = objectToAffect.transform.forward * speedToSet;
+            }
+        }
     }
 }
