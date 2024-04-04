@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 1
   isPowerWheel: 1
   isSteerWheel: 0
   invertSteering: 0
@@ -131,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 1
+  radiusMultiplier: 1
 --- !u!1 &1464803708532493944
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 1
   isPowerWheel: 1
   isSteerWheel: 1
   invertSteering: 0
@@ -231,6 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 1
+  radiusMultiplier: 1
 --- !u!1 &1496315977772149895
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 1
   isPowerWheel: 1
   isSteerWheel: 0
   invertSteering: 0
@@ -622,6 +629,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 1
+  radiusMultiplier: 1
 --- !u!1 &3725296924689698570
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 1
   isPowerWheel: 1
   isSteerWheel: 1
   invertSteering: 0
@@ -770,6 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelVisualPrefab: {fileID: 1542604711024276, guid: b377d0fdf6ee1744f9f2dd9dbcd62592, type: 3}
+  widthMultiplier: 1
+  radiusMultiplier: 1
 --- !u!1 &5227081569821233778
 GameObject:
   m_ObjectHideFlags: 0

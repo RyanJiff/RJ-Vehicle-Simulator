@@ -33,7 +33,6 @@ public class Vehicle : MonoBehaviour
 
     // General Vehicle systems
     protected List<Engine> engines = new List<Engine>();
-    protected List<Wheel> wheels = new List<Wheel>();
     protected ParkingBrake parkingBrake = null;
     protected RetractableWheels retractableWheels = null;
     protected Autopilot autopilot = null;
@@ -52,7 +51,6 @@ public class Vehicle : MonoBehaviour
         // Setup vehicle, here we get all vehicle systems and tie them to the vehicle based on what they do.
         // First setup vehicle systems
         engines = GetComponentsInChildren<Engine>().ToList();
-        wheels = GetComponentsInChildren<Wheel>().ToList();
         parkingBrake = GetComponentInChildren<ParkingBrake>();
         retractableWheels = GetComponentInChildren<RetractableWheels>();
         autopilot = GetComponentInChildren<Autopilot>();
@@ -88,12 +86,6 @@ public class Vehicle : MonoBehaviour
         SetControlSurfacesDeflection(leftRollControlSurfaces, -_inputRoll);
         SetControlSurfacesDeflection(rightRollControlSurfaces, _inputRoll);
         SetControlSurfacesDeflection(yawControlSurfaces, _inputYaw);
-
-        // Engine throttle input handling
-        for (int i = 0; i < engines.Count; i++)
-        {
-            engines[i].SetThrottle(_inputThrottle);
-        }
     }
     public virtual void SendAxisInputs(float y, float x, float z, float brake, float throttle)
     {

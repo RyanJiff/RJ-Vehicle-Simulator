@@ -49,6 +49,8 @@ public class SimpleEngine : Engine
     {
         base.VehicleSystemUpdate();
 
+        SetThrottle(myVehicle.GetAxisInput(Enums.AxisInput.THROTTLE));
+
         if (ignition)
         {
             // Power calculations
