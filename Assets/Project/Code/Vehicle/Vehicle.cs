@@ -70,6 +70,10 @@ public class Vehicle : MonoBehaviour
         {
             Debug.LogWarning(name + ": Vehicle missing center of mass transform!");
         }
+
+        // Set intial trim to be the defualt in the inspector
+        SetTrim(Enums.Axis.PITCH, defualtVerticalTrim);
+        SetTrim(Enums.Axis.ROLL, defualtHorizontalTrim);
     }
     protected virtual void VehicleUpdate()
     {

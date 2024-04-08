@@ -2,7 +2,7 @@
 
 public class ControlSurface : VehicleSystem
 {
-	public enum ControlType { STATIC, PITCH, ROLL, YAW};
+	public enum ControlType { STATIC, PITCH, ROLL, YAW, FLAPS, SPOILER};
 	public ControlType controlType = ControlType.STATIC;
 
 	[Header("Deflection")]
@@ -23,9 +23,10 @@ public class ControlSurface : VehicleSystem
 	public bool inverted = false;
 	[Space]
 
-	[Header("Affects Parent Wing")]
+	[Header("Effect on Parent Wing")]
 	[SerializeField] private bool affectsWing = false;
-	[SerializeField][Range(0, 0.5f)]  float effectOnAOACoeffecient = 0.25f;
+	[SerializeField] [Range(-1.5f, 1.5f)]  float effectOnAOALiftCoeffecient = 0.35f;
+	[SerializeField] [Range(-1.5f, 1.5f)] float effectOnAOADragCoeffecient = 0.01f;
 	[Space]
 
 	[Header("Speed Stiffening")]
@@ -97,7 +98,7 @@ public class ControlSurface : VehicleSystem
         // Tell the wing we control our current angle
         if (affectsWing && myWing) 
 		{
-			myWing.SetControlSurfaceDeflection(angle, effectOnAOACoeffecient);
+			myWing.SetControlSurfaceDeflection(angle, effectOnAOALiftCoeffecient, effectOnAOADragCoeffecient, (int)controlType);
 		}
 	}
 }

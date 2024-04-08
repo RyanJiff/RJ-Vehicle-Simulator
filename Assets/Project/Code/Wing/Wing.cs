@@ -36,8 +36,13 @@ public class Wing : MonoBehaviour
 	private float dragForce = 0;
 	private float angleOfAttack = 0;
 	private Vector3 calculationPointPosition = Vector3.zero;
-    private float controlSurfaceDeflection = 0f;
-	private float controlSurfaceAOACoefficientEffectStrength = 0;
+
+    private float[] controlSurfaceDeflection = new float[5];
+	private float[] controlSurfaceAOALiftCoefficientEffectStrength = new float[5];
+	private float[] controlSurfaceAOADragCoefficientEffectStrength = new float[5];
+
+	private float calculatedControlSurfaceAOALiftCoefficientMultiplier = 0;
+	private float calculatedControlSurfaceAOADragCoefficientMultiplier = 0;
 
 	// If the origin shifted we will calculate based on last frame velocity because the shift will cause a spike in values.
 	private Vector3 originShiftBy = Vector3.zero;
@@ -110,11 +115,22 @@ public class Wing : MonoBehaviour
 				localVelocity = transform.InverseTransformDirection(worldVelocity);
 				localVelocity.x = 0f;
 
+				// Control surface Modifiers
+
+				calculatedControlSurfaceAOALiftCoefficientMultiplier = 0f;
+				calculatedControlSurfaceAOADragCoefficientMultiplier = 0f;
+
+				for(int j=0; j<5; j++)
+                {
+					calculatedControlSurfaceAOALiftCoefficientMultiplier += ((controlSurfaceDeflection[j] / 45f) * Mathf.Sign(localVelocity.y) * controlSurfaceAOALiftCoefficientEffectStrength[j]);
+					calculatedControlSurfaceAOADragCoefficientMultiplier += ((Mathf.Abs(controlSurfaceDeflection[j] / 45f)) * controlSurfaceAOADragCoefficientEffectStrength[j]);
+				}
+
 				// Angle of attack is used as the look up for the lift and drag curves. We also add the control surface lift Coefficient to the the liftCoefficient to affect the lift curve verticaly.
 				// TODO: When we change the control surface angle we should probably shift the drag curve to the right, not just upwards.
 				angleOfAttack = Vector3.Angle(Vector3.forward, localVelocity);
-				liftCoefficient = wing.GetLiftAtAOA(angleOfAttack) + ((controlSurfaceDeflection / 45f) * Mathf.Sign(localVelocity.y) * controlSurfaceAOACoefficientEffectStrength);
-				dragCoefficient = wing.GetDragAtAOA(angleOfAttack);
+				liftCoefficient = wing.GetLiftAtAOA(angleOfAttack) + calculatedControlSurfaceAOALiftCoefficientMultiplier;
+				dragCoefficient = wing.GetDragAtAOA(angleOfAttack) + calculatedControlSurfaceAOADragCoefficientMultiplier;
 
 				// Calculate lift/drag.
 				liftForce = localVelocity.sqrMagnitude * liftCoefficient * WingArea * liftMultiplier / numberOfCalculationPoints;
@@ -134,8 +150,8 @@ public class Wing : MonoBehaviour
 				if (showDebugLines)
 				{
 					Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
-					Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.001f, Color.red);
-					Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.01f, Color.yellow);
+					Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.01f, Color.red);
+					Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.05f, Color.yellow);
 				}
 			}
 		}
@@ -143,13 +159,14 @@ public class Wing : MonoBehaviour
 		originShiftBy = Vector3.zero;
 		
 	}
-	public void SetControlSurfaceDeflection(float deflectionAngle, float strength)
+	public void SetControlSurfaceDeflection(float deflectionAngle, float strengthLift, float strengthDrag, int controlSurfaceIndex)
     {
 		// Deflection angle cant be more than 45 degrees at the meantime, this is because I am not sure whether to to keep increasing lift or not past this point
 		// TODO: Needs more research and improvement
-		float clampedAngle = Mathf.Clamp(deflectionAngle, -45, 45);
-		controlSurfaceDeflection = clampedAngle;
-		controlSurfaceAOACoefficientEffectStrength = strength;
+		float clampedAngle = Mathf.Clamp(deflectionAngle, -45f, 45f);
+		controlSurfaceDeflection[controlSurfaceIndex] = clampedAngle;
+		controlSurfaceAOALiftCoefficientEffectStrength[controlSurfaceIndex] = strengthLift;
+		controlSurfaceAOADragCoefficientEffectStrength[controlSurfaceIndex] = strengthDrag;
 	}
 	public float GetAOA()
     {

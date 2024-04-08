@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1f3a3cc909b344c8b8a78412845ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMode: 0
+  cameraMode: 1
   cameraRigPrefab: {fileID: 5423590803036555682, guid: 145f9db89d1d4764cb3c6d8f66c14cb8, type: 3}
   offsets:
   - {x: 0, y: 3, z: 0}
@@ -105,9 +105,11 @@ MonoBehaviour:
   distances:
   - 15
   - 0
+  chaseOffset: {x: 0, y: 2, z: 0}
+  distanceFromCenterChase: 12
   distanceFromCenterOrbit: 14
   lookAroundSpeed: 55
-  OffsetOrbit: {x: 0, y: 0, z: 0}
+  orbitOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &93955327385795960
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,4 +21,9 @@ public class Enums
     public const KeyCode VEHICLE_TRIM_VERTICAL_INCREASE = KeyCode.Equals;
     public const KeyCode VEHICLE_TRIM_VERTICAL_DECREASE = KeyCode.Minus;
     public const KeyCode VEHICLE_AUTOPILOT_MASTER_TOGGLE = KeyCode.Z;
+
+    // Airplane Inputs
+    public const KeyCode AIRPLANE_FLAPS_UP = KeyCode.Alpha3;
+    public const KeyCode AIRPLANE_FLAPS_DOWN = KeyCode.Alpha4;
+
 }

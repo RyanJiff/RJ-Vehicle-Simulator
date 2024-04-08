@@ -77,7 +77,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738907036089466416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,45 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132489832de7bc847a780c0551689a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimensions: {x: 3.2, y: 1.4}
+  dimensions: {x: 3.2, y: 1.2}
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
-  liftMultiplier: 1
-  dragMultiplier: 1
-  numberOfCalculationPoints: 10
-  showDebugLines: 0
---- !u!1 &1040575913964154621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 262154983484145267}
-  m_Layer: 0
-  m_Name: Flaps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &262154983484145267
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040575913964154621}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4040677175518242453}
-  - {fileID: 907183940486932019}
-  m_Father: {fileID: 5364086581915589965}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  liftMultiplier: 1.5
+  dragMultiplier: 0.85
+  numberOfCalculationPoints: 5
+  showDebugLines: 1
 --- !u!1 &1571295931775478353
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +261,7 @@ MonoBehaviour:
   PIDControllerTag: Roll
   Kp: 0.1
   Ki: 0.05
-  Kd: 0.025
+  Kd: 0
   tau: 0.02
   minVal: -1
   maxVal: 1
@@ -314,9 +281,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PIDControllerTag: Pitch
-  Kp: 0.1
+  Kp: 0.25
   Ki: 0.05
-  Kd: 0.025
+  Kd: 0
   tau: 0.02
   minVal: -1
   maxVal: 1
@@ -378,7 +345,8 @@ MonoBehaviour:
   targetDeflection: 0
   inverted: 0
   affectsWing: 0
-  effectOnAOACoeffecient: 0.25
+  effectOnAOALiftCoeffecient: 0.35
+  effectOnAOADragCoeffecient: 0.15
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -590,8 +558,8 @@ MonoBehaviour:
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 1
   dragMultiplier: 1
-  numberOfCalculationPoints: 10
-  showDebugLines: 0
+  numberOfCalculationPoints: 3
+  showDebugLines: 1
 --- !u!1 &3539385454002804730
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +728,8 @@ MonoBehaviour:
   targetDeflection: 0
   inverted: 0
   affectsWing: 1
-  effectOnAOACoeffecient: 0.5
+  effectOnAOALiftCoeffecient: 0.4
+  effectOnAOADragCoeffecient: 0.005
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -1387,6 +1356,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4956934511392022865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548513720001256262}
+  - component: {fileID: 3650705521276320185}
+  m_Layer: 0
+  m_Name: FuselageH
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548513720001256262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4956934511392022865}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0.21042946, z: -1.1351004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4527957658919324624}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!114 &3650705521276320185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4956934511392022865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132489832de7bc847a780c0551689a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensions: {x: 7, y: 1.5}
+  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
+  liftMultiplier: 0.001
+  dragMultiplier: 0.1
+  numberOfCalculationPoints: 2
+  showDebugLines: 1
 --- !u!1 &5071274121761133500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,7 +1434,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 262154983484145267}
+  - {fileID: 4527957658919324624}
   - {fileID: 4866854715206963588}
   - {fileID: 588414283673431614}
   m_Father: {fileID: 7021253814423988384}
@@ -1445,7 +1464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5634306701127824478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.119, z: 2.5}
+  m_LocalPosition: {x: 0, y: -0.119, z: 2.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1568,6 +1587,56 @@ Transform:
   m_Father: {fileID: 7021253814423988384}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5880817751976695586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3620637616468898781}
+  - component: {fileID: 1805569787120208439}
+  m_Layer: 0
+  m_Name: FuselageV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3620637616468898781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880817751976695586}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.21042946, z: -1.1351004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4527957658919324624}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1805569787120208439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880817751976695586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132489832de7bc847a780c0551689a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensions: {x: 7, y: 1.5}
+  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
+  liftMultiplier: 0.001
+  dragMultiplier: 0.1
+  numberOfCalculationPoints: 2
+  showDebugLines: 1
 --- !u!1 &5934197920195801958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1918,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6583646117007982137}
+  - {fileID: 907183940486932019}
   m_Father: {fileID: 4866854715206963588}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1868,8 +1938,8 @@ MonoBehaviour:
   wing: {fileID: 11400000, guid: b5b1b1ce1ad5a884db0c0dd67034d8ff, type: 2}
   liftMultiplier: 1
   dragMultiplier: 1
-  numberOfCalculationPoints: 10
-  showDebugLines: 0
+  numberOfCalculationPoints: 5
+  showDebugLines: 1
 --- !u!1 &6851735290003806940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 2
   isPowerWheel: 0
   isSteerWheel: 1
   invertSteering: 0
@@ -2167,6 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 2
   isPowerWheel: 0
   isSteerWheel: 0
   invertSteering: 0
@@ -2246,7 +2318,8 @@ MonoBehaviour:
   targetDeflection: 0
   inverted: 0
   affectsWing: 0
-  effectOnAOACoeffecient: 0.25
+  effectOnAOALiftCoeffecient: 0.35
+  effectOnAOADragCoeffecient: 0.15
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -2319,14 +2392,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7594113334370526379}
-  m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: -0.7071067, w: -0.000000030908616}
-  m_LocalPosition: {x: -1.5999756, y: 0.5500002, z: 0.6765137}
+  m_LocalRotation: {x: 0.000000030501397, y: 0.716302, z: -0.69779044, w: -0.00000003131055}
+  m_LocalPosition: {x: 1.4000244, y: -0.057582572, z: -0.6751468}
   m_LocalScale: {x: 100, y: 14.978284, z: 7.2510734}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6670995048277470081}
-  m_Father: {fileID: 262154983484145267}
-  m_RootOrder: 0
+  m_Father: {fileID: 8108497695723314577}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &948759798023660649
 MonoBehaviour:
@@ -2341,14 +2414,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  controlType: 0
-  max: 40
+  controlType: 4
+  max: 45
   min: 0
-  moveSpeed: 15
+  moveSpeed: 30
   targetDeflection: 0
   inverted: 0
-  affectsWing: 0
-  effectOnAOACoeffecient: 0.25
+  affectsWing: 1
+  effectOnAOALiftCoeffecient: -0.8
+  effectOnAOADragCoeffecient: 0.05
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -2422,13 +2496,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7917956017371433943}
-  m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071067, w: 0.000000030908616}
-  m_LocalPosition: {x: 1.5999756, y: 0.5500002, z: 0.6765137}
+  m_LocalRotation: {x: 0.000000031310556, y: 0.69779056, z: 0.71630186, w: 0.00000003050139}
+  m_LocalPosition: {x: -1.4000244, y: -0.057582572, z: -0.6751468}
   m_LocalScale: {x: -100, y: -14.978284, z: -7.2510734}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 89819061530177957}
-  m_Father: {fileID: 262154983484145267}
+  m_Father: {fileID: 8907460164614913130}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3960562344450594275
@@ -2444,14 +2518,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
-  controlType: 0
-  max: 40
+  controlType: 4
+  max: 45
   min: 0
-  moveSpeed: 15
+  moveSpeed: 30
   targetDeflection: 0
   inverted: 0
-  affectsWing: 0
-  effectOnAOACoeffecient: 0.25
+  affectsWing: 1
+  effectOnAOALiftCoeffecient: -0.8
+  effectOnAOADragCoeffecient: 0.05
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -2520,6 +2595,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3573209053106255417}
+  - {fileID: 4040677175518242453}
   m_Father: {fileID: 4866854715206963588}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2539,8 +2615,8 @@ MonoBehaviour:
   wing: {fileID: 11400000, guid: b5b1b1ce1ad5a884db0c0dd67034d8ff, type: 2}
   liftMultiplier: 1
   dragMultiplier: 1
-  numberOfCalculationPoints: 10
-  showDebugLines: 0
+  numberOfCalculationPoints: 5
+  showDebugLines: 1
 --- !u!1 &8227118614053907785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2670,8 @@ MonoBehaviour:
   targetDeflection: 0
   inverted: 0
   affectsWing: 1
-  effectOnAOACoeffecient: 0.5
+  effectOnAOALiftCoeffecient: 0.4
+  effectOnAOADragCoeffecient: 0.005
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -2764,6 +2841,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8672330307712130177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4527957658919324624}
+  m_Layer: 0
+  m_Name: FuselageWings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4527957658919324624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672330307712130177}
+  m_LocalRotation: {x: -0.013089582, y: -0, z: -0, w: 0.99991435}
+  m_LocalPosition: {x: 0, y: 0.62130976, z: 1.1999817}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3620637616468898781}
+  - {fileID: 1548513720001256262}
+  m_Father: {fileID: 5364086581915589965}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8935090450987692068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,6 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUIElements: 0
+  controlAxis: 2
   isPowerWheel: 0
   isSteerWheel: 0
   invertSteering: 0

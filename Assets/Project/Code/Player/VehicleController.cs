@@ -44,17 +44,7 @@ public class VehicleController : MonoBehaviour
 
 			if (Input.GetKeyDown(Enums.VEHICLE_AUTOPILOT_MASTER_TOGGLE))
 				vehicle.SendKeyInput(Enums.VEHICLE_AUTOPILOT_MASTER_TOGGLE);
-
-
-			// Flaps for planes
-			// Unused right now
-			/*
-			if (Input.GetKeyDown(KeyCode.Alpha3))
-				vehicle.SendKeyInput(KeyCode.Alpha3);
-
-			if (Input.GetKeyDown(KeyCode.Alpha4))
-				vehicle.SendKeyInput(KeyCode.Alpha4);
-			*/
+			
 
 			// Control Axis and brakes
 			_inputRoll = Mathf.Clamp(Input.GetAxis("Horizontal") + MouseControlX(), -1, 1);
