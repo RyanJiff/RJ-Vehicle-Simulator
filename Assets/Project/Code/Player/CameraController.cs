@@ -94,7 +94,7 @@ public class CameraController : MonoBehaviour
             Debug.LogWarning("NO CAMERA RIG PREFAB SET! ABORTING CAMERA MANAGER INITIALIZATION");
             this.enabled = false;
         }
-        cameraMode = CameraMode.CHASE;
+        //cameraMode = CameraMode.FIXED;
         cameraRigTransform = Instantiate(cameraRigPrefab).transform;
         cameraTransform = cameraRigTransform.GetComponentInChildren<Camera>().transform;
         ResetCameraVars();

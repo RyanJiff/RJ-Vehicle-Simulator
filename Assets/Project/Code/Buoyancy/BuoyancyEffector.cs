@@ -10,7 +10,7 @@ public class BuoyancyEffector : MonoBehaviour
     public float effectorSize = 1f;
     [Tooltip("When true, buoyant forces will be applied only at the center of mass.")]
     public bool applyForcesToCenter = false;
-    [Tooltip("The higher the value, the more buoyancy the effector")]
+    [Tooltip("The higher the value, the more buoyancy the effector has")]
     public float buoyancyMultiplier = 1f;
     [Tooltip("Drag multiplier, the higher the value the more the drag force")]
     public Vector3 dragMultiplier = Vector3.one * 0.025f;
@@ -109,7 +109,7 @@ public class BuoyancyEffector : MonoBehaviour
             Matrix4x4 oldMatrix = Gizmos.matrix;
 
             Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-            //Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
             //Gizmos.DrawWireSphere(transform.InverseTransformDirection(Vector3.down) * effectorSize/2 , effectorSize/4f);
             Gizmos.matrix = oldMatrix;
         }
