@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
         {
             TogglePause();
         }
+
+        Debug.Log("Physics running at: "+ (1 / Time.fixedDeltaTime) + "Hz");
     }
 
 

@@ -17,7 +17,7 @@ public class Wing : MonoBehaviour
 	[Tooltip("The higher the value, the more drag the wing incurs at a given angle of attack.")]
 	public float dragMultiplier = 1f;
 	[Tooltip("The amount of calculation points on the wing")]
-	public int numberOfCalculationPoints = 10;
+	[Range(2,10)] public int numberOfCalculationPoints = 10;
 	[Tooltip("Show Debug Lines?")]
 	public bool showDebugLines = false;
 
@@ -46,6 +46,10 @@ public class Wing : MonoBehaviour
 
 	// If the origin shifted we will calculate based on last frame velocity because the shift will cause a spike in values.
 	private Vector3 originShiftBy = Vector3.zero;
+
+	[Header("Debug")]
+	[SerializeField] float totalDragDebug = 0f;
+	[SerializeField] float totalLiftDebug = 0f;
 
 	public float WingArea
 	{
@@ -89,6 +93,10 @@ public class Wing : MonoBehaviour
 	{
 		if (rigid != null && wing != null)
 		{
+			// DEBUG
+			totalDragDebug = 0f;
+			totalLiftDebug = 0f;
+
 			globalWindVector = Vector3.zero;
 
 			// Check if we have an environment system singleton, will contain any global calculation modifiers
@@ -153,6 +161,9 @@ public class Wing : MonoBehaviour
 					Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.01f, Color.red);
 					Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.05f, Color.yellow);
 				}
+
+				totalDragDebug += dragForce;
+				totalLiftDebug += liftForce;
 			}
 		}
 		

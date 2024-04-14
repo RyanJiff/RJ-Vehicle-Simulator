@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2014012216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014012217}
+  - component: {fileID: 2014012218}
+  m_Layer: 0
+  m_Name: FuselageCross
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2014012217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014012216}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.21, z: 0.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4527957658919324624}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &2014012218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014012216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132489832de7bc847a780c0551689a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensions: {x: 1.5, y: 1.5}
+  wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
+  liftMultiplier: 0
+  dragMultiplier: 0.035
+  numberOfCalculationPoints: 2
+  showDebugLines: 1
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &452375626278571102
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +82,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3525971589821123717
 MonoBehaviour:
@@ -47,7 +99,7 @@ MonoBehaviour:
   showGUIElements: 1
   ignition: 1
   engineType: 0
-  maxForce: 5000
+  maxForce: 3000
   rampSpeed: 0.5
   worksUnderWater: 0
   worksOverWater: 1
@@ -101,7 +153,9 @@ MonoBehaviour:
   liftMultiplier: 1.5
   dragMultiplier: 0.85
   numberOfCalculationPoints: 5
-  showDebugLines: 1
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &1571295931775478353
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +292,7 @@ MonoBehaviour:
   holdVerticalSpeed: 1
   targetRoll: 0
   targetPitch: 0
-  targetVerticalSpeed: 0
+  targetVerticalSpeed: 500
   rollPIDController: {fileID: 1611088103112826588}
   pitchPIDController: {fileID: 1611088103112826578}
   currentRoll: 0
@@ -281,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PIDControllerTag: Pitch
-  Kp: 0.25
+  Kp: 0.5
   Ki: 0.05
   Kd: 0
   tau: 0.02
@@ -466,7 +520,7 @@ Transform:
   - {fileID: 7376765440134087905}
   - {fileID: 2185253694954258067}
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &943851937
 MonoBehaviour:
@@ -557,9 +611,11 @@ MonoBehaviour:
   dimensions: {x: 2, y: 1}
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 1
-  dragMultiplier: 1
+  dragMultiplier: 0.5
   numberOfCalculationPoints: 3
-  showDebugLines: 1
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &3539385454002804730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,198 +1104,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3960562343880053155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3960562343880053154}
-  - component: {fileID: 3960562343880053153}
-  m_Layer: 0
-  m_Name: Effector (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3960562343880053154
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562343880053155}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0.401}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6992116605782266817}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3960562343880053153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562343880053155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b358054a6f3024ba1d410d1ff20487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectorSize: 1
-  applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
---- !u!1 &3960562344075429702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3960562344075429701}
-  - component: {fileID: 3960562344075429700}
-  m_Layer: 0
-  m_Name: Effector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3960562344075429701
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344075429702}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6992116605782266817}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3960562344075429700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344075429702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b358054a6f3024ba1d410d1ff20487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectorSize: 1
-  applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
---- !u!1 &3960562344499888143
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3960562344499888142}
-  - component: {fileID: 3960562344499888141}
-  m_Layer: 0
-  m_Name: Effector (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3960562344499888142
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344499888143}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6992116605782266817}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3960562344499888141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344499888143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b358054a6f3024ba1d410d1ff20487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectorSize: 1
-  applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
---- !u!1 &3960562344592009006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3960562344592009005}
-  - component: {fileID: 3960562344592009004}
-  m_Layer: 0
-  m_Name: Effector (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3960562344592009005
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344592009006}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -3.616}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6992116605782266817}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3960562344592009004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960562344592009006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b358054a6f3024ba1d410d1ff20487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectorSize: 1
-  applyForcesToCenter: 0
-  buoyancyMultiplier: 0.4
-  dragMultiplier: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &4009158288976746952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1135,7 @@ Transform:
   - {fileID: 8642736857929005650}
   - {fileID: 4284076209328980555}
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4583612479200631698
 GameObject:
@@ -1404,8 +1268,10 @@ MonoBehaviour:
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 0.001
   dragMultiplier: 0.1
-  numberOfCalculationPoints: 2
-  showDebugLines: 1
+  numberOfCalculationPoints: 3
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &5071274121761133500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1304,7 @@ Transform:
   - {fileID: 4866854715206963588}
   - {fileID: 588414283673431614}
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5634306701127824478
 GameObject:
@@ -1469,7 +1335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5809474849570770138
 GameObject:
@@ -1585,7 +1451,7 @@ Transform:
   - {fileID: 1774474175715539473}
   - {fileID: 5331039870632607882}
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5880817751976695586
 GameObject:
@@ -1635,8 +1501,10 @@ MonoBehaviour:
   wing: {fileID: 11400000, guid: 58f9c07cc5fb60b419af20276ffb7c59, type: 2}
   liftMultiplier: 0.001
   dragMultiplier: 0.1
-  numberOfCalculationPoints: 2
-  showDebugLines: 1
+  numberOfCalculationPoints: 3
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &5934197920195801958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1665,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1611088103112826591}
-  - {fileID: 6992116605782266817}
   - {fileID: 6314165572815144644}
   - {fileID: 5834979118558668935}
   - {fileID: 1333663760817262576}
@@ -1838,7 +1705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseWeightKG: 1000
   centerOfMassTransform: {fileID: 6314165572815144644}
-  defualtVerticalTrim: 0.2
+  defualtVerticalTrim: 0.4
   defualtHorizontalTrim: 0
   pitch: 0
   roll: 0
@@ -1939,7 +1806,9 @@ MonoBehaviour:
   liftMultiplier: 1
   dragMultiplier: 1
   numberOfCalculationPoints: 5
-  showDebugLines: 1
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &6851735290003806940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,14 +2284,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showGUIElements: 0
   controlType: 4
-  max: 45
+  max: 30
   min: 0
   moveSpeed: 30
   targetDeflection: 0
   inverted: 0
   affectsWing: 1
-  effectOnAOALiftCoeffecient: -0.8
-  effectOnAOADragCoeffecient: 0.05
+  effectOnAOALiftCoeffecient: -0.5
+  effectOnAOADragCoeffecient: 0.02
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
@@ -2456,7 +2325,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4914535865281954182
 MonoBehaviour:
@@ -2519,52 +2388,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showGUIElements: 0
   controlType: 4
-  max: 45
+  max: 30
   min: 0
   moveSpeed: 30
   targetDeflection: 0
   inverted: 0
   affectsWing: 1
-  effectOnAOALiftCoeffecient: -0.8
-  effectOnAOADragCoeffecient: 0.05
+  effectOnAOALiftCoeffecient: -0.5
+  effectOnAOADragCoeffecient: 0.02
   stiffenWithSpeed: 0
   maxTorque: 6000
   myWing: {fileID: 0}
---- !u!1 &7989307753434310582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6992116605782266817}
-  m_Layer: 0
-  m_Name: BuoyantEffectors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6992116605782266817
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7989307753434310582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.35}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3960562344075429701}
-  - {fileID: 3960562344592009005}
-  - {fileID: 3960562343880053154}
-  - {fileID: 3960562344499888142}
-  m_Father: {fileID: 7021253814423988384}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8062945196438200232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,7 +2450,9 @@ MonoBehaviour:
   liftMultiplier: 1
   dragMultiplier: 1
   numberOfCalculationPoints: 5
-  showDebugLines: 1
+  showDebugLines: 0
+  totalDragDebug: 0
+  totalLiftDebug: 0
 --- !u!1 &8227118614053907785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,6 +2707,7 @@ Transform:
   m_Children:
   - {fileID: 3620637616468898781}
   - {fileID: 1548513720001256262}
+  - {fileID: 2014012217}
   m_Father: {fileID: 5364086581915589965}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
