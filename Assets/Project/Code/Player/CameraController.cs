@@ -130,7 +130,7 @@ public class CameraController : MonoBehaviour
         {
             cameraRigTransform.rotation = Quaternion.identity;
 
-            rigidVelocity = targetRigid.velocity;
+            rigidVelocity = targetRigid.linearVelocity;
             rigidVelocitySmoothed = Vector3.SmoothDamp(rigidVelocitySmoothed, rigidVelocity + target.forward, ref refVelocity, 1f, Mathf.Abs(Vector3.Distance(rigidVelocitySmoothed, rigidVelocity)) * 4f + 0.5f, Time.deltaTime);
             rigidVelocityNormalized = rigidVelocitySmoothed.normalized;
             

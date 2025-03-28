@@ -19,7 +19,7 @@ public class SetInitialVelocity : MonoBehaviour
             Rigidbody rigid = objectToAffect.GetComponent<Rigidbody>();
             if (rigid)
             {
-                rigid.velocity = objectToAffect.transform.forward * speedToSet;
+                rigid.linearVelocity = objectToAffect.transform.forward * speedToSet;
             }
         }
     }

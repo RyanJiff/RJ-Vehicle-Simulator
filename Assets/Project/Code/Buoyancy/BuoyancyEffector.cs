@@ -82,7 +82,7 @@ public class BuoyancyEffector : MonoBehaviour
             
             // Again, the water density variable should be removed as it has no real bearing on the final result.
             dragForce = worldVelocity.sqrMagnitude * waterDensity;
-            dragForce = Mathf.Clamp(dragForce, rigid.mass * rigid.velocity.magnitude * -50f, rigid.mass * rigid.velocity.magnitude * 50f);
+            dragForce = Mathf.Clamp(dragForce, rigid.mass * rigid.linearVelocity.magnitude * -50f, rigid.mass * rigid.linearVelocity.magnitude * 50f);
 
             // Drag direciton should always be opposite of effector velocity.
             dragDirection = (-worldVelocity).normalized;
@@ -110,6 +110,7 @@ public class BuoyancyEffector : MonoBehaviour
 
             Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
             Gizmos.DrawWireCube(Vector3.zero, new Vector3(effectorSize, effectorSize, effectorSize));
+
             //Gizmos.DrawWireSphere(transform.InverseTransformDirection(Vector3.down) * effectorSize/2 , effectorSize/4f);
             Gizmos.matrix = oldMatrix;
         }

@@ -40,6 +40,9 @@ public class VolumetricBuoyancy : MonoBehaviour
     [SerializeField] List<Vector3> pointsOfEffect = new List<Vector3>();
     [SerializeField] float effectorPointSize = 0f;
 
+    // If the origin shifted we will calculate based on last frame velocity because the shift will cause a spike in values.
+    private Vector3 originShiftBy = Vector3.zero;
+
 
     public float EffectorVolume
     {
@@ -49,6 +52,7 @@ public class VolumetricBuoyancy : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponentInParent<Rigidbody>();
+        FloatingOrigin.OnOriginShiftEnded.AddListener(OriginShiftingEnded);
     }
     private void Start()
     {
@@ -86,6 +90,9 @@ public class VolumetricBuoyancy : MonoBehaviour
             {
                 Vector3 calculationPoint = transform.position + transform.TransformDirection(pointsOfEffect[i]);
 
+                // Origin shift hack
+                calculationPoint += originShiftBy;
+
                 Vector3 worldVelocity = rigid.GetPointVelocity(calculationPoint);
 
                 // Lowest point by Y value of the effector, this value will be used in the percent underwater calculation.
@@ -100,7 +107,7 @@ public class VolumetricBuoyancy : MonoBehaviour
 
                 // Again, the water density variable should be removed as it has no real bearing on the final result.
                 dragForce = worldVelocity.sqrMagnitude * waterDensity / pointsOfEffect.Count;
-                dragForce = Mathf.Clamp(dragForce, rigid.mass * rigid.velocity.magnitude * -50f, rigid.mass * rigid.velocity.magnitude * 50f);
+                dragForce = Mathf.Clamp(dragForce, rigid.mass * rigid.linearVelocity.magnitude * -50f, rigid.mass * rigid.linearVelocity.magnitude * 50f);
 
                 // Drag direciton should always be opposite of effector velocity.
                 dragDirection = (-worldVelocity).normalized;
@@ -126,6 +133,7 @@ public class VolumetricBuoyancy : MonoBehaviour
                 }
             }
         }
+        originShiftBy = Vector3.zero;
     }
 
     void CalculateForcePoints()
@@ -167,8 +175,14 @@ public class VolumetricBuoyancy : MonoBehaviour
 
         Debug.Log("Calculated " + totalPoints + "buoyancy points");
     }
+    public void OriginShiftingEnded(Vector3 v)
+    {
+        Debug.Log("Origin shifted!");
+        originShiftBy = v;
+    }
+
     // Prevent this code from throwing errors in a built game.
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Matrix4x4 oldMatrix = Gizmos.matrix;

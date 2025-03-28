@@ -271,7 +271,7 @@ public class Vehicle : MonoBehaviour
             rigid = GetComponent<Rigidbody>();
         }
         // Angular velocity is in radians per second.
-        Vector3 localVelocity = transform.InverseTransformDirection(rigid.velocity);
+        Vector3 localVelocity = transform.InverseTransformDirection(rigid.linearVelocity);
         Vector3 localAngularVel = transform.InverseTransformDirection(rigid.angularVelocity);
 
         // Local pitch velocity (X) is positive when pitching down.
@@ -313,7 +313,7 @@ public class Vehicle : MonoBehaviour
             rigid = GetComponent<Rigidbody>();
         }
         const float msToKnots = 1.94384f;
-        return rigid.velocity.magnitude * msToKnots;
+        return rigid.linearVelocity.magnitude * msToKnots;
     }
     public float GetAltitude()
     {
@@ -331,7 +331,7 @@ public class Vehicle : MonoBehaviour
         {
             rigid = GetComponent<Rigidbody>();
         }
-        return rigid.velocity.y * 3.28084f * 60;
+        return rigid.linearVelocity.y * 3.28084f * 60;
     }
     public float GetPitch()
     {

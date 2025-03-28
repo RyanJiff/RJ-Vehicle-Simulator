@@ -115,7 +115,7 @@ public class Wing : MonoBehaviour
 
 				Vector3 forceApplyPos = calculationPointPosition;
 
-				rigidVelocity = rigid.velocity;
+				rigidVelocity = rigid.linearVelocity;
 
 				worldVelocity = rigid.GetPointVelocity(calculationPointPosition);
 				worldVelocity += -globalWindVector;
@@ -159,7 +159,7 @@ public class Wing : MonoBehaviour
 				{
 					Debug.DrawRay(calculationPointPosition, liftDirection * liftForce * 0.005f, Color.blue);
 					Debug.DrawRay(calculationPointPosition, -rigidVelocity.normalized * dragForce * 0.01f, Color.red);
-					Debug.DrawRay(calculationPointPosition, rigid.velocity * 0.05f, Color.yellow);
+					Debug.DrawRay(calculationPointPosition, rigid.linearVelocity * 0.05f, Color.yellow);
 				}
 
 				totalDragDebug += dragForce;

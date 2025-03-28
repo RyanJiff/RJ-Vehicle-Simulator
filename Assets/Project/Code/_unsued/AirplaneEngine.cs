@@ -57,8 +57,8 @@ public class AirplaneEngine : VehicleSystem
         
         if (rigid != null)
         {
-            rigid.AddForceAtPosition(engineTransform.forward * currentPower * maxThrust * thrustAirspeedCurve.Evaluate(rigid.velocity.magnitude * msToKnots), engineTransform.position, ForceMode.Force);
-            currentThrust = currentPower * maxThrust * thrustAirspeedCurve.Evaluate(rigid.velocity.magnitude * msToKnots);
+            rigid.AddForceAtPosition(engineTransform.forward * currentPower * maxThrust * thrustAirspeedCurve.Evaluate(rigid.linearVelocity.magnitude * msToKnots), engineTransform.position, ForceMode.Force);
+            currentThrust = currentPower * maxThrust * thrustAirspeedCurve.Evaluate(rigid.linearVelocity.magnitude * msToKnots);
         }
         if (engineAnimationMesh)
         {

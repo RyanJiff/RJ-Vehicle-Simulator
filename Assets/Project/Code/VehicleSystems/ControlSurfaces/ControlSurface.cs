@@ -78,9 +78,9 @@ public class ControlSurface : VehicleSystem
 		float targetAngle = targetDeflectionInvert > 0f ? targetDeflectionInvert * max : targetDeflectionInvert * min;
 
 		// How much you can deflect, depends on how much force it would take
-		if (rigid != null && stiffenWithSpeed && rigid.velocity.sqrMagnitude > 1f)
+		if (rigid != null && stiffenWithSpeed && rigid.linearVelocity.sqrMagnitude > 1f)
 		{
-			float torqueAtMaxDeflection = rigid.velocity.sqrMagnitude * myWing.WingArea;
+			float torqueAtMaxDeflection = rigid.linearVelocity.sqrMagnitude * myWing.WingArea;
 			float maxAvailableDeflection = Mathf.Asin(maxTorque / torqueAtMaxDeflection) * Mathf.Rad2Deg;
 
 			// Asin(x) where x > 1 or x < -1 is not a number.
